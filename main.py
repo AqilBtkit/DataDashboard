@@ -924,8 +924,6 @@ st.markdown(f"Active make on third position: **{make_name3}** (Count: **{make_co
 st.markdown(f"Active make on fourth position: **{make_name4}** (Count: **{make_count4}**)")
 st.markdown(f"Active make on fifth position: **{make_name5}** (Count: **{make_count5}**)")
 
-
-
 st.markdown("-------------------------------------------------------------------------------")
 
 # Aggregation pipeline to find the most frequent fuelType where isActive is True
