@@ -495,6 +495,7 @@ with center:
                 pctdistance=0.85,
                 explode=(0, 0, 0, 0, 0),  # Exploding the first slice
                 # shadow=True
+                counterclock=False
                 )
 
         # Draw a circle at the center to make it look like a donut
