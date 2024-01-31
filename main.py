@@ -510,27 +510,6 @@ with center:
         st.pyplot(fig1)
         # Create a pie chart for the selected data set
     except:
-        fig1, ax1 = plt.subplots()
-        ax1.pie([20,20,20,20,20], 
-                colors=colors, 
-                # labels=df.index, 
-                autopct='%1.1f%%', 
-                # startangle= 90,
-                pctdistance=0.85,
-                explode=(0, 0, 0, 0, 0),  # Exploding the first slice
-                # shadow=True
-                )
-
-        # Draw a circle at the center to make it look like a donut
-        centre_circle = plt.Circle((0,0),0.70,fc='white')
-        fig1.gca().add_artist(centre_circle)
-
-        # ax1.axis('equal')  # Equal aspect ratio ensures pie is drawn as a circle
-
-        # Add a legend
-        plt.legend(df.index, loc="lower left", bbox_to_anchor=(1, 0, 1, 1))
-        # Display the pie chart
-        st.pyplot(fig1)
         pass
     st.markdown(f"Total number of non-active data for {dataset_name} on *Autotraders* is **{df[dataset_name]['Autotraders']}**.")
     st.markdown(f"Total number of non-active data for {dataset_name} on *Gumtree* is **{df[dataset_name]['Gumtree']}**.")
