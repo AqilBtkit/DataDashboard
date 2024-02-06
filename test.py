@@ -7,7 +7,7 @@ def datapush():
     APIurl = f'https://api.aicarz.com/api/v1/dev/car/65b21c848e6696cf4f53258f/deactivate'
     response = requests.request("PUT", APIurl, headers = headers)
 
-
+    
     while response.status_code!=200:
         print('again hit API because response is: ',response.status_code)
         response = requests.request("PUT", APIurl, headers=headers)     
