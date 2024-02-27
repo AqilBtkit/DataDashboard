@@ -27,35 +27,35 @@ query_facebook_24 = {
     "createdOn": {"$gte": twenty_four_hours_ago},
     "isActive": True
     }
-total_count_facebook_24 = collection.count_documents(query_facebook_24)
+total_active_facebook_24 = collection.count_documents(query_facebook_24)
 
 query_heycar_24 = {
     "carBuyLink": {"$regex": "^https://heycar.com"},
     "createdOn": {"$gte": twenty_four_hours_ago},
     "isActive": True
     }
-total_count_heycar_24 = collection.count_documents(query_heycar_24)
+total_active_heycar_24 = collection.count_documents(query_heycar_24)
 
 query_autotrader_24 = {
     "carBuyLink": {"$regex": "^https://www.autotrader.co.uk"},
     "createdOn": {"$gte": twenty_four_hours_ago},
     "isActive": True
     }
-total_count_autotrader_24 = collection.count_documents(query_autotrader_24)
+total_active_autotrader_24 = collection.count_documents(query_autotrader_24)
 
 query_gumtree_24 = {
     "carBuyLink": {"$regex": "^https://www.gumtree.com"},
     "createdOn": {"$gte": twenty_four_hours_ago},
     "isActive": True
     }
-total_count_gumtree_24 = collection.count_documents(query_gumtree_24)
+total_active_gumtree_24 = collection.count_documents(query_gumtree_24)
 
 query_motors_24 = {
     "carBuyLink": {"$regex": "^https://www.motors.co.uk/"},
     "createdOn": {"$gte": twenty_four_hours_ago},
     "isActive": True
     }
-total_count_motors_24 = collection.count_documents(query_motors_24)
+total_active_motors_24 = collection.count_documents(query_motors_24)
 
 
 
@@ -67,35 +67,35 @@ query_facebook_7 = {
     "createdOn": {"$gte": seven_days_ago},
     "isActive": True
     }
-total_count_facebook_7 = collection.count_documents(query_facebook_7)
+total_active_facebook_7 = collection.count_documents(query_facebook_7)
 
 query_heycar_7 = {
     "carBuyLink": {"$regex": "^https://heycar.com"},
     "createdOn": {"$gte": seven_days_ago},
     "isActive": True
     }
-total_count_heycar_7 = collection.count_documents(query_heycar_7)
+total_active_heycar_7 = collection.count_documents(query_heycar_7)
 
 query_autotrader_7 = {
     "carBuyLink": {"$regex": "^https://www.autotrader.co.uk"},
     "createdOn": {"$gte": seven_days_ago},
     "isActive": True
     }
-total_count_autotrader_7 = collection.count_documents(query_autotrader_7)
+total_active_autotrader_7 = collection.count_documents(query_autotrader_7)
 
 query_gumtree_7 = {
     "carBuyLink": {"$regex": "^https://www.gumtree.com"},
     "createdOn": {"$gte": seven_days_ago},
     "isActive": True
     }
-total_count_gumtree_7 = collection.count_documents(query_gumtree_7)
+total_active_gumtree_7 = collection.count_documents(query_gumtree_7)
 
 query_motors_7 = {
     "carBuyLink": {"$regex": "^https://www.motors.co.uk/"},
     "createdOn": {"$gte": seven_days_ago},
     "isActive": True
     }
-total_count_motors_7 = collection.count_documents(query_motors_7)
+total_active_motors_7 = collection.count_documents(query_motors_7)
 
 
 
@@ -108,35 +108,35 @@ query_facebook_15 = {
     "createdOn": {"$gte": _15_days_ago},
     "isActive": True
     }
-total_count_facebook_15 = collection.count_documents(query_facebook_15)
+total_active_facebook_15 = collection.count_documents(query_facebook_15)
 
 query_heycar_15 = {
     "carBuyLink": {"$regex": "^https://heycar.com"},
     "createdOn": {"$gte": _15_days_ago},
     "isActive": True
     }
-total_count_heycar_15 = collection.count_documents(query_heycar_15)
+total_active_heycar_15 = collection.count_documents(query_heycar_15)
 
 query_autotrader_15 = {
     "carBuyLink": {"$regex": "^https://www.autotrader.co.uk"},
     "createdOn": {"$gte": _15_days_ago},
     "isActive": True
     }
-total_count_autotrader_15 = collection.count_documents(query_autotrader_15)
+total_active_autotrader_15 = collection.count_documents(query_autotrader_15)
 
 query_gumtree_15 = {
     "carBuyLink": {"$regex": "^https://www.gumtree.com"},
     "createdOn": {"$gte": _15_days_ago},
     "isActive": True
     }
-total_count_gumtree_15 = collection.count_documents(query_gumtree_15)
+total_active_gumtree_15 = collection.count_documents(query_gumtree_15)
 
 query_motors_15 = {
     "carBuyLink": {"$regex": "^https://www.motors.co.uk/"},
     "createdOn": {"$gte": _15_days_ago},
     "isActive": True
     }
-total_count_motors_15 = collection.count_documents(query_motors_15)
+total_active_motors_15 = collection.count_documents(query_motors_15)
 
 
 
@@ -149,35 +149,35 @@ query_facebook_30 = {
     "createdOn": {"$gte": _30_days_ago},
     "isActive": True
     }
-total_count_facebook_30 = collection.count_documents(query_facebook_30)
+total_active_facebook_30 = collection.count_documents(query_facebook_30)
 
 query_heycar_30 = {
     "carBuyLink": {"$regex": "^https://heycar.com"},
     "createdOn": {"$gte": _30_days_ago},
     "isActive": True
     }
-total_count_heycar_30 = collection.count_documents(query_heycar_30)
+total_active_heycar_30 = collection.count_documents(query_heycar_30)
 
 query_autotrader_30 = {
     "carBuyLink": {"$regex": "^https://www.autotrader.co.uk"},
     "createdOn": {"$gte": _30_days_ago},
     "isActive": True
     }
-total_count_autotrader_30 = collection.count_documents(query_autotrader_30)
+total_active_autotrader_30 = collection.count_documents(query_autotrader_30)
 
 query_gumtree_30 = {
     "carBuyLink": {"$regex": "^https://www.gumtree.com"},
     "createdOn": {"$gte": _30_days_ago},
     "isActive": True
     }
-total_count_gumtree_30 = collection.count_documents(query_gumtree_30)
+total_active_gumtree_30 = collection.count_documents(query_gumtree_30)
 
 query_motors_30 = {
     "carBuyLink": {"$regex": "^https://www.motors.co.uk/"},
     "createdOn": {"$gte": _30_days_ago},
     "isActive": True
     }
-total_count_motors_30 = collection.count_documents(query_motors_30)
+total_active_motors_30 = collection.count_documents(query_motors_30)
 
 
 
@@ -187,39 +187,39 @@ query_facebook = {
     "carBuyLink": {"$regex": "^https://www.facebook.com"},
     "isActive": True
     }
-total_count_facebook = collection.count_documents(query_facebook)
+total_active_facebook = collection.count_documents(query_facebook)
 
 query_heycar = {
     "carBuyLink": {"$regex": "^https://heycar.com"},
     "isActive": True
     }
-total_count_heycar = collection.count_documents(query_heycar)
+total_active_heycar = collection.count_documents(query_heycar)
 
 query_autotrader = {
     "carBuyLink": {"$regex": "^https://www.autotrader.co.uk"},
     "isActive": True
     }
-total_count_autotrader = collection.count_documents(query_autotrader)
+total_active_autotrader = collection.count_documents(query_autotrader)
 
 query_gumtree = {
     "carBuyLink": {"$regex": "^https://www.gumtree.com"},
     "isActive": True
     }
-total_count_gumtree = collection.count_documents(query_gumtree)
+total_active_gumtree = collection.count_documents(query_gumtree)
 
 query_motors = {
     "carBuyLink": {"$regex": "^https://www.motors.co.uk/"},
     "isActive": True
     }
-total_count_motors = collection.count_documents(query_motors)
+total_active_motors = collection.count_documents(query_motors)
 
 
 data = {
-    'Last 24 Hours': [total_count_autotrader_24, total_count_gumtree_24, total_count_facebook_24, total_count_heycar_24, total_count_motors_24],
-    'Last 7 days': [total_count_autotrader_7, total_count_gumtree_7, total_count_facebook_7, total_count_heycar_7, total_count_motors_7],
-    'Last 15 days': [total_count_autotrader_15, total_count_gumtree_15, total_count_facebook_15, total_count_heycar_15, total_count_motors_15],
-    'Last 30 days': [total_count_autotrader_30, total_count_gumtree_30, total_count_facebook_30, total_count_heycar_30, total_count_motors_30],
-    'Lifetime': [total_count_autotrader, total_count_gumtree, total_count_facebook, total_count_heycar, total_count_motors]
+    'Last 24 Hours': [total_active_autotrader_24, total_active_gumtree_24, total_active_facebook_24, total_active_heycar_24, total_active_motors_24],
+    'Last 7 days': [total_active_autotrader_7, total_active_gumtree_7, total_active_facebook_7, total_active_heycar_7, total_active_motors_7],
+    'Last 15 days': [total_active_autotrader_15, total_active_gumtree_15, total_active_facebook_15, total_active_heycar_15, total_active_motors_15],
+    'Last 30 days': [total_active_autotrader_30, total_active_gumtree_30, total_active_facebook_30, total_active_heycar_30, total_active_motors_30],
+    'Lifetime': [total_active_autotrader, total_active_gumtree, total_active_facebook, total_active_heycar, total_active_motors]
 }
 df = pd.DataFrame(data, index=["Autotraders", "Gumtree","Facebook", "Heycars", "Moters"])
 
@@ -277,35 +277,35 @@ query_facebook_24 = {
     "deActivatedAt": {"$gte": twenty_four_hours_ago},
     "isActive": False
     }
-total_count_facebook_24 = collection.count_documents(query_facebook_24)
+total_nonactive_facebook_24 = collection.count_documents(query_facebook_24)
 
 query_heycar_24 = {
     "carBuyLink": {"$regex": "^https://heycar.com"},
     "deActivatedAt": {"$gte": twenty_four_hours_ago},
     "isActive": False
     }
-total_count_heycar_24 = collection.count_documents(query_heycar_24)
+total_nonactive_heycar_24 = collection.count_documents(query_heycar_24)
 
 query_autotrader_24 = {
     "carBuyLink": {"$regex": "^https://www.autotrader.co.uk"},
     "deActivatedAt": {"$gte": twenty_four_hours_ago},
     "isActive": False
     }
-total_count_autotrader_24 = collection.count_documents(query_autotrader_24)
+total_nonactive_autotrader_24 = collection.count_documents(query_autotrader_24)
 
 query_gumtree_24 = {
     "carBuyLink": {"$regex": "^https://www.gumtree.com"},
     "deActivatedAt": {"$gte": twenty_four_hours_ago},
     "isActive": False
     }
-total_count_gumtree_24 = collection.count_documents(query_gumtree_24)
+total_nonactive_gumtree_24 = collection.count_documents(query_gumtree_24)
 
 query_motors_24 = {
     "carBuyLink": {"$regex": "^https://www.motors.co.uk/"},
     "deActivatedAt": {"$gte": twenty_four_hours_ago},
     "isActive": False
     }
-total_count_motors_24 = collection.count_documents(query_motors_24)
+total_nonactive_motors_24 = collection.count_documents(query_motors_24)
 
 
 
@@ -317,35 +317,35 @@ query_facebook_7 = {
     "deActivatedAt": {"$gte": seven_days_ago},
     "isActive": False
     }
-total_count_facebook_7 = collection.count_documents(query_facebook_7)
+total_nonactive_facebook_7 = collection.count_documents(query_facebook_7)
 
 query_heycar_7 = {
     "carBuyLink": {"$regex": "^https://heycar.com"},
     "deActivatedAt": {"$gte": seven_days_ago},
     "isActive": False
     }
-total_count_heycar_7 = collection.count_documents(query_heycar_7)
+total_nonactive_heycar_7 = collection.count_documents(query_heycar_7)
 
 query_autotrader_7 = {
     "carBuyLink": {"$regex": "^https://www.autotrader.co.uk"},
     "deActivatedAt": {"$gte": seven_days_ago},
     "isActive": False
     }
-total_count_autotrader_7 = collection.count_documents(query_autotrader_7)
+total_nonactive_autotrader_7 = collection.count_documents(query_autotrader_7)
 
 query_gumtree_7 = {
     "carBuyLink": {"$regex": "^https://www.gumtree.com"},
     "deActivatedAt": {"$gte": seven_days_ago},
     "isActive": False
     }
-total_count_gumtree_7 = collection.count_documents(query_gumtree_7)
+total_nonactive_gumtree_7 = collection.count_documents(query_gumtree_7)
 
 query_motors_7 = {
     "carBuyLink": {"$regex": "^https://www.motors.co.uk/"},
     "deActivatedAt": {"$gte": seven_days_ago},
     "isActive": False
     }
-total_count_motors_7 = collection.count_documents(query_motors_7)
+total_nonactive_motors_7 = collection.count_documents(query_motors_7)
 
 
 
@@ -358,35 +358,35 @@ query_facebook_15 = {
     "deActivatedAt": {"$gte": _15_days_ago},
     "isActive": False
     }
-total_count_facebook_15 = collection.count_documents(query_facebook_15)
+total_nonactive_facebook_15 = collection.count_documents(query_facebook_15)
 
 query_heycar_15 = {
     "carBuyLink": {"$regex": "^https://heycar.com"},
     "deActivatedAt": {"$gte": _15_days_ago},
     "isActive": False
     }
-total_count_heycar_15 = collection.count_documents(query_heycar_15)
+total_nonactive_heycar_15 = collection.count_documents(query_heycar_15)
 
 query_autotrader_15 = {
     "carBuyLink": {"$regex": "^https://www.autotrader.co.uk"},
     "deActivatedAt": {"$gte": _15_days_ago},
     "isActive": False
     }
-total_count_autotrader_15 = collection.count_documents(query_autotrader_15)
+total_nonactive_autotrader_15 = collection.count_documents(query_autotrader_15)
 
 query_gumtree_15 = {
     "carBuyLink": {"$regex": "^https://www.gumtree.com"},
     "deActivatedAt": {"$gte": _15_days_ago},
     "isActive": False
     }
-total_count_gumtree_15 = collection.count_documents(query_gumtree_15)
+total_nonactive_gumtree_15 = collection.count_documents(query_gumtree_15)
 
 query_motors_15 = {
     "carBuyLink": {"$regex": "^https://www.motors.co.uk/"},
     "deActivatedAt": {"$gte": _15_days_ago},
     "isActive": False
     }
-total_count_motors_15 = collection.count_documents(query_motors_15)
+total_nonactive_motors_15 = collection.count_documents(query_motors_15)
 
 
 
@@ -399,35 +399,35 @@ query_facebook_30 = {
     "deActivatedAt": {"$gte": _30_days_ago},
     "isActive": False
     }
-total_count_facebook_30 = collection.count_documents(query_facebook_30)
+total_nonactive_facebook_30 = collection.count_documents(query_facebook_30)
 
 query_heycar_30 = {
     "carBuyLink": {"$regex": "^https://heycar.com"},
     "deActivatedAt": {"$gte": _30_days_ago},
     "isActive": False
     }
-total_count_heycar_30 = collection.count_documents(query_heycar_30)
+total_nonactive_heycar_30 = collection.count_documents(query_heycar_30)
 
 query_autotrader_30 = {
     "carBuyLink": {"$regex": "^https://www.autotrader.co.uk"},
     "deActivatedAt": {"$gte": _30_days_ago},
     "isActive": False
     }
-total_count_autotrader_30 = collection.count_documents(query_autotrader_30)
+total_nonactive_autotrader_30 = collection.count_documents(query_autotrader_30)
 
 query_gumtree_30 = {
     "carBuyLink": {"$regex": "^https://www.gumtree.com"},
     "deActivatedAt": {"$gte": _30_days_ago},
     "isActive": False
     }
-total_count_gumtree_30 = collection.count_documents(query_gumtree_30)
+total_nonactive_gumtree_30 = collection.count_documents(query_gumtree_30)
 
 query_motors_30 = {
     "carBuyLink": {"$regex": "^https://www.motors.co.uk/"},
     "deActivatedAt": {"$gte": _30_days_ago},
     "isActive": False
     }
-total_count_motors_30 = collection.count_documents(query_motors_30)
+total_nonactive_motors_30 = collection.count_documents(query_motors_30)
 
 
 
@@ -437,39 +437,39 @@ query_facebook = {
     "carBuyLink": {"$regex": "^https://www.facebook.com"},
     "isActive": False
     }
-total_count_facebook = collection.count_documents(query_facebook)
+total_nonactive_facebook = collection.count_documents(query_facebook)
 
 query_heycar = {
     "carBuyLink": {"$regex": "^https://heycar.com"},
     "isActive": False
     }
-total_count_heycar = collection.count_documents(query_heycar)
+total_nonactive_heycar = collection.count_documents(query_heycar)
 
 query_autotrader = {
     "carBuyLink": {"$regex": "^https://www.autotrader.co.uk"},
     "isActive": False
     }
-total_count_autotrader = collection.count_documents(query_autotrader)
+total_nonactive_autotrader = collection.count_documents(query_autotrader)
 
 query_gumtree = {
     "carBuyLink": {"$regex": "^https://www.gumtree.com"},
     "isActive": False
     }
-total_count_gumtree = collection.count_documents(query_gumtree)
+total_nonactive_gumtree = collection.count_documents(query_gumtree)
 
 query_motors = {
     "carBuyLink": {"$regex": "^https://www.motors.co.uk/"},
     "isActive": False
     }
-total_count_motors = collection.count_documents(query_motors)
+total_nonactive_motors = collection.count_documents(query_motors)
 
 
 data = {
-    'Last 24 Hours': [total_count_autotrader_24, total_count_gumtree_24, total_count_facebook_24, total_count_heycar_24, total_count_motors_24],
-    'Last 7 days': [total_count_autotrader_7, total_count_gumtree_7, total_count_facebook_7, total_count_heycar_7, total_count_motors_7],
-    'Last 15 days': [total_count_autotrader_15, total_count_gumtree_15, total_count_facebook_15, total_count_heycar_15, total_count_motors_15],
-    'Last 30 days': [total_count_autotrader_30, total_count_gumtree_30, total_count_facebook_30, total_count_heycar_30, total_count_motors_30],
-    'Lifetime': [total_count_autotrader, total_count_gumtree, total_count_facebook, total_count_heycar, total_count_motors]
+    'Last 24 Hours': [total_nonactive_autotrader_24, total_nonactive_gumtree_24, total_nonactive_facebook_24, total_nonactive_heycar_24, total_nonactive_motors_24],
+    'Last 7 days': [total_nonactive_autotrader_7, total_nonactive_gumtree_7, total_nonactive_facebook_7, total_nonactive_heycar_7, total_nonactive_motors_7],
+    'Last 15 days': [total_nonactive_autotrader_15, total_nonactive_gumtree_15, total_nonactive_facebook_15, total_nonactive_heycar_15, total_nonactive_motors_15],
+    'Last 30 days': [total_nonactive_autotrader_30, total_nonactive_gumtree_30, total_nonactive_facebook_30, total_nonactive_heycar_30, total_nonactive_motors_30],
+    'Lifetime': [total_nonactive_autotrader, total_nonactive_gumtree, total_nonactive_facebook, total_nonactive_heycar, total_nonactive_motors]
     }
 
 df = pd.DataFrame(data, index=["Autotraders", "Gumtree","Facebook", "Heycars", "Moters"])
@@ -751,6 +751,261 @@ with right:
     st.markdown(f"Total number of non-active & active data for {dataset_name} on all *Platforms* is **{df[dataset_name]['Heycars']+df[dataset_name]['Moters']+df[dataset_name]['Facebook']+df[dataset_name]['Gumtree']+df[dataset_name]['Autotraders']}**.")
 
 
+data = {
+    'Last 24 Hours': [total_active_autotrader_24,total_nonactive_autotrader_24],
+    'Last 7 days': [total_active_autotrader_7, total_nonactive_autotrader_7],
+    'Last 15 days': [total_active_autotrader_15, total_nonactive_autotrader_15],
+    'Last 30 days': [total_active_autotrader_30, total_nonactive_autotrader_30],
+    'Lifetime': [total_active_autotrader, total_nonactive_autotrader]
+}
+df = pd.DataFrame(data, index=["Active", "Non-Active"])
+
+
+# Dropdown to select the data set
+dataset_name = st.selectbox('Select a Dataset', df.columns)
+
+left,center, right = st.columns(3)   
+with left:   
+    st.subheader(f"Autotraders:")
+    # Custom color palette
+    colors = ['#ff9999','#66b3ff']
+
+    def custom_autopct(pct):
+        return ('%1.1f%%' % pct) if pct >= 1 else ''
+    # Create a pie chart for the selected data set
+    try:   
+        fig1, ax1 = plt.subplots()
+        ax1.pie(df[dataset_name], 
+                colors=colors, 
+                # labels=df.index, 
+                autopct=custom_autopct, 
+                # startangle= 90,
+                pctdistance=0.85,
+                explode=(0, 0),  # Exploding the first slice
+                # shadow=True
+                counterclock=False
+                )
+
+        # Draw a circle at the center to make it look like a donut
+        centre_circle = plt.Circle((0, 0), 0.70, fc='white')
+        fig1.gca().add_artist(centre_circle)
+
+        # Add a legend
+        plt.legend(df.index, loc="lower left", bbox_to_anchor=(1, 0, 1, 1))
+
+        st.pyplot(fig1) 
+    except:
+        pass
+
+    st.markdown(f"Total number of active data for {dataset_name} on *Autotraders* is **{df[dataset_name]['Active']}**.")
+    st.markdown(f"Total number of non-active data for {dataset_name} on *Autotraders* is **{df[dataset_name]['Non-Active']}**.")
+    st.markdown(f"Total number of data for {dataset_name} on all *Autotraders* is **{df[dataset_name]['Active']+df[dataset_name]['Non-Active']}**.")
+
+
+data = {
+    'Last 24 Hours': [total_active_gumtree_24,total_nonactive_gumtree_24],
+    'Last 7 days': [total_active_gumtree_7, total_nonactive_gumtree_7],
+    'Last 15 days': [total_active_gumtree_15, total_nonactive_gumtree_15],
+    'Last 30 days': [total_active_gumtree_30, total_nonactive_gumtree_30],
+    'Lifetime': [total_active_gumtree, total_nonactive_gumtree]
+}
+df = pd.DataFrame(data, index=["Active", "Non-Active"])
+
+
+# Dropdown to select the data set
+dataset_name = st.selectbox('Select a Dataset', df.columns)
+
+with center:   
+    st.subheader(f"Gumtree:")
+    # Custom color palette
+    colors = ['#ff9999','#66b3ff']
+
+    def custom_autopct(pct):
+        return ('%1.1f%%' % pct) if pct >= 1 else ''
+    # Create a pie chart for the selected data set
+    try:   
+        fig1, ax1 = plt.subplots()
+        ax1.pie(df[dataset_name], 
+                colors=colors, 
+                # labels=df.index, 
+                autopct=custom_autopct, 
+                # startangle= 90,
+                pctdistance=0.85,
+                explode=(0, 0),  # Exploding the first slice
+                # shadow=True
+                counterclock=False
+                )
+
+        # Draw a circle at the center to make it look like a donut
+        centre_circle = plt.Circle((0, 0), 0.70, fc='white')
+        fig1.gca().add_artist(centre_circle)
+
+        # Add a legend
+        plt.legend(df.index, loc="lower left", bbox_to_anchor=(1, 0, 1, 1))
+
+        st.pyplot(fig1) 
+    except:
+        pass
+
+    st.markdown(f"Total number of active data for {dataset_name} on *Gumtree* is **{df[dataset_name]['Active']}**.")
+    st.markdown(f"Total number of non-active data for {dataset_name} on *Gumtree* is **{df[dataset_name]['Non-Active']}**.")
+    st.markdown(f"Total number of data for {dataset_name} on all *Gumtree* is **{df[dataset_name]['Active']+df[dataset_name]['Non-Active']}**.")
+    
+
+
+data = {
+    'Last 24 Hours': [total_active_facebook_24,total_nonactive_facebook_24],
+    'Last 7 days': [total_active_facebook_7, total_nonactive_facebook_7],
+    'Last 15 days': [total_active_facebook_15, total_nonactive_facebook_15],
+    'Last 30 days': [total_active_facebook_30, total_nonactive_facebook_30],
+    'Lifetime': [total_active_facebook, total_nonactive_facebook]
+}
+df = pd.DataFrame(data, index=["Active", "Non-Active"])
+
+
+# Dropdown to select the data set
+dataset_name = st.selectbox('Select a Dataset', df.columns)
+
+with right:   
+    st.subheader(f"Facebook:")
+    # Custom color palette
+    colors = ['#ff9999','#66b3ff']
+
+    def custom_autopct(pct):
+        return ('%1.1f%%' % pct) if pct >= 1 else ''
+    # Create a pie chart for the selected data set
+    try:   
+        fig1, ax1 = plt.subplots()
+        ax1.pie(df[dataset_name], 
+                colors=colors, 
+                # labels=df.index, 
+                autopct=custom_autopct, 
+                # startangle= 90,
+                pctdistance=0.85,
+                explode=(0, 0),  # Exploding the first slice
+                # shadow=True
+                counterclock=False
+                )
+
+        # Draw a circle at the center to make it look like a donut
+        centre_circle = plt.Circle((0, 0), 0.70, fc='white')
+        fig1.gca().add_artist(centre_circle)
+
+        # Add a legend
+        plt.legend(df.index, loc="lower left", bbox_to_anchor=(1, 0, 1, 1))
+
+        st.pyplot(fig1) 
+    except:
+        pass
+
+    st.markdown(f"Total number of active data for {dataset_name} on *Facebook* is **{df[dataset_name]['Active']}**.")
+    st.markdown(f"Total number of non-active data for {dataset_name} on *Facebook* is **{df[dataset_name]['Non-Active']}**.")
+    st.markdown(f"Total number of data for {dataset_name} on all *Facebook* is **{df[dataset_name]['Active']+df[dataset_name]['Non-Active']}**.")
+    
+
+data = {
+    'Last 24 Hours': [total_active_heycar_24,total_nonactive_heycar_24],
+    'Last 7 days': [total_active_heycar_7, total_nonactive_heycar_7],
+    'Last 15 days': [total_active_heycar_15, total_nonactive_heycar_15],
+    'Last 30 days': [total_active_heycar_30, total_nonactive_heycar_30],
+    'Lifetime': [total_active_heycar, total_nonactive_heycar]
+}
+df = pd.DataFrame(data, index=["Active", "Non-Active"])
+
+
+# Dropdown to select the data set
+dataset_name = st.selectbox('Select a Dataset', df.columns)
+
+with left:   
+    st.subheader(f"Heycar:")
+    # Custom color palette
+    colors = ['#ff9999','#66b3ff']
+
+    def custom_autopct(pct):
+        return ('%1.1f%%' % pct) if pct >= 1 else ''
+    # Create a pie chart for the selected data set
+    try:   
+        fig1, ax1 = plt.subplots()
+        ax1.pie(df[dataset_name], 
+                colors=colors, 
+                # labels=df.index, 
+                autopct=custom_autopct, 
+                # startangle= 90,
+                pctdistance=0.85,
+                explode=(0, 0),  # Exploding the first slice
+                # shadow=True
+                counterclock=False
+                )
+
+        # Draw a circle at the center to make it look like a donut
+        centre_circle = plt.Circle((0, 0), 0.70, fc='white')
+        fig1.gca().add_artist(centre_circle)
+
+        # Add a legend
+        plt.legend(df.index, loc="lower left", bbox_to_anchor=(1, 0, 1, 1))
+
+        st.pyplot(fig1) 
+    except:
+        pass
+
+    st.markdown(f"Total number of active data for {dataset_name} on *Heycar* is **{df[dataset_name]['Active']}**.")
+    st.markdown(f"Total number of non-active data for {dataset_name} on *Heycar* is **{df[dataset_name]['Non-Active']}**.")
+    st.markdown(f"Total number of data for {dataset_name} on all *Heycar* is **{df[dataset_name]['Active']+df[dataset_name]['Non-Active']}**.")
+    
+
+data = {
+    'Last 24 Hours': [total_active_heycar_24,total_nonactive_heycar_24],
+    'Last 7 days': [total_active_heycar_7, total_nonactive_heycar_7],
+    'Last 15 days': [total_active_heycar_15, total_nonactive_heycar_15],
+    'Last 30 days': [total_active_heycar_30, total_nonactive_heycar_30],
+    'Lifetime': [total_active_heycar, total_nonactive_heycar]
+}
+df = pd.DataFrame(data, index=["Active", "Non-Active"])
+
+
+# Dropdown to select the data set
+dataset_name = st.selectbox('Select a Dataset', df.columns)
+
+with right:   
+    st.subheader(f"Heycar:")
+    # Custom color palette
+    colors = ['#ff9999','#66b3ff']
+
+    def custom_autopct(pct):
+        return ('%1.1f%%' % pct) if pct >= 1 else ''
+    # Create a pie chart for the selected data set
+    try:   
+        fig1, ax1 = plt.subplots()
+        ax1.pie(df[dataset_name], 
+                colors=colors, 
+                # labels=df.index, 
+                autopct=custom_autopct, 
+                # startangle= 90,
+                pctdistance=0.85,
+                explode=(0, 0),  # Exploding the first slice
+                # shadow=True
+                counterclock=False
+                )
+
+        # Draw a circle at the center to make it look like a donut
+        centre_circle = plt.Circle((0, 0), 0.70, fc='white')
+        fig1.gca().add_artist(centre_circle)
+
+        # Add a legend
+        plt.legend(df.index, loc="lower left", bbox_to_anchor=(1, 0, 1, 1))
+
+        st.pyplot(fig1) 
+    except:
+        pass
+
+    st.markdown(f"Total number of active data for {dataset_name} on *Heycar* is **{df[dataset_name]['Active']}**.")
+    st.markdown(f"Total number of non-active data for {dataset_name} on *Heycar* is **{df[dataset_name]['Non-Active']}**.")
+    st.markdown(f"Total number of data for {dataset_name} on all *Heycar* is **{df[dataset_name]['Active']+df[dataset_name]['Non-Active']}**.")
+    
+
+    # st.markdown("-------------------------------------------------------------------------------")
+    # Sample data
+    # Sample data
 # st.markdown("**________________________________________________________________________________________________________________________________________________________________________________**")
 st.header("Data Stats")
 st.markdown("-------------------------------------------------------------------------------")
