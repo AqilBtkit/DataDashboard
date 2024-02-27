@@ -904,7 +904,7 @@ data = {
 df = pd.DataFrame(data, index=["Active", "Non-Active"])
 
 
-with right:   
+with left:   
     st.subheader(f"Heycar:")
     # Custom color palette
     colors = ['#ff9999','#66b3ff']
