@@ -761,9 +761,6 @@ data = {
 df = pd.DataFrame(data, index=["Active", "Non-Active"])
 
 
-# Dropdown to select the data set
-# dataset_name = st.selectbox('Select a Dataset', df.columns)
-
 left,center, right = st.columns(3)   
 with left:   
     st.subheader(f"Autotraders:")
@@ -811,9 +808,6 @@ data = {
 }
 df = pd.DataFrame(data, index=["Active", "Non-Active"])
 
-
-# Dropdown to select the data set
-dataset_name = st.selectbox('Select a Dataset', df.columns)
 
 with center:   
     st.subheader(f"Gumtree:")
@@ -863,9 +857,6 @@ data = {
 df = pd.DataFrame(data, index=["Active", "Non-Active"])
 
 
-# Dropdown to select the data set
-dataset_name = st.selectbox('Select a Dataset', df.columns)
-
 with right:   
     st.subheader(f"Facebook:")
     # Custom color palette
@@ -913,9 +904,6 @@ data = {
 df = pd.DataFrame(data, index=["Active", "Non-Active"])
 
 
-# Dropdown to select the data set
-dataset_name = st.selectbox('Select a Dataset', df.columns)
-
 with left:   
     st.subheader(f"Heycar:")
     # Custom color palette
@@ -961,10 +949,6 @@ data = {
     'Lifetime': [total_active_heycar, total_nonactive_heycar]
 }
 df = pd.DataFrame(data, index=["Active", "Non-Active"])
-
-
-# Dropdown to select the data set
-dataset_name = st.selectbox('Select a Dataset', df.columns)
 
 with right:   
     st.subheader(f"Heycar:")
