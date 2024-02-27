@@ -762,9 +762,9 @@ df = pd.DataFrame(data, index=["Active", "Non-Active"])
 
 
 # Dropdown to select the data set
-dataset_name = st.selectbox('Select a Dataset', df.columns)
+# dataset_name = st.selectbox('Select a Dataset', df.columns)
 
-# left,center, right = st.columns(3)   
+left,center, right = st.columns(3)   
 with left:   
     st.subheader(f"Autotraders:")
     # Custom color palette
