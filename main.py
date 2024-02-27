@@ -904,7 +904,7 @@ data = {
 df = pd.DataFrame(data, index=["Active", "Non-Active"])
 
 
-with left:   
+with right:   
     st.subheader(f"Heycar:")
     # Custom color palette
     colors = ['#ff9999','#66b3ff']
@@ -942,16 +942,16 @@ with left:
     
 
 data = {
-    'Last 24 Hours': [total_active_heycar_24,total_nonactive_heycar_24],
-    'Last 7 days': [total_active_heycar_7, total_nonactive_heycar_7],
-    'Last 15 days': [total_active_heycar_15, total_nonactive_heycar_15],
-    'Last 30 days': [total_active_heycar_30, total_nonactive_heycar_30],
-    'Lifetime': [total_active_heycar, total_nonactive_heycar]
+    'Last 24 Hours': [total_active_motors_24,total_nonactive_motors_24],
+    'Last 7 days': [total_active_motors_7, total_nonactive_motors_7],
+    'Last 15 days': [total_active_motors_15, total_nonactive_motors_15],
+    'Last 30 days': [total_active_motors_30, total_nonactive_motors_30],
+    'Lifetime': [total_active_motors, total_nonactive_motors]
 }
 df = pd.DataFrame(data, index=["Active", "Non-Active"])
 
-with right:   
-    st.subheader(f"Heycar:")
+with center:   
+    st.subheader(f"Motors:")
     # Custom color palette
     colors = ['#ff9999','#66b3ff']
 
@@ -982,9 +982,9 @@ with right:
     except:
         pass
 
-    st.markdown(f"Total number of active data for {dataset_name} on *Heycar* is **{df[dataset_name]['Active']}**.")
-    st.markdown(f"Total number of non-active data for {dataset_name} on *Heycar* is **{df[dataset_name]['Non-Active']}**.")
-    st.markdown(f"Total number of data for {dataset_name} on all *Heycar* is **{df[dataset_name]['Active']+df[dataset_name]['Non-Active']}**.")
+    st.markdown(f"Total number of active data for {dataset_name} on *Motors* is **{df[dataset_name]['Active']}**.")
+    st.markdown(f"Total number of non-active data for {dataset_name} on *Motors* is **{df[dataset_name]['Non-Active']}**.")
+    st.markdown(f"Total number of data for {dataset_name} on all *Motors* is **{df[dataset_name]['Active']+df[dataset_name]['Non-Active']}**.")
     
 
     # st.markdown("-------------------------------------------------------------------------------")
