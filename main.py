@@ -477,7 +477,7 @@ df = pd.DataFrame(data, index=["Autotraders", "Gumtree","Facebook", "Heycars", "
 # Dropdown to select the data set
 # dataset_name = st.selectbox('Select a Dataset', df.columns)
 with center:
-    st.subheader(f"Deactive:")
+    st.subheader(f"Inactive:")
     # Custom color palette
     colors = ['#ff9999','#66b3ff','#99ff99','#ffcc99','#BB33FF']
 
