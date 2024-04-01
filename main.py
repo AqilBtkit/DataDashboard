@@ -13,7 +13,7 @@ st.title("Data Dashboard")
 st.header(f"Platforms")
 
 
-connection_string = "mongodb+srv://web_scrapping_read_only:rVXnGzz3jZvnRZx1@cluster0.uarux4m.mongodb.net/?retryWrites=true&w=majority"
+connection_string = "mongodb+srv://web_scrapping_read_only:rVXnGzz3jZvnRZx1@cluster1.nfor3.mongodb.net/?retryWrites=true&w=majority"
 mongodbConn = pymongo.MongoClient(connection_string)
 carzdb = mongodbConn["aicarsdb"]
 collection = carzdb["cars"]
