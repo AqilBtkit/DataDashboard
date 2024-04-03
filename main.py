@@ -4,7 +4,8 @@ import matplotlib.pyplot as plt
 from datetime import datetime, timedelta
 import pymongo
 from datetime import datetime, tzinfo, timezone
-
+import requests
+import json
 
 st.set_page_config(layout="wide")
 
@@ -13,205 +14,137 @@ st.title("Data Dashboard")
 st.header(f"Platforms")
 
 
-connection_string = "mongodb+srv://web_scrapping_read_only:rVXnGzz3jZvnRZx1@cluster1.nfor3.mongodb.net/?retryWrites=true&w=majority"
-mongodbConn = pymongo.MongoClient(connection_string)
-carzdb = mongodbConn["aicarsdb"]
-collection = carzdb["cars"]
 
 # Sample data
+@st.cache_data(ttl=1800)
+def dataload():
+    url = "http://api.aicarz.com/api/v1/dev/data-dashboard?days=1"
+    headers = {'Authorization': 'Bearer ya29.a0AfB_byASQo7lfEHHE4H6vXGd9MefYU0puZYAk3fkDyFcoJzE7Ra8Nzssy0TLcVuPyFRHvO_g_2h07UkZKtApTu51oJZb35PfvPN8UpPrvx4sU2yFzYclzdmmxBfRpymGYbziyD2JVLM9X2zEFSJabc2x157KKPGAQwaCgYKAbYSARISFQHGX2Mig9VTJWbXohan6iB9BtfcIg0169'}
+    response = requests.request("GET", url, headers=headers)
+    data1= json.loads(response.text)
+    print("\n\n\nStatus code::::",response.status_code)
 
-twenty_four_hours_ago = datetime.now() - timedelta(hours=24)
+    # while response.status_code == 502:
+    #     response = requests.request("GET", url, headers=headers)
+    #     print("\n\n\nStatus code::::",response.status_code)
+    #     data1= json.loads(response.text)
+        
+    print("Data 1 day: ",data1['data'])
+    
+    
+    url = "http://api.aicarz.com/api/v1/dev/data-dashboard?days=7"
+    headers = {'Authorization': 'Bearer ya29.a0AfB_byASQo7lfEHHE4H6vXGd9MefYU0puZYAk3fkDyFcoJzE7Ra8Nzssy0TLcVuPyFRHvO_g_2h07UkZKtApTu51oJZb35PfvPN8UpPrvx4sU2yFzYclzdmmxBfRpymGYbziyD2JVLM9X2zEFSJabc2x157KKPGAQwaCgYKAbYSARISFQHGX2Mig9VTJWbXohan6iB9BtfcIg0169'}
+    response = requests.request("GET", url, headers=headers)
+    data7= json.loads(response.text)
+    print("\n\n\nStatus code::::",response.status_code)
 
-query_facebook_24 = {
-    "carBuyLink": {"$regex": "^https://www.facebook.com"},
-    "createdOn": {"$gte": twenty_four_hours_ago},
-    "isActive": True
-    }
-total_active_facebook_24 = collection.count_documents(query_facebook_24)
+    # while response.status_code == 502:
+    #     response = requests.request("GET", url, headers=headers)
+    #     print("\n\n\nStatus code::::",response.status_code)
+    #     data7= json.loads(response.text)
+        
+    print("Data 7 days: ",data7['data'])
+    
+    url = "http://api.aicarz.com/api/v1/dev/data-dashboard?days=15"
+    headers = {'Authorization': 'Bearer ya29.a0AfB_byASQo7lfEHHE4H6vXGd9MefYU0puZYAk3fkDyFcoJzE7Ra8Nzssy0TLcVuPyFRHvO_g_2h07UkZKtApTu51oJZb35PfvPN8UpPrvx4sU2yFzYclzdmmxBfRpymGYbziyD2JVLM9X2zEFSJabc2x157KKPGAQwaCgYKAbYSARISFQHGX2Mig9VTJWbXohan6iB9BtfcIg0169'}
+    response = requests.request("GET", url, headers=headers)
+    data15= json.loads(response.text)
+    print("\n\n\nStatus code::::",response.status_code)
 
-query_heycar_24 = {
-    "carBuyLink": {"$regex": "^https://heycar.com"},
-    "createdOn": {"$gte": twenty_four_hours_ago},
-    "isActive": True
-    }
-total_active_heycar_24 = collection.count_documents(query_heycar_24)
+    # while response.status_code == 502:
+    #     response = requests.request("GET", url, headers=headers)
+    #     print("\n\n\nStatus code::::",response.status_code)
+    #     data15= json.loads(response.text)
+        
+    print("Data 15 days: ",data15['data'])
+    
+    url = "http://api.aicarz.com/api/v1/dev/data-dashboard?days=15"
+    headers = {'Authorization': 'Bearer ya29.a0AfB_byASQo7lfEHHE4H6vXGd9MefYU0puZYAk3fkDyFcoJzE7Ra8Nzssy0TLcVuPyFRHvO_g_2h07UkZKtApTu51oJZb35PfvPN8UpPrvx4sU2yFzYclzdmmxBfRpymGYbziyD2JVLM9X2zEFSJabc2x157KKPGAQwaCgYKAbYSARISFQHGX2Mig9VTJWbXohan6iB9BtfcIg0169'}
+    response = requests.request("GET", url, headers=headers)
+    data30= json.loads(response.text)
+    print("\n\n\nStatus code::::",response.status_code)
 
-query_autotrader_24 = {
-    "carBuyLink": {"$regex": "^https://www.autotrader.co.uk"},
-    "createdOn": {"$gte": twenty_four_hours_ago},
-    "isActive": True
-    }
-total_active_autotrader_24 = collection.count_documents(query_autotrader_24)
+    # while response.status_code == 502:
+    #     response = requests.request("GET", url, headers=headers)
+    #     print("\n\n\nStatus code::::",response.status_code)
+    #     data30= json.loads(response.text)
+        
+    print("Data 30 days: ",data30['data'])
+    
+    
+    url = "http://api.aicarz.com/api/v1/dev/data-dashboard"
+    headers = {'Authorization': 'Bearer ya29.a0AfB_byASQo7lfEHHE4H6vXGd9MefYU0puZYAk3fkDyFcoJzE7Ra8Nzssy0TLcVuPyFRHvO_g_2h07UkZKtApTu51oJZb35PfvPN8UpPrvx4sU2yFzYclzdmmxBfRpymGYbziyD2JVLM9X2zEFSJabc2x157KKPGAQwaCgYKAbYSARISFQHGX2Mig9VTJWbXohan6iB9BtfcIg0169'}
+    response = requests.request("GET", url, headers=headers)
+    data_lifetime= json.loads(response.text)
+    print("\n\n\nStatus code::::",response.status_code)
 
-query_gumtree_24 = {
-    "carBuyLink": {"$regex": "^https://www.gumtree.com"},
-    "createdOn": {"$gte": twenty_four_hours_ago},
-    "isActive": True
-    }
-total_active_gumtree_24 = collection.count_documents(query_gumtree_24)
+    # while response.status_code == 502:
+    #     response = requests.request("GET", url, headers=headers)
+    #     print("\n\n\nStatus code::::",response.status_code)
+    #     data_lifetime= json.loads(response.text)
+        
+    print("Data lifetime: ",data_lifetime['data'])
+    
+    return data1, data7, data15, data30, data_lifetime
 
-query_motors_24 = {
-    "carBuyLink": {"$regex": "^https://www.motors.co.uk/"},
-    "createdOn": {"$gte": twenty_four_hours_ago},
-    "isActive": True
-    }
-total_active_motors_24 = collection.count_documents(query_motors_24)
+data1, data7, data15, data30, data_lifetime= dataload()
 
+total_active_facebook_24 = 
 
+total_active_heycar_24 = 
 
+total_active_autotrader_24 = 
 
-seven_days_ago = datetime.now() - timedelta(hours=168)
+total_active_gumtree_24 = 
 
-query_facebook_7 = {
-    "carBuyLink": {"$regex": "^https://www.facebook.com"},
-    "createdOn": {"$gte": seven_days_ago},
-    "isActive": True
-    }
-total_active_facebook_7 = collection.count_documents(query_facebook_7)
+total_active_motors_24 =
 
-query_heycar_7 = {
-    "carBuyLink": {"$regex": "^https://heycar.com"},
-    "createdOn": {"$gte": seven_days_ago},
-    "isActive": True
-    }
-total_active_heycar_7 = collection.count_documents(query_heycar_7)
+total_active_facebook_7 =
 
-query_autotrader_7 = {
-    "carBuyLink": {"$regex": "^https://www.autotrader.co.uk"},
-    "createdOn": {"$gte": seven_days_ago},
-    "isActive": True
-    }
-total_active_autotrader_7 = collection.count_documents(query_autotrader_7)
+total_active_heycar_7 = 
 
-query_gumtree_7 = {
-    "carBuyLink": {"$regex": "^https://www.gumtree.com"},
-    "createdOn": {"$gte": seven_days_ago},
-    "isActive": True
-    }
-total_active_gumtree_7 = collection.count_documents(query_gumtree_7)
+total_active_autotrader_7 = 
 
-query_motors_7 = {
-    "carBuyLink": {"$regex": "^https://www.motors.co.uk/"},
-    "createdOn": {"$gte": seven_days_ago},
-    "isActive": True
-    }
-total_active_motors_7 = collection.count_documents(query_motors_7)
+total_active_gumtree_7 =
 
+total_active_motors_7 = 
 
+total_active_facebook_15 = 
 
+total_active_heycar_15 = 
 
+total_active_autotrader_15 = 
 
-_15_days_ago = datetime.now() - timedelta(hours=360)
+total_active_gumtree_15 = 
 
-query_facebook_15 = {
-    "carBuyLink": {"$regex": "^https://www.facebook.com"},
-    "createdOn": {"$gte": _15_days_ago},
-    "isActive": True
-    }
-total_active_facebook_15 = collection.count_documents(query_facebook_15)
-
-query_heycar_15 = {
-    "carBuyLink": {"$regex": "^https://heycar.com"},
-    "createdOn": {"$gte": _15_days_ago},
-    "isActive": True
-    }
-total_active_heycar_15 = collection.count_documents(query_heycar_15)
-
-query_autotrader_15 = {
-    "carBuyLink": {"$regex": "^https://www.autotrader.co.uk"},
-    "createdOn": {"$gte": _15_days_ago},
-    "isActive": True
-    }
-total_active_autotrader_15 = collection.count_documents(query_autotrader_15)
-
-query_gumtree_15 = {
-    "carBuyLink": {"$regex": "^https://www.gumtree.com"},
-    "createdOn": {"$gte": _15_days_ago},
-    "isActive": True
-    }
-total_active_gumtree_15 = collection.count_documents(query_gumtree_15)
-
-query_motors_15 = {
-    "carBuyLink": {"$regex": "^https://www.motors.co.uk/"},
-    "createdOn": {"$gte": _15_days_ago},
-    "isActive": True
-    }
-total_active_motors_15 = collection.count_documents(query_motors_15)
+total_active_motors_15 = 
 
 
 
 
 
-_30_days_ago = datetime.now() - timedelta(hours=720)
+total_active_facebook_30 = 
 
-query_facebook_30 = {
-    "carBuyLink": {"$regex": "^https://www.facebook.com"},
-    "createdOn": {"$gte": _30_days_ago},
-    "isActive": True
-    }
-total_active_facebook_30 = collection.count_documents(query_facebook_30)
+total_active_heycar_30 = 
 
-query_heycar_30 = {
-    "carBuyLink": {"$regex": "^https://heycar.com"},
-    "createdOn": {"$gte": _30_days_ago},
-    "isActive": True
-    }
-total_active_heycar_30 = collection.count_documents(query_heycar_30)
+total_active_autotrader_30 = 
 
-query_autotrader_30 = {
-    "carBuyLink": {"$regex": "^https://www.autotrader.co.uk"},
-    "createdOn": {"$gte": _30_days_ago},
-    "isActive": True
-    }
-total_active_autotrader_30 = collection.count_documents(query_autotrader_30)
+total_active_gumtree_30 = 
 
-query_gumtree_30 = {
-    "carBuyLink": {"$regex": "^https://www.gumtree.com"},
-    "createdOn": {"$gte": _30_days_ago},
-    "isActive": True
-    }
-total_active_gumtree_30 = collection.count_documents(query_gumtree_30)
-
-query_motors_30 = {
-    "carBuyLink": {"$regex": "^https://www.motors.co.uk/"},
-    "createdOn": {"$gte": _30_days_ago},
-    "isActive": True
-    }
-total_active_motors_30 = collection.count_documents(query_motors_30)
+total_active_motors_30 = 
 
 
 
 
+total_active_facebook = 
 
-query_facebook = {
-    "carBuyLink": {"$regex": "^https://www.facebook.com"},
-    "isActive": True
-    }
-total_active_facebook = collection.count_documents(query_facebook)
+total_active_heycar = 
 
-query_heycar = {
-    "carBuyLink": {"$regex": "^https://heycar.com"},
-    "isActive": True
-    }
-total_active_heycar = collection.count_documents(query_heycar)
+total_active_autotrader = 
 
-query_autotrader = {
-    "carBuyLink": {"$regex": "^https://www.autotrader.co.uk"},
-    "isActive": True
-    }
-total_active_autotrader = collection.count_documents(query_autotrader)
+total_active_gumtree = 
 
-query_gumtree = {
-    "carBuyLink": {"$regex": "^https://www.gumtree.com"},
-    "isActive": True
-    }
-total_active_gumtree = collection.count_documents(query_gumtree)
-
-query_motors = {
-    "carBuyLink": {"$regex": "^https://www.motors.co.uk/"},
-    "isActive": True
-    }
-total_active_motors = collection.count_documents(query_motors)
+total_active_motors = 
 
 
 data = {
@@ -267,201 +200,56 @@ with left:
     st.markdown(f"Total number of active data for {dataset_name} on *Heycars* is **{df[dataset_name]['Heycars']}**.")
     st.markdown(f"Total number of active data for {dataset_name} on all *Platforms* is **{df[dataset_name]['Heycars']+df[dataset_name]['Moters']+df[dataset_name]['Facebook']+df[dataset_name]['Gumtree']+df[dataset_name]['Autotraders']}**.")
     # st.markdown("-------------------------------------------------------------------------------")
-    # Sample data
-    # Sample data
 
-twenty_four_hours_ago = datetime.now() - timedelta(hours=24)
+total_nonactive_facebook_24 = 
 
-query_facebook_24 = {
-    "carBuyLink": {"$regex": "^https://www.facebook.com"},
-    "deActivatedAt": {"$gte": twenty_four_hours_ago},
-    "isActive": False
-    }
-total_nonactive_facebook_24 = collection.count_documents(query_facebook_24)
+total_nonactive_heycar_24 = 
 
-query_heycar_24 = {
-    "carBuyLink": {"$regex": "^https://heycar.com"},
-    "deActivatedAt": {"$gte": twenty_four_hours_ago},
-    "isActive": False
-    }
-total_nonactive_heycar_24 = collection.count_documents(query_heycar_24)
+total_nonactive_autotrader_24 = 
 
-query_autotrader_24 = {
-    "carBuyLink": {"$regex": "^https://www.autotrader.co.uk"},
-    "deActivatedAt": {"$gte": twenty_four_hours_ago},
-    "isActive": False
-    }
-total_nonactive_autotrader_24 = collection.count_documents(query_autotrader_24)
+total_nonactive_gumtree_24 = 
 
-query_gumtree_24 = {
-    "carBuyLink": {"$regex": "^https://www.gumtree.com"},
-    "deActivatedAt": {"$gte": twenty_four_hours_ago},
-    "isActive": False
-    }
-total_nonactive_gumtree_24 = collection.count_documents(query_gumtree_24)
+total_nonactive_motors_24 = 
 
-query_motors_24 = {
-    "carBuyLink": {"$regex": "^https://www.motors.co.uk/"},
-    "deActivatedAt": {"$gte": twenty_four_hours_ago},
-    "isActive": False
-    }
-total_nonactive_motors_24 = collection.count_documents(query_motors_24)
+total_nonactive_facebook_7 = 
 
+total_nonactive_heycar_7 = 
 
+total_nonactive_autotrader_7 = 
 
+total_nonactive_gumtree_7 = 
 
-seven_days_ago = datetime.now() - timedelta(hours=168)
+total_nonactive_motors_7 = 
 
-query_facebook_7 = {
-    "carBuyLink": {"$regex": "^https://www.facebook.com"},
-    "deActivatedAt": {"$gte": seven_days_ago},
-    "isActive": False
-    }
-total_nonactive_facebook_7 = collection.count_documents(query_facebook_7)
+total_nonactive_facebook_15 = 
 
-query_heycar_7 = {
-    "carBuyLink": {"$regex": "^https://heycar.com"},
-    "deActivatedAt": {"$gte": seven_days_ago},
-    "isActive": False
-    }
-total_nonactive_heycar_7 = collection.count_documents(query_heycar_7)
+total_nonactive_heycar_15 = 
 
-query_autotrader_7 = {
-    "carBuyLink": {"$regex": "^https://www.autotrader.co.uk"},
-    "deActivatedAt": {"$gte": seven_days_ago},
-    "isActive": False
-    }
-total_nonactive_autotrader_7 = collection.count_documents(query_autotrader_7)
+total_nonactive_autotrader_15 = 
 
-query_gumtree_7 = {
-    "carBuyLink": {"$regex": "^https://www.gumtree.com"},
-    "deActivatedAt": {"$gte": seven_days_ago},
-    "isActive": False
-    }
-total_nonactive_gumtree_7 = collection.count_documents(query_gumtree_7)
+total_nonactive_gumtree_15 =
 
-query_motors_7 = {
-    "carBuyLink": {"$regex": "^https://www.motors.co.uk/"},
-    "deActivatedAt": {"$gte": seven_days_ago},
-    "isActive": False
-    }
-total_nonactive_motors_7 = collection.count_documents(query_motors_7)
+total_nonactive_motors_15 = 
 
+total_nonactive_facebook_30 = 
 
+total_nonactive_heycar_30 = 
 
+total_nonactive_autotrader_30 =
 
+total_nonactive_gumtree_30 = 
 
-_15_days_ago = datetime.now() - timedelta(hours=360)
+total_nonactive_motors_30 = 
 
-query_facebook_15 = {
-    "carBuyLink": {"$regex": "^https://www.facebook.com"},
-    "deActivatedAt": {"$gte": _15_days_ago},
-    "isActive": False
-    }
-total_nonactive_facebook_15 = collection.count_documents(query_facebook_15)
+total_nonactive_facebook = 
 
-query_heycar_15 = {
-    "carBuyLink": {"$regex": "^https://heycar.com"},
-    "deActivatedAt": {"$gte": _15_days_ago},
-    "isActive": False
-    }
-total_nonactive_heycar_15 = collection.count_documents(query_heycar_15)
+total_nonactive_heycar = 
 
-query_autotrader_15 = {
-    "carBuyLink": {"$regex": "^https://www.autotrader.co.uk"},
-    "deActivatedAt": {"$gte": _15_days_ago},
-    "isActive": False
-    }
-total_nonactive_autotrader_15 = collection.count_documents(query_autotrader_15)
+total_nonactive_autotrader = 
 
-query_gumtree_15 = {
-    "carBuyLink": {"$regex": "^https://www.gumtree.com"},
-    "deActivatedAt": {"$gte": _15_days_ago},
-    "isActive": False
-    }
-total_nonactive_gumtree_15 = collection.count_documents(query_gumtree_15)
+total_nonactive_gumtree = 
 
-query_motors_15 = {
-    "carBuyLink": {"$regex": "^https://www.motors.co.uk/"},
-    "deActivatedAt": {"$gte": _15_days_ago},
-    "isActive": False
-    }
-total_nonactive_motors_15 = collection.count_documents(query_motors_15)
-
-
-
-
-
-_30_days_ago = datetime.now() - timedelta(hours=720)
-
-query_facebook_30 = {
-    "carBuyLink": {"$regex": "^https://www.facebook.com"},
-    "deActivatedAt": {"$gte": _30_days_ago},
-    "isActive": False
-    }
-total_nonactive_facebook_30 = collection.count_documents(query_facebook_30)
-
-query_heycar_30 = {
-    "carBuyLink": {"$regex": "^https://heycar.com"},
-    "deActivatedAt": {"$gte": _30_days_ago},
-    "isActive": False
-    }
-total_nonactive_heycar_30 = collection.count_documents(query_heycar_30)
-
-query_autotrader_30 = {
-    "carBuyLink": {"$regex": "^https://www.autotrader.co.uk"},
-    "deActivatedAt": {"$gte": _30_days_ago},
-    "isActive": False
-    }
-total_nonactive_autotrader_30 = collection.count_documents(query_autotrader_30)
-
-query_gumtree_30 = {
-    "carBuyLink": {"$regex": "^https://www.gumtree.com"},
-    "deActivatedAt": {"$gte": _30_days_ago},
-    "isActive": False
-    }
-total_nonactive_gumtree_30 = collection.count_documents(query_gumtree_30)
-
-query_motors_30 = {
-    "carBuyLink": {"$regex": "^https://www.motors.co.uk/"},
-    "deActivatedAt": {"$gte": _30_days_ago},
-    "isActive": False
-    }
-total_nonactive_motors_30 = collection.count_documents(query_motors_30)
-
-
-
-
-
-query_facebook = {
-    "carBuyLink": {"$regex": "^https://www.facebook.com"},
-    "isActive": False
-    }
-total_nonactive_facebook = collection.count_documents(query_facebook)
-
-query_heycar = {
-    "carBuyLink": {"$regex": "^https://heycar.com"},
-    "isActive": False
-    }
-total_nonactive_heycar = collection.count_documents(query_heycar)
-
-query_autotrader = {
-    "carBuyLink": {"$regex": "^https://www.autotrader.co.uk"},
-    "isActive": False
-    }
-total_nonactive_autotrader = collection.count_documents(query_autotrader)
-
-query_gumtree = {
-    "carBuyLink": {"$regex": "^https://www.gumtree.com"},
-    "isActive": False
-    }
-total_nonactive_gumtree = collection.count_documents(query_gumtree)
-
-query_motors = {
-    "carBuyLink": {"$regex": "^https://www.motors.co.uk/"},
-    "isActive": False
-    }
-total_nonactive_motors = collection.count_documents(query_motors)
+total_nonactive_motors = 
 
 
 data = {
@@ -522,178 +310,55 @@ with center:
 
 
 
+total_count_facebook_24 = 
 
-# Sample data
+total_count_heycar_24 =
 
+total_count_autotrader_24 =
 
+total_count_gumtree_24 = 
 
-twenty_four_hours_ago = datetime.now() - timedelta(hours=24)
+total_count_motors_24 =
 
-query_facebook_24 = {
-    "carBuyLink": {"$regex": "^https://www.facebook.com"},
-    "createdOn": {"$gte": twenty_four_hours_ago}
-    }
-total_count_facebook_24 = collection.count_documents(query_facebook_24)
+total_count_facebook_7 = 
 
-query_heycar_24 = {
-    "carBuyLink": {"$regex": "^https://heycar.com"},
-    "createdOn": {"$gte": twenty_four_hours_ago}
-    }
-total_count_heycar_24 = collection.count_documents(query_heycar_24)
+total_count_heycar_7 =
 
-query_autotrader_24 = {
-    "carBuyLink": {"$regex": "^https://www.autotrader.co.uk"},
-    "createdOn": {"$gte": twenty_four_hours_ago}
-    }
-total_count_autotrader_24 = collection.count_documents(query_autotrader_24)
+total_count_autotrader_7 = 
 
-query_gumtree_24 = {
-    "carBuyLink": {"$regex": "^https://www.gumtree.com"},
-    "createdOn": {"$gte": twenty_four_hours_ago}
-    }
-total_count_gumtree_24 = collection.count_documents(query_gumtree_24)
+total_count_gumtree_7 = 
 
-query_motors_24 = {
-    "carBuyLink": {"$regex": "^https://www.motors.co.uk/"},
-    "createdOn": {"$gte": twenty_four_hours_ago}
-    }
-total_count_motors_24 = collection.count_documents(query_motors_24)
+total_count_motors_7 = 
 
+total_count_facebook_15 = 
 
+total_count_heycar_15 =
 
+total_count_autotrader_15 =
 
-seven_days_ago = datetime.now() - timedelta(hours=168)
+total_count_gumtree_15 =
 
-query_facebook_7 = {
-    "carBuyLink": {"$regex": "^https://www.facebook.com"},
-    "createdOn": {"$gte": seven_days_ago}
-    }
-total_count_facebook_7 = collection.count_documents(query_facebook_7)
+total_count_motors_15 = 
 
-query_heycar_7 = {
-    "carBuyLink": {"$regex": "^https://heycar.com"},
-    "createdOn": {"$gte": seven_days_ago}
-    }
-total_count_heycar_7 = collection.count_documents(query_heycar_7)
+total_count_facebook_30 =
 
-query_autotrader_7 = {
-    "carBuyLink": {"$regex": "^https://www.autotrader.co.uk"},
-    "createdOn": {"$gte": seven_days_ago}
-    }
-total_count_autotrader_7 = collection.count_documents(query_autotrader_7)
+total_count_heycar_30 = 
 
-query_gumtree_7 = {
-    "carBuyLink": {"$regex": "^https://www.gumtree.com"},
-    "createdOn": {"$gte": seven_days_ago}
-    }
-total_count_gumtree_7 = collection.count_documents(query_gumtree_7)
+total_count_autotrader_30 =
 
-query_motors_7 = {
-    "carBuyLink": {"$regex": "^https://www.motors.co.uk/"},
-    "createdOn": {"$gte": seven_days_ago}
-    }
-total_count_motors_7 = collection.count_documents(query_motors_7)
+total_count_gumtree_30 = 
 
+total_count_motors_30 = 
 
+total_count_facebook =
 
+total_count_heycar = 
 
+total_count_autotrader = 
 
-_15_days_ago = datetime.now() - timedelta(hours=360)
+total_count_gumtree = 
 
-query_facebook_15 = {
-    "carBuyLink": {"$regex": "^https://www.facebook.com"},
-    "createdOn": {"$gte": _15_days_ago}
-    }
-total_count_facebook_15 = collection.count_documents(query_facebook_15)
-
-query_heycar_15 = {
-    "carBuyLink": {"$regex": "^https://heycar.com"},
-    "createdOn": {"$gte": _15_days_ago}
-    }
-total_count_heycar_15 = collection.count_documents(query_heycar_15)
-
-query_autotrader_15 = {
-    "carBuyLink": {"$regex": "^https://www.autotrader.co.uk"},
-    "createdOn": {"$gte": _15_days_ago}
-    }
-total_count_autotrader_15 = collection.count_documents(query_autotrader_15)
-
-query_gumtree_15 = {
-    "carBuyLink": {"$regex": "^https://www.gumtree.com"},
-    "createdOn": {"$gte": _15_days_ago}
-    }
-total_count_gumtree_15 = collection.count_documents(query_gumtree_15)
-
-query_motors_15 = {
-    "carBuyLink": {"$regex": "^https://www.motors.co.uk/"},
-    "createdOn": {"$gte": _15_days_ago}
-    }
-total_count_motors_15 = collection.count_documents(query_motors_15)
-
-
-
-
-
-_30_days_ago = datetime.now() - timedelta(hours=720)
-
-query_facebook_30 = {
-    "carBuyLink": {"$regex": "^https://www.facebook.com"},
-    "createdOn": {"$gte": _30_days_ago}
-    }
-total_count_facebook_30 = collection.count_documents(query_facebook_30)
-
-query_heycar_30 = {
-    "carBuyLink": {"$regex": "^https://heycar.com"},
-    "createdOn": {"$gte": _30_days_ago}
-    }
-total_count_heycar_30 = collection.count_documents(query_heycar_30)
-
-query_autotrader_30 = {
-    "carBuyLink": {"$regex": "^https://www.autotrader.co.uk"},
-    "createdOn": {"$gte": _30_days_ago}
-    }
-total_count_autotrader_30 = collection.count_documents(query_autotrader_30)
-
-query_gumtree_30 = {
-    "carBuyLink": {"$regex": "^https://www.gumtree.com"},
-    "createdOn": {"$gte": _30_days_ago}
-    }
-total_count_gumtree_30 = collection.count_documents(query_gumtree_30)
-
-query_motors_30 = {
-    "carBuyLink": {"$regex": "^https://www.motors.co.uk/"},
-    "createdOn": {"$gte": _30_days_ago}
-    }
-total_count_motors_30 = collection.count_documents(query_motors_30)
-
-
-
-
-
-query_facebook = {
-    "carBuyLink": {"$regex": "^https://www.facebook.com"}
-    }
-total_count_facebook = collection.count_documents(query_facebook)
-
-query_heycar = {
-    "carBuyLink": {"$regex": "^https://heycar.com"}
-    }
-total_count_heycar = collection.count_documents(query_heycar)
-
-query_autotrader = {
-    "carBuyLink": {"$regex": "^https://www.autotrader.co.uk"}
-    }
-total_count_autotrader = collection.count_documents(query_autotrader)
-
-query_gumtree = {
-    "carBuyLink": {"$regex": "^https://www.gumtree.com"}
-    }
-total_count_gumtree = collection.count_documents(query_gumtree)
-
-query_motors = {
-    "carBuyLink": {"$regex": "^https://www.motors.co.uk/"}
-    }
-total_count_motors = collection.count_documents(query_motors)
+total_count_motors = 
 
 
 data = {
