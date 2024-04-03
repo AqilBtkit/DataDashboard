@@ -16,7 +16,7 @@ st.header(f"Platforms")
 
 
 # Sample data
-@st.cache_data(ttl=1800)
+@st.cache_resource(ttl=1800)
 def dataload():
     url = "http://api.aicarz.com/api/v1/dev/data-dashboard?days=1"
     headers = {'Authorization': 'Bearer ya29.a0AfB_byASQo7lfEHHE4H6vXGd9MefYU0puZYAk3fkDyFcoJzE7Ra8Nzssy0TLcVuPyFRHvO_g_2h07UkZKtApTu51oJZb35PfvPN8UpPrvx4sU2yFzYclzdmmxBfRpymGYbziyD2JVLM9X2zEFSJabc2x157KKPGAQwaCgYKAbYSARISFQHGX2Mig9VTJWbXohan6iB9BtfcIg0169'}
@@ -89,15 +89,15 @@ def dataload():
 
 data1, data7, data15, data30, data_lifetime= dataload()
 
-total_active_facebook_24 = 
+total_active_facebook_24 = data1["count"]["activeFacebook"]
 
-total_active_heycar_24 = 
+total_active_heycar_24 = data1["count"]["activefacebook"]
 
-total_active_autotrader_24 = 
+total_active_autotrader_24 = data1["count"]["activefacebook"]
 
-total_active_gumtree_24 = 
+total_active_gumtree_24 = data1["count"]["activefacebook"]
 
-total_active_motors_24 =
+total_active_motors_24 =data1["count"]["activefacebook"]
 
 total_active_facebook_7 =
 
