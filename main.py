@@ -1,9 +1,6 @@
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
-from datetime import datetime, timedelta
-import pymongo
-from datetime import datetime, tzinfo, timezone
 import requests
 import json
 
@@ -19,7 +16,7 @@ headers = {
     'Bearer ya29.a0AfB_byASQo7lfEHHE4H6vXGd9MefYU0puZYAk3fkDyFcoJzE7Ra8Nzssy0TLcVuPyFRHvO_g_2h07UkZKtApTu51oJZb35PfvPN8UpPrvx4sU2yFzYclzdmmxBfRpymGYbziyD2JVLM9X2zEFSJabc2x157KKPGAQwaCgYKAbYSARISFQHGX2Mig9VTJWbXohan6iB9BtfcIg0169'
     }
     
-# @st.cache_resource(ttl=1800)
+@st.cache_resource(ttl=1800)
 def dataload():
     
     # <------ Call API for last 24 hours data ---------->
