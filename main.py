@@ -198,12 +198,9 @@ with left:
         fig1, ax1 = plt.subplots()
         ax1.pie(df_active[dataset_name], 
                 colors=colors, 
-                # labels=df.index, 
                 autopct=custom_autopct, 
-                # startangle= 90,
                 pctdistance=0.85,
                 explode=(0, 0, 0, 0, 0),  # Exploding the first slice
-                # shadow=True
                 counterclock=False
                 )
 
@@ -291,6 +288,7 @@ total_nonactive_gumtree = data_lifetime["count"]["inActiveGumtree"]
 total_nonactive_motors = data_lifetime["count"]["inActiveMotors"]
 
 
+# <------ Storing All deactive data values in dict ---------->
 data_nonactive = {
     'Last 24 Hours': [total_nonactive_autotrader_24, total_nonactive_gumtree_24, total_nonactive_facebook_24, total_nonactive_heycar_24, total_nonactive_motors_24],
     'Last 7 days': [total_nonactive_autotrader_7, total_nonactive_gumtree_7, total_nonactive_facebook_7, total_nonactive_heycar_7, total_nonactive_motors_7],
@@ -298,46 +296,47 @@ data_nonactive = {
     'Last 30 days': [total_nonactive_autotrader_30, total_nonactive_gumtree_30, total_nonactive_facebook_30, total_nonactive_heycar_30, total_nonactive_motors_30],
     'Lifetime': [total_nonactive_autotrader, total_nonactive_gumtree, total_nonactive_facebook, total_nonactive_heycar, total_nonactive_motors]
     }
-
+# <------ Convert dict into dataframe ---------->
 df_nonactive = pd.DataFrame(data_active, index=["Autotraders", "Gumtree","Facebook", "Heycars", "Moters"])
 
-# Dropdown to select the data set
-# dataset_name = st.selectbox('Select a Dataset', df.columns)
+
 with center:
     st.subheader(f"Inactive:")
-    # Custom color palette
+    
+    # <------ Custom color palette ---------->
     colors = ['#ff9999','#66b3ff','#99ff99','#ffcc99','#BB33FF']
 
+    # <------  this function convert % into float % if persentage is less then 1 ---------->
     def custom_autopct(pct):
         return ('%1.1f%%' % pct) if pct >= 1 else ''
-    print(df_nonactive[dataset_name])
-    # Create a pie chart for the selected data set 
+    
+     # <------  Use try catch if values of all data is 0 then it display nothing instead of error ---------->
     try:   
+        # <------  Create a pie chart for the selected data set -------->
         fig1, ax1 = plt.subplots()
         ax1.pie(df_nonactive[dataset_name], 
                 colors=colors, 
-                # labels=df.index, 
                 autopct=custom_autopct, 
-                # startangle= 90,
                 pctdistance=0.85,
                 explode=(0, 0, 0, 0, 0),  # Exploding the first slice
-                # shadow=True
                 counterclock=False
                 )
 
-        # Draw a circle at the center to make it look like a donut
+        # <------  Draw a circle at the center to make it look like a donut -------->
         centre_circle = plt.Circle((0,0),0.70,fc='white')
         fig1.gca().add_artist(centre_circle)
 
-        # ax1.axis('equal')  # Equal aspect ratio ensures pie is drawn as a circle
 
-        # Add a legend
+        # <------  Add a legend (legend means colors with its lables) -------->
+        
         plt.legend(df_nonactive.index, loc="lower left", bbox_to_anchor=(1, 0, 1, 1))
-        # Display the pie chart
+        
+        # <------  To display donut graph -------->
         st.pyplot(fig1)
-        # Create a pie chart for the selected data set
     except:
         pass
+    
+    # <------  To display actual numbers of records -------->
     st.markdown(f"Total number of non-active data for {dataset_name} on *Autotraders* is **{df_nonactive[dataset_name]['Autotraders']}**.")
     st.markdown(f"Total number of non-active data for {dataset_name} on *Gumtree* is **{df_nonactive[dataset_name]['Gumtree']}**.")
     st.markdown(f"Total number of non-active data for {dataset_name} on *Facebook* is **{df_nonactive[dataset_name]['Facebook']}**.")
