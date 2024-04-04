@@ -89,7 +89,7 @@ def last24hours():
         # <------ Call API for last 24 hours data ---------->
     url = "http://api.aicarz.com/api/v1/dev/data-dashboard?days=1"
     response = requests.request("GET", url, headers=headers)
-    data1= json.loads(response.text)
+    data1= json.loads(response.text)['data']
     print("\n\n\nStatus code::::",response.status_code)
 
     # <------ If API server give 502 error  ---------->
@@ -98,7 +98,7 @@ def last24hours():
     #     print("\n\n\nStatus code::::",response.status_code)
     #     data1= json.loads(response.text)
         
-    print("Data 1 day: ",data1['data'])
+    print("Data 1 day: ",data1)
     
     
     # <------  Store active data count into variables for last 24 hours  ---------->
@@ -116,17 +116,12 @@ def last24hours():
 
 
 def last7days():
-    # <------  Store deactive data into variables which deactivated in last 7 days  ---------->
-    total_nonactive_facebook_7 = data7["count"]["inActiveFacebook"]
-
-    total_nonactive_heycar_7 = data7["count"]["inActiveHeyCars"]
-
-    total_nonactive_autotrader_7 = data7["count"]["inActiveAutoTrader"]
-
-    total_nonactive_gumtree_7 = data7["count"]["inActiveGumtree"]
-
-    total_nonactive_motors_7 = data7["count"]["inActiveMotors"]
     
+    
+    # <------  Store deactive data into variables which deactivated in last 7 days  ---------->
+    total_nonactive_facebook_7 = [data7["count"]["inActiveFacebook"], data7["count"]["inActiveHeyCars"], data7["count"]["inActiveAutoTrader"], data7["count"]["inActiveGumtree"], data7["count"]["inActiveMotors"]] 
+
+
 
     # <------  Store active data into variables for last 7 days  ---------->
     total_count_facebook_7 = data7["count"]["facebook"]
@@ -277,11 +272,11 @@ data_active = {
     'Lifetime': [total_active_autotrader, total_active_gumtree, total_active_facebook, total_active_heycar, total_active_motors]
 }
 # <------ Convert dict into dataframe ---------->
-df_active = pd.DataFrame(data_active, index=["Autotraders", "Gumtree","Facebook", "Heycars", "Moters"])
+# df_active = pd.DataFrame(data_active, index=["Autotraders", "Gumtree","Facebook", "Heycars", "Moters"])
 
 
 # <------ Dropdown to select the data set ---------->
-dataset_name = st.selectbox('Select a Dataset', df_active.columns)
+dataset_name = st.selectbox('Select a Dataset', ['Lifetime', 'Last 30 days','Last 15 days', 'Last 7 days', 'Last 24 Hours'])
 
 
 # <------ divide layout into three columns ---------->
@@ -303,7 +298,7 @@ with left:
     try:   
     # <------  Create a pie chart for the selected data set -------->
         fig1, ax1 = plt.subplots()
-        ax1.pie(df_active[dataset_name], 
+        ax1.pie(data_active[dataset_name], 
                 colors=colors, 
                 autopct=custom_autopct, 
                 pctdistance=0.85,
@@ -316,7 +311,7 @@ with left:
         fig1.gca().add_artist(centre_circle)
 
         # <------  Add a legend (legend means colors with its lables) -------->
-        plt.legend(df_active.index, loc="lower left", bbox_to_anchor=(1, 0, 1, 1))
+        plt.legend(["Autotraders", "Gumtree","Facebook", "Heycars", "Moters"], loc="lower left", bbox_to_anchor=(1, 0, 1, 1))
 
         # <------  To display donut graph -------->
         st.pyplot(fig1) 
@@ -324,12 +319,12 @@ with left:
         pass
     
     # <------  To display actual numbers of records -------->
-    st.markdown(f"Total number of active data for {dataset_name} on *Autotraders* is **{df_active[dataset_name]['Autotraders']}**.")
-    st.markdown(f"Total number of active data for {dataset_name} on *Gumtree* is **{df_active[dataset_name]['Gumtree']}**.")
-    st.markdown(f"Total number of active data for {dataset_name} on *Facebook* is **{df_active[dataset_name]['Facebook']}**.")
-    st.markdown(f"Total number of active data for {dataset_name} on *Moters* is **{df_active[dataset_name]['Moters']}**.")
-    st.markdown(f"Total number of active data for {dataset_name} on *Heycars* is **{df_active[dataset_name]['Heycars']}**.")
-    st.markdown(f"Total number of active data for {dataset_name} on all *Platforms* is **{df_active[dataset_name]['Heycars']+df_active[dataset_name]['Moters']+df_active[dataset_name]['Facebook']+df_active[dataset_name]['Gumtree']+df_active[dataset_name]['Autotraders']}**.")
+    st.markdown(f"Total number of active data for {dataset_name} on *Autotraders* is **{data_active[dataset_name]['Autotraders']}**.")
+    st.markdown(f"Total number of active data for {dataset_name} on *Gumtree* is **{data_active[dataset_name]['Gumtree']}**.")
+    st.markdown(f"Total number of active data for {dataset_name} on *Facebook* is **{data_active[dataset_name]['Facebook']}**.")
+    st.markdown(f"Total number of active data for {dataset_name} on *Moters* is **{data_active[dataset_name]['Moters']}**.")
+    st.markdown(f"Total number of active data for {dataset_name} on *Heycars* is **{data_active[dataset_name]['Heycars']}**.")
+    st.markdown(f"Total number of active data for {dataset_name} on all *Platforms* is **{data_active[dataset_name]['Heycars']+data_active[dataset_name]['Moters']+data_active[dataset_name]['Facebook']+data_active[dataset_name]['Gumtree']+data_active[dataset_name]['Autotraders']}**.")
     # st.markdown("-------------------------------------------------------------------------------")
 
 
@@ -347,7 +342,7 @@ data_nonactive = {
     'Lifetime': [total_nonactive_autotrader, total_nonactive_gumtree, total_nonactive_facebook, total_nonactive_heycar, total_nonactive_motors]
     }
 # <------ Convert dict into dataframe ---------->
-df_nonactive = pd.DataFrame(data_active, index=["Autotraders", "Gumtree","Facebook", "Heycars", "Moters"])
+# df_nonactive = pd.DataFrame(data_active, index=["Autotraders", "Gumtree","Facebook", "Heycars", "Moters"])
 
 
 with center:
@@ -364,7 +359,7 @@ with center:
     try:   
         # <------  Create a pie chart for the selected data set -------->
         fig1, ax1 = plt.subplots()
-        ax1.pie(df_nonactive[dataset_name], 
+        ax1.pie(data_nonactive[dataset_name], 
                 colors=colors, 
                 autopct=custom_autopct, 
                 pctdistance=0.85,
@@ -379,7 +374,7 @@ with center:
 
         # <------  Add a legend (legend means colors with its lables) -------->
         
-        plt.legend(df_nonactive.index, loc="lower left", bbox_to_anchor=(1, 0, 1, 1))
+        plt.legend(["Autotraders", "Gumtree","Facebook", "Heycars", "Moters"], loc="lower left", bbox_to_anchor=(1, 0, 1, 1))
         
         # <------  To display donut graph -------->
         st.pyplot(fig1)
@@ -387,12 +382,12 @@ with center:
         pass
     
     # <------  To display actual numbers of records -------->
-    st.markdown(f"Total number of non-active data for {dataset_name} on *Autotraders* is **{df_nonactive[dataset_name]['Autotraders']}**.")
-    st.markdown(f"Total number of non-active data for {dataset_name} on *Gumtree* is **{df_nonactive[dataset_name]['Gumtree']}**.")
-    st.markdown(f"Total number of non-active data for {dataset_name} on *Facebook* is **{df_nonactive[dataset_name]['Facebook']}**.")
-    st.markdown(f"Total number of non-active data for {dataset_name} on *Moters* is **{df_nonactive[dataset_name]['Moters']}**.")
-    st.markdown(f"Total number of non-active data for {dataset_name} on *Heycars* is **{df_nonactive[dataset_name]['Heycars']}**.")
-    st.markdown(f"Total number of non-active data for {dataset_name} on all *Platforms* is **{df_nonactive[dataset_name]['Heycars']+df_nonactive[dataset_name]['Moters']+df_nonactive[dataset_name]['Facebook']+df_nonactive[dataset_name]['Gumtree']+df_nonactive[dataset_name]['Autotraders']}**.")
+    st.markdown(f"Total number of non-active data for {dataset_name} on *Autotraders* is **{data_nonactive[dataset_name]['Autotraders']}**.")
+    st.markdown(f"Total number of non-active data for {dataset_name} on *Gumtree* is **{data_nonactive[dataset_name]['Gumtree']}**.")
+    st.markdown(f"Total number of non-active data for {dataset_name} on *Facebook* is **{data_nonactive[dataset_name]['Facebook']}**.")
+    st.markdown(f"Total number of non-active data for {dataset_name} on *Moters* is **{data_nonactive[dataset_name]['Moters']}**.")
+    st.markdown(f"Total number of non-active data for {dataset_name} on *Heycars* is **{data_nonactive[dataset_name]['Heycars']}**.")
+    st.markdown(f"Total number of non-active data for {dataset_name} on all *Platforms* is **{data_nonactive[dataset_name]['Heycars']+data_nonactive[dataset_name]['Moters']+data_nonactive[dataset_name]['Facebook']+data_nonactive[dataset_name]['Gumtree']+data_nonactive[dataset_name]['Autotraders']}**.")
     # st.markdown("-------------------------------------------------------------------------------")
 
 
@@ -410,7 +405,7 @@ data_total = {
     'Last 30 days': [total_count_autotrader_30, total_count_gumtree_30, total_count_facebook_30, total_count_heycar_30, total_count_motors_30],
     'Lifetime': [total_count_autotrader, total_count_gumtree, total_count_facebook, total_count_heycar, total_count_motors]
     }
-df_total = pd.DataFrame(data_total, index=["Autotraders", "Gumtree","Facebook", "Heycars", "Moters"])
+# df_total = pd.DataFrame(data_total, index=["Autotraders", "Gumtree","Facebook", "Heycars", "Moters"])
 
 # Dropdown to select the data set
 # dataset_name = st.selectbox('Select a Dataset', df.columns)
@@ -426,7 +421,7 @@ with right:
     try:
         # Create a pie chart for the selected data set
         fig1, ax1 = plt.subplots()
-        ax1.pie(df_total[dataset_name], 
+        ax1.pie(data_total[dataset_name], 
                 colors=colors, 
                 # labels=df.index, 
                 autopct=custom_autopct, 
@@ -445,17 +440,17 @@ with right:
         # ax1.axis('equal')  # Equal aspect ratio ensures pie is drawn as a circle
 
         # Add a legend
-        plt.legend(df_total.index, loc="lower left", bbox_to_anchor=(1, 0, 1, 1))
+        plt.legend(["Autotraders", "Gumtree","Facebook", "Heycars", "Moters"], loc="lower left", bbox_to_anchor=(1, 0, 1, 1))
         # Display the pie chart
         st.pyplot(fig1)
     except:
         pass
-    st.markdown(f"Total number of non-active & active data for {dataset_name} on *Autotraders* is **{df_total[dataset_name]['Autotraders']}**.")
-    st.markdown(f"Total number of non-active & active data for {dataset_name} on *Gumtree* is **{df_total[dataset_name]['Gumtree']}**.")
-    st.markdown(f"Total number of non-active & active data for {dataset_name} on *Facebook* is **{df_total[dataset_name]['Facebook']}**.")
-    st.markdown(f"Total number of non-active & active data for {dataset_name} on *Moters* is **{df_total[dataset_name]['Moters']}**.")
-    st.markdown(f"Total number of non-active & active data for {dataset_name} on *Heycars* is **{df_total[dataset_name]['Heycars']}**.")
-    st.markdown(f"Total number of non-active & active data for {dataset_name} on all *Platforms* is **{df_total[dataset_name]['Heycars']+df_total[dataset_name]['Moters']+df_total[dataset_name]['Facebook']+df_total[dataset_name]['Gumtree']+df_total[dataset_name]['Autotraders']}**.")
+    st.markdown(f"Total number of non-active & active data for {dataset_name} on *Autotraders* is **{data_total[dataset_name]['Autotraders']}**.")
+    st.markdown(f"Total number of non-active & active data for {dataset_name} on *Gumtree* is **{data_total[dataset_name]['Gumtree']}**.")
+    st.markdown(f"Total number of non-active & active data for {dataset_name} on *Facebook* is **{data_total[dataset_name]['Facebook']}**.")
+    st.markdown(f"Total number of non-active & active data for {dataset_name} on *Moters* is **{data_total[dataset_name]['Moters']}**.")
+    st.markdown(f"Total number of non-active & active data for {dataset_name} on *Heycars* is **{data_total[dataset_name]['Heycars']}**.")
+    st.markdown(f"Total number of non-active & active data for {dataset_name} on all *Platforms* is **{data_total[dataset_name]['Heycars']+data_total[dataset_name]['Moters']+data_total[dataset_name]['Facebook']+data_total[dataset_name]['Gumtree']+data_total[dataset_name]['Autotraders']}**.")
 
 
 # data = {
