@@ -78,7 +78,7 @@ def dataload():
 
 
 # <------  Here I call dataload function and store all data in variables  ---------->
-data1, data7, data15, data30, data_lifetime= dataload()
+# data1, data7, data15, data30, data_lifetime= dataload()
 
 
 
