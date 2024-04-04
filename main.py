@@ -16,62 +16,62 @@ headers = {
     'Bearer ya29.a0AfB_byASQo7lfEHHE4H6vXGd9MefYU0puZYAk3fkDyFcoJzE7Ra8Nzssy0TLcVuPyFRHvO_g_2h07UkZKtApTu51oJZb35PfvPN8UpPrvx4sU2yFzYclzdmmxBfRpymGYbziyD2JVLM9X2zEFSJabc2x157KKPGAQwaCgYKAbYSARISFQHGX2Mig9VTJWbXohan6iB9BtfcIg0169'
     }
     
-@st.cache_resource(ttl=1800)
-def dataload():
+# @st.cache_resource(ttl=1800)
+# def dataload():
     
 
     
     
-    url = "http://api.aicarz.com/api/v1/dev/data-dashboard?days=7"
-    response = requests.request("GET", url, headers=headers)
-    data7= json.loads(response.text)
-    print("\n\n\nStatus code::::",response.status_code)
+#     url = "http://api.aicarz.com/api/v1/dev/data-dashboard?days=7"
+#     response = requests.request("GET", url, headers=headers)
+#     data7= json.loads(response.text)
+#     print("\n\n\nStatus code::::",response.status_code)
 
-    # while response.status_code == 502:
-    #     response = requests.request("GET", url, headers=headers)
-    #     print("\n\n\nStatus code::::",response.status_code)
-    #     data7= json.loads(response.text)
+#     # while response.status_code == 502:
+#     #     response = requests.request("GET", url, headers=headers)
+#     #     print("\n\n\nStatus code::::",response.status_code)
+#     #     data7= json.loads(response.text)
         
-    print("Data 7 days: ",data7['data'])
+#     print("Data 7 days: ",data7['data'])
     
-    url = "http://api.aicarz.com/api/v1/dev/data-dashboard?days=15"
-    response = requests.request("GET", url, headers=headers)
-    data15= json.loads(response.text)
-    print("\n\n\nStatus code::::",response.status_code)
+#     url = "http://api.aicarz.com/api/v1/dev/data-dashboard?days=15"
+#     response = requests.request("GET", url, headers=headers)
+#     data15= json.loads(response.text)
+#     print("\n\n\nStatus code::::",response.status_code)
 
-    # while response.status_code == 502:
-    #     response = requests.request("GET", url, headers=headers)
-    #     print("\n\n\nStatus code::::",response.status_code)
-    #     data15= json.loads(response.text)
+#     # while response.status_code == 502:
+#     #     response = requests.request("GET", url, headers=headers)
+#     #     print("\n\n\nStatus code::::",response.status_code)
+#     #     data15= json.loads(response.text)
         
-    print("Data 15 days: ",data15['data'])
+#     print("Data 15 days: ",data15['data'])
     
-    url = "http://api.aicarz.com/api/v1/dev/data-dashboard?days=30"
-    response = requests.request("GET", url, headers=headers)
-    data30= json.loads(response.text)
-    print("\n\n\nStatus code::::",response.status_code)
+#     url = "http://api.aicarz.com/api/v1/dev/data-dashboard?days=30"
+#     response = requests.request("GET", url, headers=headers)
+#     data30= json.loads(response.text)
+#     print("\n\n\nStatus code::::",response.status_code)
 
-    # while response.status_code == 502:
-    #     response = requests.request("GET", url, headers=headers)
-    #     print("\n\n\nStatus code::::",response.status_code)
-    #     data30= json.loads(response.text)
+#     # while response.status_code == 502:
+#     #     response = requests.request("GET", url, headers=headers)
+#     #     print("\n\n\nStatus code::::",response.status_code)
+#     #     data30= json.loads(response.text)
         
-    print("Data 30 days: ",data30['data'])
+#     print("Data 30 days: ",data30['data'])
     
     
-    url = "http://api.aicarz.com/api/v1/dev/data-dashboard"
-    response = requests.request("GET", url, headers=headers)
-    data_lifetime= json.loads(response.text)
-    print("\n\n\nStatus code::::",response.status_code)
+#     url = "http://api.aicarz.com/api/v1/dev/data-dashboard"
+#     response = requests.request("GET", url, headers=headers)
+#     data_lifetime= json.loads(response.text)
+#     print("\n\n\nStatus code::::",response.status_code)
 
-    # while response.status_code == 502:
-    #     response = requests.request("GET", url, headers=headers)
-    #     print("\n\n\nStatus code::::",response.status_code)
-    #     data_lifetime= json.loads(response.text)
+#     # while response.status_code == 502:
+#     #     response = requests.request("GET", url, headers=headers)
+#     #     print("\n\n\nStatus code::::",response.status_code)
+#     #     data_lifetime= json.loads(response.text)
         
-    print("Data lifetime: ",data_lifetime['data'])
+#     print("Data lifetime: ",data_lifetime['data'])
     
-    return data1['data'], data7['data'], data15['data'], data30['data'], data_lifetime['data']
+#     return data1['data'], data7['data'], data15['data'], data30['data'], data_lifetime['data']
 
 
 
