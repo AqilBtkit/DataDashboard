@@ -20,7 +20,7 @@ headers = {
     
 
 # Sample data
-@st.cache_resource(ttl=1800)
+# @st.cache_resource(ttl=1800)
 def dataload():
     url = "http://api.aicarz.com/api/v1/dev/data-dashboard?days=1"
     response = requests.request("GET", url, headers=headers)
