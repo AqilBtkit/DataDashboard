@@ -59,7 +59,7 @@ def dataload():
         
     print("Data 15 days: ",data15['data'])
     
-    url = "http://api.aicarz.com/api/v1/dev/data-dashboard?days=15"
+    url = "http://api.aicarz.com/api/v1/dev/data-dashboard?days=30"
     response = requests.request("GET", url, headers=headers)
     data30= json.loads(response.text)
     print("\n\n\nStatus code::::",response.status_code)
@@ -85,6 +85,11 @@ def dataload():
     print("Data lifetime: ",data_lifetime['data'])
     
     return data1['data'], data7['data'], data15['data'], data30['data'], data_lifetime['data']
+
+
+
+
+
 
 data1, data7, data15, data30, data_lifetime= dataload()
 
@@ -155,7 +160,7 @@ df_active = pd.DataFrame(data_active, index=["Autotraders", "Gumtree","Facebook"
 # Dropdown to select the data set
 dataset_name = st.selectbox('Select a Dataset', df_active.columns)
 
-left,center, right = st.columns(3)   
+left, center, right = st.columns(3)   
 with left:   
     st.subheader(f"Active:")
     # Custom color palette
