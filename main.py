@@ -7,21 +7,22 @@ from datetime import datetime, tzinfo, timezone
 import requests
 import json
 
+# <------ Set layout of web ---------->
 st.set_page_config(layout="wide")
 
 st.title("Data Dashboard")
-# st.markdown("**________________________________________________________________________________________________________________________________________________________________________________**")
 st.header(f"Platforms")
 
+# <------ Authorization header for APIs ---------->
 headers = {
     'Authorization': 
     'Bearer ya29.a0AfB_byASQo7lfEHHE4H6vXGd9MefYU0puZYAk3fkDyFcoJzE7Ra8Nzssy0TLcVuPyFRHvO_g_2h07UkZKtApTu51oJZb35PfvPN8UpPrvx4sU2yFzYclzdmmxBfRpymGYbziyD2JVLM9X2zEFSJabc2x157KKPGAQwaCgYKAbYSARISFQHGX2Mig9VTJWbXohan6iB9BtfcIg0169'
     }
     
-
-# Sample data
 # @st.cache_resource(ttl=1800)
 def dataload():
+    
+    # <------ Call API for last 24 hours data ---------->
     url = "http://api.aicarz.com/api/v1/dev/data-dashboard?days=1"
     response = requests.request("GET", url, headers=headers)
     data1= json.loads(response.text)
@@ -90,8 +91,15 @@ def dataload():
 
 
 
-
+# <------  Here I call dataload function and store all data in variables  ---------->
 data1, data7, data15, data30, data_lifetime= dataload()
+
+
+
+
+
+
+# <------  Store active data into variables for last 24 hours  ---------->
 
 total_active_facebook_24 = data1["count"]["activeFacebook"]
 
@@ -104,6 +112,7 @@ total_active_gumtree_24 = data1["count"]["activeGumtree"]
 total_active_motors_24  = data1["count"]["activeMotors"]
 
 
+# <------  Store active data into variables for last 7 days  ---------->
 total_active_facebook_7 = data7["count"]["activeFacebook"]
 
 total_active_heycar_7 = data7["count"]["activeHeyCars"]
@@ -115,6 +124,7 @@ total_active_gumtree_7 = data7["count"]["activeGumtree"]
 total_active_motors_7 = data7["count"]["activeMotors"]
 
 
+# <------  Store active data into variables for last 15 days  ---------->
 total_active_facebook_15 = data15["count"]["activeFacebook"]
 
 total_active_heycar_15 = data15["count"]["activeHeyCars"]
@@ -126,6 +136,7 @@ total_active_gumtree_15 = data15["count"]["activeGumtree"]
 total_active_motors_15 = data15["count"]["activeMotors"]
 
 
+# <------  Store active data into variables for last 30 days  ---------->
 total_active_facebook_30 = data30["count"]["activeFacebook"]
 
 total_active_heycar_30 = data30["count"]["activeHeyCars"]
@@ -137,6 +148,7 @@ total_active_gumtree_30 = data30["count"]["activeGumtree"]
 total_active_motors_30 = data30["count"]["activeMotors"]
 
 
+# <------  Store lifetime active data into variables  ---------->
 total_active_facebook = data_lifetime["count"]["activeFacebook"]
 
 total_active_heycar = data_lifetime["count"]["activeHeyCars"]
@@ -148,6 +160,8 @@ total_active_gumtree = data_lifetime["count"]["activeGumtree"]
 total_active_motors = data_lifetime["count"]["activeMotors"]
 
 
+
+# <------ Storing All active data in dict ---------->
 data_active = {
     'Last 24 Hours': [total_active_autotrader_24, total_active_gumtree_24, total_active_facebook_24, total_active_heycar_24, total_active_motors_24],
     'Last 7 days': [total_active_autotrader_7, total_active_gumtree_7, total_active_facebook_7, total_active_heycar_7, total_active_motors_7],
@@ -155,21 +169,32 @@ data_active = {
     'Last 30 days': [total_active_autotrader_30, total_active_gumtree_30, total_active_facebook_30, total_active_heycar_30, total_active_motors_30],
     'Lifetime': [total_active_autotrader, total_active_gumtree, total_active_facebook, total_active_heycar, total_active_motors]
 }
+# <------ Convert dict into dataframe ---------->
 df_active = pd.DataFrame(data_active, index=["Autotraders", "Gumtree","Facebook", "Heycars", "Moters"])
 
-# Dropdown to select the data set
+
+# <------ Dropdown to select the data set ---------->
 dataset_name = st.selectbox('Select a Dataset', df_active.columns)
 
+
+# <------ divide layout into three columns ---------->
 left, center, right = st.columns(3)   
+
+
 with left:   
     st.subheader(f"Active:")
-    # Custom color palette
+    
+    # <------ Custom color palette ---------->
     colors = ['#ff9999','#66b3ff','#99ff99','#ffcc99','#BB33FF']
 
+    # <------  this function convert % into float % if persentage is less then 1 ---------->
     def custom_autopct(pct):
         return ('%1.1f%%' % pct) if pct >= 1 else ''
-    # Create a pie chart for the selected data set
+    
+    
+    # <------  Use try catch if values of all data is 0 then it display nothing instead of error ---------->
     try:   
+    # <------  Create a pie chart for the selected data set -------->
         fig1, ax1 = plt.subplots()
         ax1.pie(df_active[dataset_name], 
                 colors=colors, 
@@ -182,17 +207,19 @@ with left:
                 counterclock=False
                 )
 
-        # Draw a circle at the center to make it look like a donut
+        # <------  Draw a circle at the center to make it look like a donut -------->
         centre_circle = plt.Circle((0, 0), 0.70, fc='white')
         fig1.gca().add_artist(centre_circle)
 
-        # Add a legend
+        # <------  Add a legend (legend means colors with its lables) -------->
         plt.legend(df_active.index, loc="lower left", bbox_to_anchor=(1, 0, 1, 1))
 
+        # <------  To display donut graph -------->
         st.pyplot(fig1) 
     except:
         pass
-
+    
+    # <------  To display actual numbers of records -------->
     st.markdown(f"Total number of active data for {dataset_name} on *Autotraders* is **{df_active[dataset_name]['Autotraders']}**.")
     st.markdown(f"Total number of active data for {dataset_name} on *Gumtree* is **{df_active[dataset_name]['Gumtree']}**.")
     st.markdown(f"Total number of active data for {dataset_name} on *Facebook* is **{df_active[dataset_name]['Facebook']}**.")
@@ -200,6 +227,10 @@ with left:
     st.markdown(f"Total number of active data for {dataset_name} on *Heycars* is **{df_active[dataset_name]['Heycars']}**.")
     st.markdown(f"Total number of active data for {dataset_name} on all *Platforms* is **{df_active[dataset_name]['Heycars']+df_active[dataset_name]['Moters']+df_active[dataset_name]['Facebook']+df_active[dataset_name]['Gumtree']+df_active[dataset_name]['Autotraders']}**.")
     # st.markdown("-------------------------------------------------------------------------------")
+
+
+
+# <------  Store deactive data into variables which deactivated in last 24 hours  ---------->
 
 total_nonactive_facebook_24 = data1["count"]["inActiveFacebook"]
 
@@ -212,6 +243,7 @@ total_nonactive_gumtree_24 = data1["count"]["inActiveGumtree"]
 total_nonactive_motors_24 = data1["count"]["inActiveMotors"]
 
 
+# <------  Store deactive data into variables which deactivated in last 7 days  ---------->
 total_nonactive_facebook_7 = data7["count"]["inActiveFacebook"]
 
 total_nonactive_heycar_7 = data7["count"]["inActiveHeyCars"]
@@ -223,6 +255,7 @@ total_nonactive_gumtree_7 = data7["count"]["inActiveGumtree"]
 total_nonactive_motors_7 = data7["count"]["inActiveMotors"]
 
 
+# <------  Store deactive data into variables which deactivated in last 15 days  ---------->
 total_nonactive_facebook_15 = data15["count"]["inActiveFacebook"]
 
 total_nonactive_heycar_15 = data15["count"]["inActiveHeyCars"]
@@ -234,6 +267,7 @@ total_nonactive_gumtree_15 = data15["count"]["inActiveGumtree"]
 total_nonactive_motors_15 = data15["count"]["inActiveMotors"]
 
 
+# <------  Store deactive data into variables which deactivated in last 30 days  ---------->
 total_nonactive_facebook_30 = data30["count"]["inActiveFacebook"]
 
 total_nonactive_heycar_30 = data30["count"]["inActiveHeyCars"]
@@ -245,6 +279,7 @@ total_nonactive_gumtree_30 = data30["count"]["inActiveGumtree"]
 total_nonactive_motors_30 = data30["count"]["inActiveMotors"]
 
 
+# <------  Store all deactive data into variables ---------->
 total_nonactive_facebook = data_lifetime["count"]["inActiveFacebook"]
 
 total_nonactive_heycar = data_lifetime["count"]["inActiveHeyCars"]
