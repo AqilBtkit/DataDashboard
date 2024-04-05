@@ -465,10 +465,10 @@ with right:
     
     # Displaying in Streamlit
     st.markdown(f"Top 1st largest make on inventory: **{sorted_make[0]}** (Count: **{sorted_make_count[0]}**)")
-    st.markdown(f"Top 2st largest make on inventory: **{sorted_make[1]}** (Count: **{sorted_make_count[1]}**)")
-    st.markdown(f"Top 3st largest make on inventory: **{sorted_make[2]}** (Count: **{sorted_make_count[2]}**)")
-    st.markdown(f"Top 4st largest make on inventory: **{sorted_make[3]}** (Count: **{sorted_make_count[3]}**)")
-    st.markdown(f"Top 5st largest make on inventory: **{sorted_make[4]}** (Count: **{sorted_make_count[4]}**)")
+    st.markdown(f"Top 2nd largest make on inventory: **{sorted_make[1]}** (Count: **{sorted_make_count[1]}**)")
+    st.markdown(f"Top 3rd largest make on inventory: **{sorted_make[2]}** (Count: **{sorted_make_count[2]}**)")
+    st.markdown(f"Top 4th largest make on inventory: **{sorted_make[3]}** (Count: **{sorted_make_count[3]}**)")
+    st.markdown(f"Top 5th largest make on inventory: **{sorted_make[4]}** (Count: **{sorted_make_count[4]}**)")
 
     st.markdown("-------------------------------------------------------------------------------")
 
