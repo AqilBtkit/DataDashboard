@@ -117,35 +117,32 @@ def last24hours():
 
 def last7days():
     
+            # <------ Call API for last 24 hours data ---------->
+    url = "http://api.aicarz.com/api/v1/dev/data-dashboard?days=7"
+    response = requests.request("GET", url, headers=headers)
+    data7= json.loads(response.text)['data']
+    print("\n\n\nStatus code::::",response.status_code)
+
+    # <------ If API server give 502 error  ---------->
+    # while response.status_code == 502:
+    #     response = requests.request("GET", url, headers=headers)
+    #     print("\n\n\nStatus code::::",response.status_code)
+    #     data1= json.loads(response.text)
+        
+    print("Data 7 day: ",data7)
     
     # <------  Store deactive data into variables which deactivated in last 7 days  ---------->
-    total_nonactive_facebook_7 = [data7["count"]["inActiveFacebook"], data7["count"]["inActiveHeyCars"], data7["count"]["inActiveAutoTrader"], data7["count"]["inActiveGumtree"], data7["count"]["inActiveMotors"]] 
-
-
+    total_nonactive_7 = [data7["count"]["inActiveFacebook"], data7["count"]["inActiveHeyCars"], data7["count"]["inActiveAutoTrader"], data7["count"]["inActiveGumtree"], data7["count"]["inActiveMotors"]] 
 
     # <------  Store active data into variables for last 7 days  ---------->
-    total_count_facebook_7 = data7["count"]["facebook"]
+    total_count_7 = [data7["count"]["facebook"], data7["count"]["heyCars"], data7["count"]["autoTrader"], data7["count"]["gumtree"], data7["count"]["motors"]]
 
-    total_count_heycar_7 = data7["count"]["heyCars"]
+    # <------  Store active data into variables for last 7 days  ---------->
+    total_active_7 = [data7["count"]["activeFacebook"], data7["count"]["activeHeyCars"], data7["count"]["activeAutoTrader"], data7["count"]["activeGumtree"], data7["count"]["activeMotors"]]
 
-    total_count_autotrader_7 = data7["count"]["autoTrader"]
-
-    total_count_gumtree_7 = data7["count"]["gumtree"]
-
-    total_count_motors_7 = data7["count"]["motors"]
+    last_7_hours= [total_active_7, total_nonactive_7, total_count_7]
     
-
-    # <------  Store active data into variables for last 7 days  ---------->
-    total_active_facebook_7 = data7["count"]["activeFacebook"]
-
-    total_active_heycar_7 = data7["count"]["activeHeyCars"]
-
-    total_active_autotrader_7 = data7["count"]["activeAutoTrader"]
-
-    total_active_gumtree_7 = data7["count"]["activeGumtree"]
-
-    total_active_motors_7 = data7["count"]["activeMotors"]
-
+    return last_7_hours
 
 def last15days():
     # <------  Store active data into variables for last 15 days  ---------->
@@ -264,21 +261,30 @@ def lifetime():
 
 
 # <------ Storing All active data in dict ---------->
-data_active = {
-    'Last 24 Hours': last24hours()[0],
-    'Last 7 days': [total_active_autotrader_7, total_active_gumtree_7, total_active_facebook_7, total_active_heycar_7, total_active_motors_7],
-    'Last 15 days': [total_active_autotrader_15, total_active_gumtree_15, total_active_facebook_15, total_active_heycar_15, total_active_motors_15],
-    'Last 30 days': [total_active_autotrader_30, total_active_gumtree_30, total_active_facebook_30, total_active_heycar_30, total_active_motors_30],
-    'Lifetime': [total_active_autotrader, total_active_gumtree, total_active_facebook, total_active_heycar, total_active_motors]
-}
+# data_active = {
+#     'Last 24 Hours': last24hours()[0],
+#     'Last 7 days': [total_active_autotrader_7, total_active_gumtree_7, total_active_facebook_7, total_active_heycar_7, total_active_motors_7],
+#     'Last 15 days': [total_active_autotrader_15, total_active_gumtree_15, total_active_facebook_15, total_active_heycar_15, total_active_motors_15],
+#     'Last 30 days': [total_active_autotrader_30, total_active_gumtree_30, total_active_facebook_30, total_active_heycar_30, total_active_motors_30],
+#     'Lifetime': [total_active_autotrader, total_active_gumtree, total_active_facebook, total_active_heycar, total_active_motors]
+# }
 # <------ Convert dict into dataframe ---------->
 # df_active = pd.DataFrame(data_active, index=["Autotraders", "Gumtree","Facebook", "Heycars", "Moters"])
 
 
 # <------ Dropdown to select the data set ---------->
-dataset_name = st.selectbox('Select a Dataset', ['Lifetime', 'Last 30 days','Last 15 days', 'Last 7 days', 'Last 24 Hours'])
+dataset_name = st.selectbox('Select a Dataset', ['Last 24 Hours','Lifetime', 'Last 30 days','Last 15 days', 'Last 7 days', 'Last 24 Hours'])
+
+if dataset_name == 'Last 24 Hours':
+    _24hours= last24hours()
+    data_active = {'Last 24 Hours': _24hours[0]}
+    data_nonactive = {'Last 24 Hours': _24hours[0]}
+    data_total = {'Last 24 Hours': _24hours[2]}
 
 
+    
+    
+    
 # <------ divide layout into three columns ---------->
 left, center, right = st.columns(3)   
 
