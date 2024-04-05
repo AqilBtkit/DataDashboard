@@ -465,8 +465,11 @@ with right:
     def sort_by_value(item):
         return item[1]
 
-    sorted_fuel = dict(sorted(fuel_dict.items(), key=sort_by_value, reverse=True))
+    sorted_fuel_with_count = dict(sorted(fuel_dict.items(), key=sort_by_value, reverse=True))
 
+    sorted_fuel= list(sorted_fuel_with_count.keys())
+    sorted_fuel_count= list(sorted_fuel_with_count.values())
+    
     # Displaying in Streamlit
     st.markdown(f"Most frequent active fuel type: **{sorted_fuel[0].key()}** (Count: **{sorted_fuel[0].value()}**)")
     st.markdown("-------------------------------------------------------------------------------")
