@@ -277,9 +277,10 @@ dataset_name = st.selectbox('Select a Dataset', ['Last 24 Hours','Lifetime', 'La
 
 if dataset_name == 'Last 24 Hours':
     _24hours= last24hours()
-    data_active = {'Last 24 Hours': _24hours[0]}
-    data_nonactive = {'Last 24 Hours': _24hours[0]}
-    data_total = {'Last 24 Hours': _24hours[2]}
+    _24hourslist= _24hours.copy()
+    data_active = {'Last 24 Hours': _24hourslist[0]}
+    data_nonactive = {'Last 24 Hours': _24hourslist[0]}
+    data_total = {'Last 24 Hours': _24hourslist[2]}
 
 
     
