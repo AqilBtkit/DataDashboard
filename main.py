@@ -447,14 +447,17 @@ with right:
     def sort_by_value(item):
         return item[1]
 
-    sorted_make = dict(sorted(make_dict.items(), key=sort_by_value, reverse=True))
-
+    sorted_make_with_count = dict(sorted(make_dict.items(), key=sort_by_value, reverse=True))
+    
+    sorted_make= sorted_make_with_count.keys()
+    sorted_make_count = sorted_make_with_count.values()
+    
     # Displaying in Streamlit
-    st.markdown(f"Top 1st largest make on inventory: **{sorted_make[0].key()}** (Count: **{sorted_make[0].items()}**)")
-    st.markdown(f"Top 2st largest make on inventory: **{sorted_make[1].key()}** (Count: **{sorted_make[1].items()}**)")
-    st.markdown(f"Top 3st largest make on inventory: **{sorted_make[2].key()}** (Count: **{sorted_make[2].items()}**)")
-    st.markdown(f"Top 4st largest make on inventory: **{sorted_make[3].key()}** (Count: **{sorted_make[3].items()}**)")
-    st.markdown(f"Top 5st largest make on inventory: **{sorted_make[4].key()}** (Count: **{sorted_make[4].items()}**)")
+    st.markdown(f"Top 1st largest make on inventory: **{sorted_make[0]}** (Count: **{sorted_make_count[0]}**)")
+    st.markdown(f"Top 2st largest make on inventory: **{sorted_make[1]}** (Count: **{sorted_make_count[1]}**)")
+    st.markdown(f"Top 3st largest make on inventory: **{sorted_make[2]}** (Count: **{sorted_make_count[2]}**)")
+    st.markdown(f"Top 4st largest make on inventory: **{sorted_make[3]}** (Count: **{sorted_make_count[3]}**)")
+    st.markdown(f"Top 5st largest make on inventory: **{sorted_make[4]}** (Count: **{sorted_make_count[4]}**)")
 
     st.markdown("-------------------------------------------------------------------------------")
 
