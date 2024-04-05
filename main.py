@@ -16,49 +16,8 @@ headers = {
     'Bearer ya29.a0AfB_byASQo7lfEHHE4H6vXGd9MefYU0puZYAk3fkDyFcoJzE7Ra8Nzssy0TLcVuPyFRHvO_g_2h07UkZKtApTu51oJZb35PfvPN8UpPrvx4sU2yFzYclzdmmxBfRpymGYbziyD2JVLM9X2zEFSJabc2x157KKPGAQwaCgYKAbYSARISFQHGX2Mig9VTJWbXohan6iB9BtfcIg0169'
     }
     
-# @st.cache_resource(ttl=1800)
-# def dataload():
-    
-
-    
-   
-#     url = "http://api.aicarz.com/api/v1/dev/data-dashboard?days=30"
-#     response = requests.request("GET", url, headers=headers)
-#     data30= json.loads(response.text)
-#     print("\n\n\nStatus code::::",response.status_code)
-
-#     # while response.status_code == 502:
-#     #     response = requests.request("GET", url, headers=headers)
-#     #     print("\n\n\nStatus code::::",response.status_code)
-#     #     data30= json.loads(response.text)
-        
-#     print("Data 30 days: ",data30['data'])
-    
-    
-#     url = "http://api.aicarz.com/api/v1/dev/data-dashboard"
-#     response = requests.request("GET", url, headers=headers)
-#     data_lifetime= json.loads(response.text)
-#     print("\n\n\nStatus code::::",response.status_code)
-
-#     # while response.status_code == 502:
-#     #     response = requests.request("GET", url, headers=headers)
-#     #     print("\n\n\nStatus code::::",response.status_code)
-#     #     data_lifetime= json.loads(response.text)
-        
-#     print("Data lifetime: ",data_lifetime['data'])
-    
-#     return data1['data'], data7['data'], data15['data'], data30['data'], data_lifetime['data']
-
-
-
-
 
 # <------  Here I call dataload function and store all data in variables  ---------->
-# data1, data7, data15, data30, data_lifetime= dataload()
-
-
-
-
 @st.cache_resource(ttl=1800)
 def last24hours():
     
@@ -88,8 +47,7 @@ def last24hours():
 
     last_24_hours= [total_active_24, total_nonactive_24, total_count_24]
     
-    data= data1
-    return last_24_hours,data
+    return last_24_hours,data1
 
 
 @st.cache_resource(ttl=1800)
@@ -120,8 +78,7 @@ def last7days():
 
     last_7_hours= [total_active_7, total_nonactive_7, total_count_7]
     
-    data= data7
-    return last_7_hours,data
+    return last_7_hours,data7
 
 
 @st.cache_resource(ttl=1800)
@@ -152,8 +109,7 @@ def last15days():
 
     last_15= [total_active_15, total_nonactive_15, total_count_15]
     
-    data= data15
-    return last_15,data
+    return last_15,data15
 
 
 
@@ -185,8 +141,7 @@ def last30days():
 
     last_30= [total_active_30, total_nonactive_30, total_count_30]
     
-    data= data30
-    return last_30,data
+    return last_30,data30
 
 
 
@@ -218,13 +173,12 @@ def lifetime():
 
     last_lifetime= [total_active_lifetime, total_nonactive_lifetime, total_count_lifetime]
     
-    data= data_lifetime
-    return last_lifetime,data
+    return last_lifetime,data_lifetime
 
 
 
 # <------ Dropdown to select the data set ---------->
-dataset_name = st.selectbox('Select a Dataset', ['Last 24 Hours','Lifetime', 'Last 30 days','Last 15 days', 'Last 7 days', 'Last 24 Hours'])
+dataset_name = st.selectbox('Select a Dataset', ['Lifetime', 'Last 30 days','Last 15 days', 'Last 7 days', 'Last 24 Hours'])
 
 
 if dataset_name == 'Last 24 Hours':
@@ -432,12 +386,10 @@ with left:
 
 # Adjusting queries to exclude documents where 'engineSizeInLiter' is None
 # Query to find the minimum engine size in liters where isActive is true and engineSizeInLiter is not None
-min_result = list(collection.find({'isActive': True, 'engineSizeInLiter': {'$ne': None}}).sort('engineSizeInLiter', 1).limit(1))
-min_value = min_result[0]['engineSizeInLiter'] if min_result else None
+min_value = data['active']['engineSizeInLiterMin']
 
 # Query to find the maximum engine size in liters where isActive is true and engineSizeInLiter is not None
-max_result = list(collection.find({'isActive': True, 'engineSizeInLiter': {'$ne': None}}).sort('engineSizeInLiter', -1).limit(1))
-max_value = max_result[0]['engineSizeInLiter'] if max_result else None
+max_value = data['active']['engineSizeInLiterMax']
 
 with centerleft:
     # Displaying in Streamlit
@@ -451,12 +403,10 @@ with centerleft:
 
 
     # Query to find the minimum makeYear where isActive is true and makeYear is not None
-    min_result = list(collection.find({'isActive': True, 'year': {'$ne': None}}).sort('year', 1).limit(1))
-    min_value = min_result[0]['year'] if min_result else None
+    min_value = data['active']['yearMin']
 
     # Query to find the maximum makeYear where isActive is true and makeYear is not None
-    max_result = list(collection.find({'isActive': True, 'year': {'$ne': None}}).sort('year', -1).limit(1))
-    max_value = max_result[0]['year'] if max_result else None
+    max_value = data['active']['yearMax']
 
     # Displaying in Streamlit
 
@@ -468,12 +418,10 @@ with centerleft:
 with centerright:
 
     # Query to find the minimum mileageInMiles where isActive is true and mileageInMiles is not None
-    min_result = list(collection.find({'isActive': True, 'mileageInMiles': {'$ne': None}}).sort('mileageInMiles', 1).limit(1))
-    min_value = format(min_result[0]['mileageInMiles'], ',') if min_result else None
+    min_value = format(data['active']['milageMin'], ',')
 
     # Query to find the maximum mileageInMiles where isActive is true and mileageInMiles is not None
-    max_result = list(collection.find({'isActive': True, 'mileageInMiles': {'$ne': None}}).sort('mileageInMiles', -1).limit(1))
-    max_value = format(max_result[0]['mileageInMiles'], ',') if max_result else None
+    max_value = format(data['active']['milageMax'], ',')
 
     # Displaying in Streamlit
     st.markdown(f"Max mileage in active data: **{max_value}** miles")
@@ -482,118 +430,42 @@ with centerright:
 
 
     st.markdown("-------------------------------------------------------------------------------")
-    # Aggregation pipeline to count unique makes where isActive is True
-    pipeline = [
-        {"$match": {"isActive": True}},  # Filter for isActive being True
-        {"$group": {"_id": "$make"}},  # Group by the 'make' field
-        {"$group": {"_id": None, "uniqueCount": {"$sum": 1}}}  # Count unique makes
-    ]
 
-    unique_make_count_result = list(collection.aggregate(pipeline))
-
-    if unique_make_count_result:
-        unique_make_count = format(unique_make_count_result[0]['uniqueCount'], ',')
-    else:
-        unique_make_count = 0
 
     # Displaying in Streamlit
-    st.markdown(f"Total number of unique active makes: **{unique_make_count}**")
+    st.markdown(f"Total number of unique active makes: **{data['active']['distinctMakeCount']}**")
     # st.markdown("-------------------------------------------------------------------------------")
 
-    # Aggregation pipeline to count unique makes where isActive is True
-    pipeline = [
-        {"$match": {"isActive": True}},  # Filter for isActive being True
-        {"$group": {"_id": "$model"}},  # Group by the 'model' field
-        {"$group": {"_id": None, "uniqueCount": {"$sum": 1}}}  # Count unique makes
-    ]
-
-    unique_model_count_result = list(collection.aggregate(pipeline))
-
-    if unique_model_count_result:
-        unique_model_count = format(unique_model_count_result[0]['uniqueCount'], ',')
-    else:
-        unique_model_count = 0
 
     # Displaying in Streamlit
-    st.markdown(f"Total number of unique active model: **{unique_model_count}**")
+    st.markdown(f"Total number of unique active model: **{data['active']['distinctModelCount']}**")
     st.markdown("-------------------------------------------------------------------------------")
 
 with right:
 
+    make_dict=data['active']['topLargestInventoryMake']
+    def sort_by_value(item):
+        return item[1]
 
-    # Aggregation pipeline to find the most frequent make where isActive is True
-    pipeline = [
-        {"$match": {"isActive": True}},  # Filter to include only active makes
-        {"$group": {"_id": "$make", "count": {"$sum": 1}}},  # Group by make and count
-        {"$sort": {"count": -1}},  # Sort by count in descending order
-        {"$limit": 5}  # Limit to the top result
-    ]
-
-    most_frequent_make = list(collection.aggregate(pipeline))
-
-    if most_frequent_make:
-        make_name1 = most_frequent_make[0]['_id']
-        make_count1 = format(most_frequent_make[0]['count'], ',')
-    else:
-        make_name1 = "None"
-        make_count1 = 0
-
-    if most_frequent_make:
-        make_name2 = most_frequent_make[1]['_id']
-        make_count2 = format(most_frequent_make[1]['count'], ',')
-    else:
-        make_name2 = "None"
-        make_count2 = 0
-
-    if most_frequent_make:
-        make_name3 = most_frequent_make[2]['_id']
-        make_count3 = format(most_frequent_make[2]['count'], ',')
-    else:
-        make_name3 = "None"
-        make_count3 = 0
-
-    if most_frequent_make:
-        make_name4 = most_frequent_make[3]['_id']
-        make_count4 = format(most_frequent_make[3]['count'], ',')
-    else:
-        make_name4 = "None"
-        make_count4 = 0
-
-    if most_frequent_make:
-        make_name5 = most_frequent_make[4]['_id']
-        make_count5 = format(most_frequent_make[4]['count'], ',')
-    else:
-        make_name5 = "None"
-        make_count5 = 0
+    sorted_make = dict(sorted(make_dict.items(), key=sort_by_value, reverse=True))
 
     # Displaying in Streamlit
-    st.markdown(f"Active make on first position: **{make_name1}** (Count: **{make_count1}**)")
-    st.markdown(f"Active make on second position: **{make_name2}** (Count: **{make_count2}**)")
-    st.markdown(f"Active make on third position: **{make_name3}** (Count: **{make_count3}**)")
-    st.markdown(f"Active make on fourth position: **{make_name4}** (Count: **{make_count4}**)")
-    st.markdown(f"Active make on fifth position: **{make_name5}** (Count: **{make_count5}**)")
+    st.markdown(f"Top 1st largest make on inventory: **{sorted_make[0].key()}** (Count: **{sorted_make[0].items()}**)")
+    st.markdown(f"Top 2st largest make on inventory: **{sorted_make[1].key()}** (Count: **{sorted_make[1].items()}**)")
+    st.markdown(f"Top 3st largest make on inventory: **{sorted_make[2].key()}** (Count: **{sorted_make[2].items()}**)")
+    st.markdown(f"Top 4st largest make on inventory: **{sorted_make[3].key()}** (Count: **{sorted_make[3].items()}**)")
+    st.markdown(f"Top 5st largest make on inventory: **{sorted_make[4].key()}** (Count: **{sorted_make[4].items()}**)")
 
     st.markdown("-------------------------------------------------------------------------------")
 
-    # Aggregation pipeline to find the most frequent fuelType where isActive is True
-    pipeline = [
-        {"$match": {"isActive": True}},  # Filter to include only active entries
-        {"$group": {"_id": "$fuelType", "count": {"$sum": 1}}},  # Group by fuelType and count
-        {"$sort": {"count": -1}},  # Sort by count in descending order
-        {"$limit": 1}  # Limit to the top result
-    ]
+    fuel_dict=data['active']['topLargestInventoryMake']
+    def sort_by_value(item):
+        return item[1]
 
-    most_frequent_fuelType = list(collection.aggregate(pipeline))
-
-    if most_frequent_fuelType:
-        fuelType_name = most_frequent_fuelType[0]['_id']
-        fuelType_count = format(most_frequent_fuelType[0]['count'], ',')
-    else:
-        fuelType_name = "None"
-        fuelType_count = 0
+    sorted_fuel = dict(sorted(fuel_dict.items(), key=sort_by_value, reverse=True))
 
     # Displaying in Streamlit
-    st.markdown(f"Most frequent active fuel type: **{fuelType_name}** (Count: **{fuelType_count}**)")
+    st.markdown(f"Most frequent active fuel type: **{sorted_fuel[0].key()}** (Count: **{sorted_fuel[0].value()}**)")
     st.markdown("-------------------------------------------------------------------------------")
     
     
