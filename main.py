@@ -105,7 +105,7 @@ def last24hours():
     total_active_24 = [data1["count"]["activeFacebook"], data1["count"]["activeHeyCars"], data1["count"]["activeAutoTrader"], data1["count"]["activeGumtree"],data1["count"]["activeMotors"]]
 
     # <------  Store deactive data count into variables which deactivated in last 24 hours  ---------->
-    total_nonactive_24 = [data1["count"]["inActiveFacebook"], data1["count"]["inActiveHeyCars"], data1["count"]["inActiveAutoTrader"], data1["count"]["inActiveGumtree"], data1["count"]["inActiveMotors"]]
+    total_nonactive_24 = [data1["checkerActivity"]["deactivatedCountFacebook"], data1["checkerActivity"]["deactivatedCountHeyCars"], data1["checkerActivity"]["deactivatedCountAutoTrader"], data1["checkerActivity"]["deactivatedCountGumtree"], data1["checkerActivity"]["deactivatedCountMotors"]]
 
     # <------  Store all count data into variables for 24 hours  ---------->
     total_count_24 = [data1["count"]["facebook"], data1["count"]["heyCars"], data1["count"]["autoTrader"], data1["count"]["gumtree"], data1["count"]["motors"]]
