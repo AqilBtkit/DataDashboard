@@ -162,7 +162,7 @@ def last30days():
     #     print("\n\n\nStatus code::::",response.status_code)
     #     data15= json.loads(response.text)
         
-    print("Data 15 days: ",data30)
+    print("Data 30 days: ",data30)
     
     # <------  Store active data into variables for last 15 days  ---------->
     total_active_30 = [data30["count"]["activeFacebook"],data30["count"]["activeHeyCars"],data30["count"]["activeAutoTrader"],data30["count"]["activeGumtree"],data30["count"]["activeMotors"]]
@@ -191,7 +191,7 @@ def lifetime():
     #     print("\n\n\nStatus code::::",response.status_code)
     #     data15= json.loads(response.text)
         
-    print("Data 15 days: ",data_lifetime)
+    print("Data 30 days: ",data_lifetime)
     
     # <------  Store active data into variables for last 15 days  ---------->
     total_active_lifetime = [data_lifetime["count"]["activeFacebook"],data_lifetime["count"]["activeHeyCars"],data_lifetime["count"]["activeAutoTrader"],data_lifetime["count"]["activeGumtree"],data_lifetime["count"]["activeMotors"]]
