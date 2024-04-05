@@ -83,7 +83,7 @@ headers = {
 
 
 
-@st.cache_resource(ttl=1800)
+# @st.cache_resource(ttl=1800)
 def last24hours():
     
         # <------ Call API for last 24 hours data ---------->
