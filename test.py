@@ -1,96 +1,244 @@
-# import requests
-# import json
 
-# def dataload():
-#     url = "http://api.aicarz.com/api/v1/dev/data-dashboard?days=1"
-#     headers = {'Authorization': 'Bearer ya29.a0AfB_byASQo7lfEHHE4H6vXGd9MefYU0puZYAk3fkDyFcoJzE7Ra8Nzssy0TLcVuPyFRHvO_g_2h07UkZKtApTu51oJZb35PfvPN8UpPrvx4sU2yFzYclzdmmxBfRpymGYbziyD2JVLM9X2zEFSJabc2x157KKPGAQwaCgYKAbYSARISFQHGX2Mig9VTJWbXohan6iB9BtfcIg0169'}
-#     response = requests.request("GET", url, headers=headers)
-#     data1= json.loads(response.text)
-#     print("\n\n\nStatus code::::",response.status_code)
+# data = {
+#     'Last 24 Hours': [total_active_autotrader_24,total_nonactive_autotrader_24],
+#     'Last 7 days': [total_active_autotrader_7, total_nonactive_autotrader_7],
+#     'Last 15 days': [total_active_autotrader_15, total_nonactive_autotrader_15],
+#     'Last 30 days': [total_active_autotrader_30, total_nonactive_autotrader_30],
+#     'Lifetime': [total_active_autotrader, total_nonactive_autotrader]
+# }
+# df = pd.DataFrame(data, index=["Active", "Non-Active"])
 
-#     # while response.status_code == 502:
-#     #     response = requests.request("GET", url, headers=headers)
-#     #     print("\n\n\nStatus code::::",response.status_code)
-#     #     data1= json.loads(response.text)
-        
-#     print("Data 1 day: ",data1)
+
+# left,center, right = st.columns(3)   
+# with left:   
+#     st.subheader(f"Autotraders:")
+#     # Custom color palette
+#     colors = ['#ff9999','#66b3ff']
+
+#     def custom_autopct(pct):
+#         return ('%1.1f%%' % pct) if pct >= 1 else ''
+#     # Create a pie chart for the selected data set
+#     try:   
+#         fig1, ax1 = plt.subplots()
+#         ax1.pie(df[dataset_name], 
+#                 colors=colors, 
+#                 # labels=df.index, 
+#                 autopct=custom_autopct, 
+#                 # startangle= 90,
+#                 pctdistance=0.85,
+#                 explode=(0, 0),  # Exploding the first slice
+#                 # shadow=True
+#                 counterclock=False
+#                 )
+
+#         # Draw a circle at the center to make it look like a donut
+#         centre_circle = plt.Circle((0, 0), 0.70, fc='white')
+#         fig1.gca().add_artist(centre_circle)
+
+#         # Add a legend
+#         plt.legend(df.index, loc="lower left", bbox_to_anchor=(1, 0, 1, 1))
+
+#         st.pyplot(fig1) 
+#     except:
+#         pass
+
+#     st.markdown(f"Total number of active data for {dataset_name} on *Autotraders* is **{df[dataset_name]['Active']}**.")
+#     st.markdown(f"Total number of non-active data for {dataset_name} on *Autotraders* is **{df[dataset_name]['Non-Active']}**.")
+#     st.markdown(f"Total number of data for {dataset_name} on all *Autotraders* is **{df[dataset_name]['Active']+df[dataset_name]['Non-Active']}**.")
+
+
+# data = {
+#     'Last 24 Hours': [total_active_gumtree_24,total_nonactive_gumtree_24],
+#     'Last 7 days': [total_active_gumtree_7, total_nonactive_gumtree_7],
+#     'Last 15 days': [total_active_gumtree_15, total_nonactive_gumtree_15],
+#     'Last 30 days': [total_active_gumtree_30, total_nonactive_gumtree_30],
+#     'Lifetime': [total_active_gumtree, total_nonactive_gumtree]
+# }
+# df = pd.DataFrame(data, index=["Active", "Non-Active"])
+
+
+# with center:   
+#     st.subheader(f"Gumtree:")
+#     # Custom color palette
+#     colors = ['#ff9999','#66b3ff']
+
+#     def custom_autopct(pct):
+#         return ('%1.1f%%' % pct) if pct >= 1 else ''
+#     # Create a pie chart for the selected data set
+#     try:   
+#         fig1, ax1 = plt.subplots()
+#         ax1.pie(df[dataset_name], 
+#                 colors=colors, 
+#                 # labels=df.index, 
+#                 autopct=custom_autopct, 
+#                 # startangle= 90,
+#                 pctdistance=0.85,
+#                 explode=(0, 0),  # Exploding the first slice
+#                 # shadow=True
+#                 counterclock=False
+#                 )
+
+#         # Draw a circle at the center to make it look like a donut
+#         centre_circle = plt.Circle((0, 0), 0.70, fc='white')
+#         fig1.gca().add_artist(centre_circle)
+
+#         # Add a legend
+#         plt.legend(df.index, loc="lower left", bbox_to_anchor=(1, 0, 1, 1))
+
+#         st.pyplot(fig1) 
+#     except:
+#         pass
+
+#     st.markdown(f"Total number of active data for {dataset_name} on *Gumtree* is **{df[dataset_name]['Active']}**.")
+#     st.markdown(f"Total number of non-active data for {dataset_name} on *Gumtree* is **{df[dataset_name]['Non-Active']}**.")
+#     st.markdown(f"Total number of data for {dataset_name} on all *Gumtree* is **{df[dataset_name]['Active']+df[dataset_name]['Non-Active']}**.")
     
+
+
+# data = {
+#     'Last 24 Hours': [total_active_facebook_24,total_nonactive_facebook_24],
+#     'Last 7 days': [total_active_facebook_7, total_nonactive_facebook_7],
+#     'Last 15 days': [total_active_facebook_15, total_nonactive_facebook_15],
+#     'Last 30 days': [total_active_facebook_30, total_nonactive_facebook_30],
+#     'Lifetime': [total_active_facebook, total_nonactive_facebook]
+# }
+# df = pd.DataFrame(data, index=["Active", "Non-Active"])
+
+
+# with right:   
+#     st.subheader(f"Facebook:")
+#     # Custom color palette
+#     colors = ['#ff9999','#66b3ff']
+
+#     def custom_autopct(pct):
+#         return ('%1.1f%%' % pct) if pct >= 1 else ''
+#     # Create a pie chart for the selected data set
+#     try:   
+#         fig1, ax1 = plt.subplots()
+#         ax1.pie(df[dataset_name], 
+#                 colors=colors, 
+#                 # labels=df.index, 
+#                 autopct=custom_autopct, 
+#                 # startangle= 90,
+#                 pctdistance=0.85,
+#                 explode=(0, 0),  # Exploding the first slice
+#                 # shadow=True
+#                 counterclock=False
+#                 )
+
+#         # Draw a circle at the center to make it look like a donut
+#         centre_circle = plt.Circle((0, 0), 0.70, fc='white')
+#         fig1.gca().add_artist(centre_circle)
+
+#         # Add a legend
+#         plt.legend(df.index, loc="lower left", bbox_to_anchor=(1, 0, 1, 1))
+
+#         st.pyplot(fig1) 
+#     except:
+#         pass
+
+#     st.markdown(f"Total number of active data for {dataset_name} on *Facebook* is **{df[dataset_name]['Active']}**.")
+#     st.markdown(f"Total number of non-active data for {dataset_name} on *Facebook* is **{df[dataset_name]['Non-Active']}**.")
+#     st.markdown(f"Total number of data for {dataset_name} on all *Facebook* is **{df[dataset_name]['Active']+df[dataset_name]['Non-Active']}**.")
     
-#     # url = "http://api.aicarz.com/api/v1/dev/data-dashboard?days=7"
-#     # headers = {'Authorization': 'Bearer ya29.a0AfB_byASQo7lfEHHE4H6vXGd9MefYU0puZYAk3fkDyFcoJzE7Ra8Nzssy0TLcVuPyFRHvO_g_2h07UkZKtApTu51oJZb35PfvPN8UpPrvx4sU2yFzYclzdmmxBfRpymGYbziyD2JVLM9X2zEFSJabc2x157KKPGAQwaCgYKAbYSARISFQHGX2Mig9VTJWbXohan6iB9BtfcIg0169'}
-#     # response = requests.request("GET", url, headers=headers)
-#     # data7= json.loads(response.text)
-#     # print("\n\n\nStatus code::::",response.status_code)
 
-#     # # while response.status_code == 502:
-#     # #     response = requests.request("GET", url, headers=headers)
-#     # #     print("\n\n\nStatus code::::",response.status_code)
-#     # #     data7= json.loads(response.text)
-        
-#     # print("Data 7 days: ",data7['data'])
+# data = {
+#     'Last 24 Hours': [total_active_heycar_24,total_nonactive_heycar_24],
+#     'Last 7 days': [total_active_heycar_7, total_nonactive_heycar_7],
+#     'Last 15 days': [total_active_heycar_15, total_nonactive_heycar_15],
+#     'Last 30 days': [total_active_heycar_30, total_nonactive_heycar_30],
+#     'Lifetime': [total_active_heycar, total_nonactive_heycar]
+# }
+# df = pd.DataFrame(data, index=["Active", "Non-Active"])
+
+
+# with left:   
+#     st.subheader(f"Heycar:")
+#     # Custom color palette
+#     colors = ['#ff9999','#66b3ff']
+
+#     def custom_autopct(pct):
+#         return ('%1.1f%%' % pct) if pct >= 1 else ''
+#     # Create a pie chart for the selected data set
+#     try:   
+#         fig1, ax1 = plt.subplots()
+#         ax1.pie(df[dataset_name], 
+#                 colors=colors, 
+#                 # labels=df.index, 
+#                 autopct=custom_autopct, 
+#                 # startangle= 90,
+#                 pctdistance=0.85,
+#                 explode=(0, 0),  # Exploding the first slice
+#                 # shadow=True
+#                 counterclock=False
+#                 )
+
+#         # Draw a circle at the center to make it look like a donut
+#         centre_circle = plt.Circle((0, 0), 0.70, fc='white')
+#         fig1.gca().add_artist(centre_circle)
+
+#         # Add a legend
+#         plt.legend(df.index, loc="lower left", bbox_to_anchor=(1, 0, 1, 1))
+
+#         st.pyplot(fig1) 
+#     except:
+#         pass
+
+#     st.markdown(f"Total number of active data for {dataset_name} on *Heycar* is **{df[dataset_name]['Active']}**.")
+#     st.markdown(f"Total number of non-active data for {dataset_name} on *Heycar* is **{df[dataset_name]['Non-Active']}**.")
+#     st.markdown(f"Total number of data for {dataset_name} on all *Heycar* is **{df[dataset_name]['Active']+df[dataset_name]['Non-Active']}**.")
     
-#     # url = "http://api.aicarz.com/api/v1/dev/data-dashboard?days=15"
-#     # headers = {'Authorization': 'Bearer ya29.a0AfB_byASQo7lfEHHE4H6vXGd9MefYU0puZYAk3fkDyFcoJzE7Ra8Nzssy0TLcVuPyFRHvO_g_2h07UkZKtApTu51oJZb35PfvPN8UpPrvx4sU2yFzYclzdmmxBfRpymGYbziyD2JVLM9X2zEFSJabc2x157KKPGAQwaCgYKAbYSARISFQHGX2Mig9VTJWbXohan6iB9BtfcIg0169'}
-#     # response = requests.request("GET", url, headers=headers)
-#     # data15= json.loads(response.text)
-#     # print("\n\n\nStatus code::::",response.status_code)
 
-#     # # while response.status_code == 502:
-#     # #     response = requests.request("GET", url, headers=headers)
-#     # #     print("\n\n\nStatus code::::",response.status_code)
-#     # #     data15= json.loads(response.text)
-        
-#     # print("Data 15 days: ",data15['data'])
+# data = {
+#     'Last 24 Hours': [total_active_motors_24,total_nonactive_motors_24],
+#     'Last 7 days': [total_active_motors_7, total_nonactive_motors_7],
+#     'Last 15 days': [total_active_motors_15, total_nonactive_motors_15],
+#     'Last 30 days': [total_active_motors_30, total_nonactive_motors_30],
+#     'Lifetime': [total_active_motors, total_nonactive_motors]
+# }
+# df = pd.DataFrame(data, index=["Active", "Non-Active"])
+
+# with center:   
+#     st.subheader(f"Motors:")
+#     # Custom color palette
+#     colors = ['#ff9999','#66b3ff']
+
+#     def custom_autopct(pct):
+#         return ('%1.1f%%' % pct) if pct >= 1 else ''
+#     # Create a pie chart for the selected data set
+#     try:   
+#         fig1, ax1 = plt.subplots()
+#         ax1.pie(df[dataset_name], 
+#                 colors=colors, 
+#                 # labels=df.index, 
+#                 autopct=custom_autopct, 
+#                 # startangle= 90,
+#                 pctdistance=0.85,
+#                 explode=(0, 0),  # Exploding the first slice
+#                 # shadow=True
+#                 counterclock=False
+#                 )
+
+#         # Draw a circle at the center to make it look like a donut
+#         centre_circle = plt.Circle((0, 0), 0.70, fc='white')
+#         fig1.gca().add_artist(centre_circle)
+
+#         # Add a legend
+#         plt.legend(df.index, loc="lower left", bbox_to_anchor=(1, 0, 1, 1))
+
+#         st.pyplot(fig1) 
+#     except:
+#         pass
+
+#     st.markdown(f"Total number of active data for {dataset_name} on *Motors* is **{df[dataset_name]['Active']}**.")
+#     st.markdown(f"Total number of non-active data for {dataset_name} on *Motors* is **{df[dataset_name]['Non-Active']}**.")
+#     st.markdown(f"Total number of data for {dataset_name} on all *Motors* is **{df[dataset_name]['Active']+df[dataset_name]['Non-Active']}**.")
     
-#     # url = "http://api.aicarz.com/api/v1/dev/data-dashboard?days=15"
-#     # headers = {'Authorization': 'Bearer ya29.a0AfB_byASQo7lfEHHE4H6vXGd9MefYU0puZYAk3fkDyFcoJzE7Ra8Nzssy0TLcVuPyFRHvO_g_2h07UkZKtApTu51oJZb35PfvPN8UpPrvx4sU2yFzYclzdmmxBfRpymGYbziyD2JVLM9X2zEFSJabc2x157KKPGAQwaCgYKAbYSARISFQHGX2Mig9VTJWbXohan6iB9BtfcIg0169'}
-#     # response = requests.request("GET", url, headers=headers)
-#     # data30= json.loads(response.text)
-#     # print("\n\n\nStatus code::::",response.status_code)
 
-#     # # while response.status_code == 502:
-#     # #     response = requests.request("GET", url, headers=headers)
-#     # #     print("\n\n\nStatus code::::",response.status_code)
-#     # #     data30= json.loads(response.text)
-        
-#     # print("Data 30 days: ",data30['data'])
-    
-    
-#     # url = "http://api.aicarz.com/api/v1/dev/data-dashboard"
-#     # headers = {'Authorization': 'Bearer ya29.a0AfB_byASQo7lfEHHE4H6vXGd9MefYU0puZYAk3fkDyFcoJzE7Ra8Nzssy0TLcVuPyFRHvO_g_2h07UkZKtApTu51oJZb35PfvPN8UpPrvx4sU2yFzYclzdmmxBfRpymGYbziyD2JVLM9X2zEFSJabc2x157KKPGAQwaCgYKAbYSARISFQHGX2Mig9VTJWbXohan6iB9BtfcIg0169'}
-#     # response = requests.request("GET", url, headers=headers)
-#     # data_lifetime= json.loads(response.text)
-#     # print("\n\n\nStatus code::::",response.status_code)
+    # st.markdown("-------------------------------------------------------------------------------")
+    # Sample data
+    # Sample data
+# st.markdown("**________________________________________________________________________________________________________________________________________________________________________________**")
 
-#     # # while response.status_code == 502:
-#     # #     response = requests.request("GET", url, headers=headers)
-#     # #     print("\n\n\nStatus code::::",response.status_code)
-#     # #     data_lifetime= json.loads(response.text)
-        
-#     # print("Data lifetime: ",data_lifetime['data'])
-    
-#     return data1
 
-# dataload()
-# va=[23,43,54,'324',55]
 
-# print(sum(int(va)))
-
-car_dict = {
-    'ABARTH': 1, 'ALFA ROMEO': 1, 'ASTON MARTIN': 2, 'AUDI': 121, 'AUDI Q4': 1,
-    'BENTLEY': 3, 'BMW': 56, 'CHEVROLET': 3, 'CITROEN': 23, 'CUPRA': 2,
-    'DACIA': 5, 'DAIHATSU': 1, 'DAIMLER': 1, 'FIAT': 8, 'FORD': 70, 'HONDA': 21,
-    'HYUNDAI': 31, 'JAGUAR': 10, 'KIA': 26, 'LAMBORGHINI': 1, 'LAND ROVER': 39,
-    'LEXUS': 2, 'LOTUS': 3, 'MASERATI': 2, 'MAZDA': 13, 'MERCEDES-BENZ': 58,
-    'MG': 3, 'MG MOTOR UK': 3, 'MINI': 18, 'MITSUBISHI': 2, 'NISSAN': 50,
-    'PEUGEOT': 42, 'POLESTAR': 1, 'PORSCHE': 15, 'RENAULT': 12, 'SEAT': 17,
-    'SKODA': 28, 'SMART': 3, 'SSANGYONG': 1, 'SUBARU': 1, 'SUZUKI': 4,
-    'TOYOTA': 56, 'VAUXHALL': 55, 'VOLKSWAGEN': 84, 'VOLVO': 23
-}
-
-def sort_by_value(item):
-    return item[1]
-
-sorted_cars = dict(sorted(car_dict.items(), key=sort_by_value, reverse=True))
-
-print(sorted_cars)
