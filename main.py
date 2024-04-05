@@ -59,7 +59,7 @@ headers = {
 
 
 
-# @st.cache_resource(ttl=1800)
+@st.cache_resource(ttl=1800)
 def last24hours():
     
         # <------ Call API for last 24 hours data ---------->
@@ -69,10 +69,10 @@ def last24hours():
     print("\n\n\nStatus code::::",response.status_code)
 
     # <------ If API server give 502 error  ---------->
-    # while response.status_code == 502:
-    #     response = requests.request("GET", url, headers=headers)
-    #     print("\n\n\nStatus code::::",response.status_code)
-    #     data1= json.loads(response.text)
+    while response.status_code == 502:
+        response = requests.request("GET", url, headers=headers)
+        print("\n\n\nStatus code::::",response.status_code)
+        data1= json.loads(response.text)
         
     print("Data 1 day: ",data1)
     
@@ -91,19 +91,20 @@ def last24hours():
     return last_24_hours
 
 
+@st.cache_resource(ttl=1800)
 def last7days():
     
-            # <------ Call API for last 24 hours data ---------->
+    # <------ Call API for last 7 days data ---------->
     url = "http://api.aicarz.com/api/v1/dev/data-dashboard?days=7"
     response = requests.request("GET", url, headers=headers)
     data7= json.loads(response.text)['data']
     print("\n\n\nStatus code::::",response.status_code)
 
     # <------ If API server give 502 error  ---------->
-    # while response.status_code == 502:
-    #     response = requests.request("GET", url, headers=headers)
-    #     print("\n\n\nStatus code::::",response.status_code)
-    #     data1= json.loads(response.text)
+    while response.status_code == 502:
+        response = requests.request("GET", url, headers=headers)
+        print("\n\n\nStatus code::::",response.status_code)
+        data1= json.loads(response.text)
         
     print("Data 7 day: ",data7)
     
@@ -120,18 +121,21 @@ def last7days():
     
     return last_7_hours
 
+
+@st.cache_resource(ttl=1800)
 def last15days():
     
-        
+    # <------ Call API for last 15 days data ---------->
     url = "http://api.aicarz.com/api/v1/dev/data-dashboard?days=15"
     response = requests.request("GET", url, headers=headers)
     data15= json.loads(response.text)['data']
     print("\n\n\nStatus code::::",response.status_code)
 
-    # while response.status_code == 502:
-    #     response = requests.request("GET", url, headers=headers)
-    #     print("\n\n\nStatus code::::",response.status_code)
-    #     data15= json.loads(response.text)
+    # <------ If API server give 502 error  ---------->
+    while response.status_code == 502:
+        response = requests.request("GET", url, headers=headers)
+        print("\n\n\nStatus code::::",response.status_code)
+        data15= json.loads(response.text)
         
     print("Data 15 days: ",data15)
     
@@ -150,17 +154,20 @@ def last15days():
 
 
 
+@st.cache_resource(ttl=1800)
 def last30days():
 
+    # <------ Call API for last 30 days data ---------->
     url = "http://api.aicarz.com/api/v1/dev/data-dashboard?days=30"
     response = requests.request("GET", url, headers=headers)
     data30= json.loads(response.text)['data']
     print("\n\n\nStatus code::::",response.status_code)
 
-    # while response.status_code == 502:
-    #     response = requests.request("GET", url, headers=headers)
-    #     print("\n\n\nStatus code::::",response.status_code)
-    #     data15= json.loads(response.text)
+    # <------ If API server give 502 error  ---------->
+    while response.status_code == 502:
+        response = requests.request("GET", url, headers=headers)
+        print("\n\n\nStatus code::::",response.status_code)
+        data15= json.loads(response.text)
         
     print("Data 30 days: ",data30)
     
@@ -179,17 +186,20 @@ def last30days():
 
 
 
+@st.cache_resource(ttl=1800)
 def lifetime():
 
+    # <------ Call API for last lifetime data ---------->
     url = "http://api.aicarz.com/api/v1/dev/data-dashboard"
     response = requests.request("GET", url, headers=headers)
     data_lifetime= json.loads(response.text)['data']
     print("\n\n\nStatus code::::",response.status_code)
 
-    # while response.status_code == 502:
-    #     response = requests.request("GET", url, headers=headers)
-    #     print("\n\n\nStatus code::::",response.status_code)
-    #     data15= json.loads(response.text)
+    # <------ If API server give 502 error  ---------->
+    while response.status_code == 502:
+        response = requests.request("GET", url, headers=headers)
+        print("\n\n\nStatus code::::",response.status_code)
+        data15= json.loads(response.text)
         
     print("Data 30 days: ",data_lifetime)
     
@@ -207,20 +217,10 @@ def lifetime():
     return last_lifetime
 
 
-# <------ Storing All active data in dict ---------->
-# data_active = {
-#     'Last 24 Hours': last24hours()[0],
-#     'Last 7 days': [total_active_autotrader_7, total_active_gumtree_7, total_active_facebook_7, total_active_heycar_7, total_active_motors_7],
-#     'Last 15 days': [total_active_autotrader_15, total_active_gumtree_15, total_active_facebook_15, total_active_heycar_15, total_active_motors_15],
-#     'Last 30 days': [total_active_autotrader_30, total_active_gumtree_30, total_active_facebook_30, total_active_heycar_30, total_active_motors_30],
-#     'Lifetime': [total_active_autotrader, total_active_gumtree, total_active_facebook, total_active_heycar, total_active_motors]
-# }
-# <------ Convert dict into dataframe ---------->
-# df_active = pd.DataFrame(data_active, index=["Autotraders", "Gumtree","Facebook", "Heycars", "Moters"])
-
 
 # <------ Dropdown to select the data set ---------->
 dataset_name = st.selectbox('Select a Dataset', ['Last 24 Hours','Lifetime', 'Last 30 days','Last 15 days', 'Last 7 days', 'Last 24 Hours'])
+
 
 if dataset_name == 'Last 24 Hours':
     _24hours= last24hours()
@@ -256,7 +256,7 @@ else:
 # <------ divide layout into three columns ---------->
 left, center, right = st.columns(3)   
 
-
+# <------ Active data graph ↓ ---------->
 with left:   
     st.subheader(f"Active:")
     
@@ -304,21 +304,7 @@ with left:
 
 
 
-
-
-
-# <------ Storing All deactive data values in dict ---------->
-# data_nonactive = {
-#     'Last 24 Hours': last24hours()[0],
-#     'Last 7 days': [total_nonactive_autotrader_7, total_nonactive_gumtree_7, total_nonactive_facebook_7, total_nonactive_heycar_7, total_nonactive_motors_7],
-#     'Last 15 days': [total_nonactive_autotrader_15, total_nonactive_gumtree_15, total_nonactive_facebook_15, total_nonactive_heycar_15, total_nonactive_motors_15],
-#     'Last 30 days': [total_nonactive_autotrader_30, total_nonactive_gumtree_30, total_nonactive_facebook_30, total_nonactive_heycar_30, total_nonactive_motors_30],
-#     'Lifetime': [total_nonactive_autotrader, total_nonactive_gumtree, total_nonactive_facebook, total_nonactive_heycar, total_nonactive_motors]
-#     }
-# <------ Convert dict into dataframe ---------->
-# df_nonactive = pd.DataFrame(data_active, index=["Autotraders", "Gumtree","Facebook", "Heycars", "Moters"])
-
-
+# <------ deactive data graph ↓ ---------->
 with center:
     st.subheader(f"Inactive:")
     
@@ -367,22 +353,7 @@ with center:
 
 
 
-
-
-
-
-
-# data_total = {
-#     'Last 24 Hours': last24hours()[2],
-#     'Last 7 days': [total_count_autotrader_7, total_count_gumtree_7, total_count_facebook_7, total_count_heycar_7, total_count_motors_7],
-#     'Last 15 days': [total_count_autotrader_15, total_count_gumtree_15, total_count_facebook_15, total_count_heycar_15, total_count_motors_15],
-#     'Last 30 days': [total_count_autotrader_30, total_count_gumtree_30, total_count_facebook_30, total_count_heycar_30, total_count_motors_30],
-#     'Lifetime': [total_count_autotrader, total_count_gumtree, total_count_facebook, total_count_heycar, total_count_motors]
-#     }
-# df_total = pd.DataFrame(data_total, index=["Autotraders", "Gumtree","Facebook", "Heycars", "Moters"])
-
-# Dropdown to select the data set
-# dataset_name = st.selectbox('Select a Dataset', df.columns)
+# <------ Total data graph ↓ ---------->
 with right:
     st.subheader(f"Total:")
     # Custom color palette
