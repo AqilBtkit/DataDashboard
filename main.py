@@ -279,7 +279,7 @@ if dataset_name == 'Last 24 Hours':
     _24hours= last24hours()
     _24hourslist= _24hours.copy()
     data_active = {'Last 24 Hours': _24hourslist[0]}
-    data_nonactive = {'Last 24 Hours': _24hourslist[0]}
+    data_nonactive = {'Last 24 Hours': _24hourslist[1]}
     data_total = {'Last 24 Hours': _24hourslist[2]}
 
 
@@ -341,13 +341,13 @@ with left:
 
 
 # <------ Storing All deactive data values in dict ---------->
-data_nonactive = {
-    'Last 24 Hours': last24hours()[0],
-    'Last 7 days': [total_nonactive_autotrader_7, total_nonactive_gumtree_7, total_nonactive_facebook_7, total_nonactive_heycar_7, total_nonactive_motors_7],
-    'Last 15 days': [total_nonactive_autotrader_15, total_nonactive_gumtree_15, total_nonactive_facebook_15, total_nonactive_heycar_15, total_nonactive_motors_15],
-    'Last 30 days': [total_nonactive_autotrader_30, total_nonactive_gumtree_30, total_nonactive_facebook_30, total_nonactive_heycar_30, total_nonactive_motors_30],
-    'Lifetime': [total_nonactive_autotrader, total_nonactive_gumtree, total_nonactive_facebook, total_nonactive_heycar, total_nonactive_motors]
-    }
+# data_nonactive = {
+#     'Last 24 Hours': last24hours()[0],
+#     'Last 7 days': [total_nonactive_autotrader_7, total_nonactive_gumtree_7, total_nonactive_facebook_7, total_nonactive_heycar_7, total_nonactive_motors_7],
+#     'Last 15 days': [total_nonactive_autotrader_15, total_nonactive_gumtree_15, total_nonactive_facebook_15, total_nonactive_heycar_15, total_nonactive_motors_15],
+#     'Last 30 days': [total_nonactive_autotrader_30, total_nonactive_gumtree_30, total_nonactive_facebook_30, total_nonactive_heycar_30, total_nonactive_motors_30],
+#     'Lifetime': [total_nonactive_autotrader, total_nonactive_gumtree, total_nonactive_facebook, total_nonactive_heycar, total_nonactive_motors]
+#     }
 # <------ Convert dict into dataframe ---------->
 # df_nonactive = pd.DataFrame(data_active, index=["Autotraders", "Gumtree","Facebook", "Heycars", "Moters"])
 
@@ -389,13 +389,13 @@ with center:
         pass
     
     # <------  To display actual numbers of records -------->
-    st.markdown(f"Total number of non-active data for {dataset_name} on *Autotraders* is **{data_nonactive[dataset_name]['Autotraders']}**.")
-    st.markdown(f"Total number of non-active data for {dataset_name} on *Gumtree* is **{data_nonactive[dataset_name]['Gumtree']}**.")
-    st.markdown(f"Total number of non-active data for {dataset_name} on *Facebook* is **{data_nonactive[dataset_name]['Facebook']}**.")
-    st.markdown(f"Total number of non-active data for {dataset_name} on *Moters* is **{data_nonactive[dataset_name]['Moters']}**.")
-    st.markdown(f"Total number of non-active data for {dataset_name} on *Heycars* is **{data_nonactive[dataset_name]['Heycars']}**.")
-    st.markdown(f"Total number of non-active data for {dataset_name} on all *Platforms* is **{data_nonactive[dataset_name]['Heycars']+data_nonactive[dataset_name]['Moters']+data_nonactive[dataset_name]['Facebook']+data_nonactive[dataset_name]['Gumtree']+data_nonactive[dataset_name]['Autotraders']}**.")
-    # st.markdown("-------------------------------------------------------------------------------")
+    st.markdown(f"Total number of non-active data for {dataset_name} on *Autotraders* is **{data_nonactive[dataset_name][2]}**.")
+    st.markdown(f"Total number of non-active data for {dataset_name} on *Gumtree* is **{data_nonactive[dataset_name][3]}**.")
+    st.markdown(f"Total number of non-active data for {dataset_name} on *Facebook* is **{data_nonactive[dataset_name][0]}**.")
+    st.markdown(f"Total number of non-active data for {dataset_name} on *Moters* is **{data_nonactive[dataset_name][4]}**.")
+    st.markdown(f"Total number of non-active data for {dataset_name} on *Heycars* is **{data_nonactive[dataset_name][1]}**.")
+    st.markdown(f"Total number of non-active data for {dataset_name} on all *Platforms* is **{data_nonactive[dataset_name][1] + data_nonactive[dataset_name][4] + data_nonactive[dataset_name][0] + data_nonactive[dataset_name][3] + data_nonactive[dataset_name][2]}**.")
+    # st.markdown("-------------------------------------------------------------------------------") 
 
 
 
@@ -405,13 +405,13 @@ with center:
 
 
 
-data_total = {
-    'Last 24 Hours': last24hours()[2],
-    'Last 7 days': [total_count_autotrader_7, total_count_gumtree_7, total_count_facebook_7, total_count_heycar_7, total_count_motors_7],
-    'Last 15 days': [total_count_autotrader_15, total_count_gumtree_15, total_count_facebook_15, total_count_heycar_15, total_count_motors_15],
-    'Last 30 days': [total_count_autotrader_30, total_count_gumtree_30, total_count_facebook_30, total_count_heycar_30, total_count_motors_30],
-    'Lifetime': [total_count_autotrader, total_count_gumtree, total_count_facebook, total_count_heycar, total_count_motors]
-    }
+# data_total = {
+#     'Last 24 Hours': last24hours()[2],
+#     'Last 7 days': [total_count_autotrader_7, total_count_gumtree_7, total_count_facebook_7, total_count_heycar_7, total_count_motors_7],
+#     'Last 15 days': [total_count_autotrader_15, total_count_gumtree_15, total_count_facebook_15, total_count_heycar_15, total_count_motors_15],
+#     'Last 30 days': [total_count_autotrader_30, total_count_gumtree_30, total_count_facebook_30, total_count_heycar_30, total_count_motors_30],
+#     'Lifetime': [total_count_autotrader, total_count_gumtree, total_count_facebook, total_count_heycar, total_count_motors]
+#     }
 # df_total = pd.DataFrame(data_total, index=["Autotraders", "Gumtree","Facebook", "Heycars", "Moters"])
 
 # Dropdown to select the data set
