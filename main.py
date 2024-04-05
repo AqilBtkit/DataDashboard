@@ -449,8 +449,8 @@ with right:
 
     sorted_make_with_count = dict(sorted(make_dict.items(), key=sort_by_value, reverse=True))
     
-    sorted_make= sorted_make_with_count.keys()
-    sorted_make_count = sorted_make_with_count.values()
+    sorted_make= list(sorted_make_with_count.keys())
+    sorted_make_count = list(sorted_make_with_count.values())
     
     # Displaying in Streamlit
     st.markdown(f"Top 1st largest make on inventory: **{sorted_make[0]}** (Count: **{sorted_make_count[0]}**)")
