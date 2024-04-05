@@ -471,7 +471,7 @@ with right:
     sorted_fuel_count= list(sorted_fuel_with_count.values())
     
     # Displaying in Streamlit
-    st.markdown(f"Most frequent active fuel type: **{sorted_fuel[0].key()}** (Count: **{sorted_fuel[0].value()}**)")
+    st.markdown(f"Most frequent active fuel type: **{sorted_fuel[0]}** (Count: **{sorted_fuel_count[0]}**)")
     st.markdown("-------------------------------------------------------------------------------")
     
     
