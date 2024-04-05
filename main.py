@@ -89,7 +89,7 @@ def last24hours():
     last_24_hours= [total_active_24, total_nonactive_24, total_count_24]
     
     data= data1
-    return last_24_hours
+    return last_24_hours,data
 
 
 @st.cache_resource(ttl=1800)
@@ -121,7 +121,7 @@ def last7days():
     last_7_hours= [total_active_7, total_nonactive_7, total_count_7]
     
     data= data7
-    return last_7_hours
+    return last_7_hours,data
 
 
 @st.cache_resource(ttl=1800)
@@ -153,7 +153,7 @@ def last15days():
     last_15= [total_active_15, total_nonactive_15, total_count_15]
     
     data= data15
-    return last_15
+    return last_15,data
 
 
 
@@ -186,7 +186,7 @@ def last30days():
     last_30= [total_active_30, total_nonactive_30, total_count_30]
     
     data= data30
-    return last_30
+    return last_30,data
 
 
 
@@ -219,7 +219,7 @@ def lifetime():
     last_lifetime= [total_active_lifetime, total_nonactive_lifetime, total_count_lifetime]
     
     data= data_lifetime
-    return last_lifetime
+    return last_lifetime,data
 
 
 
@@ -228,31 +228,31 @@ dataset_name = st.selectbox('Select a Dataset', ['Last 24 Hours','Lifetime', 'La
 
 
 if dataset_name == 'Last 24 Hours':
-    _24hours= last24hours()
+    _24hours,data= last24hours()
     data_active = {'Last 24 Hours': _24hours[0]}
     data_nonactive = {'Last 24 Hours': _24hours[1]}
     data_total = {'Last 24 Hours': _24hours[2]}
     
 elif dataset_name == 'Last 7 days':
-    last7= last7days()
+    last7,data= last7days()
     data_active = {'Last 7 days': last7[0]}
     data_nonactive = {'Last 7 days': last7[1]}
     data_total = {'Last 7 days': last7[2]}
     
 elif dataset_name == 'Last 15 days':
-    last15= last15days()
+    last15,data= last15days()
     data_active = {'Last 15 days': last15[0]}
     data_nonactive = {'Last 15 days': last15[1]}
     data_total = {'Last 15 days': last15[2]}
 
 elif dataset_name == 'Last 30 days':
-    last30= last30days()
+    last30,data= last30days()
     data_active = {'Last 30 days': last30[0]}
     data_nonactive = {'Last 30 days': last30[1]}
     data_total = {'Last 30 days': last30[2]}
     
 else:
-    lifetime_= lifetime()
+    lifetime_,data= lifetime()
     data_active = {'Lifetime': lifetime_[0]}
     data_nonactive = {'Lifetime': lifetime_[1]}
     data_total = {'Lifetime': lifetime_[2]}
