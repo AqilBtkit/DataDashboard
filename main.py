@@ -21,31 +21,7 @@ headers = {
     
 
     
-    
-#     url = "http://api.aicarz.com/api/v1/dev/data-dashboard?days=7"
-#     response = requests.request("GET", url, headers=headers)
-#     data7= json.loads(response.text)
-#     print("\n\n\nStatus code::::",response.status_code)
-
-#     # while response.status_code == 502:
-#     #     response = requests.request("GET", url, headers=headers)
-#     #     print("\n\n\nStatus code::::",response.status_code)
-#     #     data7= json.loads(response.text)
-        
-#     print("Data 7 days: ",data7['data'])
-    
-#     url = "http://api.aicarz.com/api/v1/dev/data-dashboard?days=15"
-#     response = requests.request("GET", url, headers=headers)
-#     data15= json.loads(response.text)
-#     print("\n\n\nStatus code::::",response.status_code)
-
-#     # while response.status_code == 502:
-#     #     response = requests.request("GET", url, headers=headers)
-#     #     print("\n\n\nStatus code::::",response.status_code)
-#     #     data15= json.loads(response.text)
-        
-#     print("Data 15 days: ",data15['data'])
-    
+   
 #     url = "http://api.aicarz.com/api/v1/dev/data-dashboard?days=30"
 #     response = requests.request("GET", url, headers=headers)
 #     data30= json.loads(response.text)
@@ -132,132 +108,103 @@ def last7days():
     print("Data 7 day: ",data7)
     
     # <------  Store deactive data into variables which deactivated in last 7 days  ---------->
-    total_nonactive_7 = [data7["count"]["inActiveFacebook"], data7["count"]["inActiveHeyCars"], data7["count"]["inActiveAutoTrader"], data7["count"]["inActiveGumtree"], data7["count"]["inActiveMotors"]] 
+    total_active_7 = [data7["count"]["activeFacebook"], data7["count"]["activeHeyCars"], data7["count"]["activeAutoTrader"], data7["count"]["activeGumtree"], data7["count"]["activeMotors"]] 
+ 
+     # <------  Store deactive data count into variables which deactivated in last 24 hours  ---------->
+    total_nonactive_7 = [data7["checkerActivity"]["deactivatedCountFacebook"], data7["checkerActivity"]["deactivatedCountHeyCars"], data7["checkerActivity"]["deactivatedCountAutoTrader"], data7["checkerActivity"]["deactivatedCountGumtree"], data7["checkerActivity"]["deactivatedCountMotors"]]
 
     # <------  Store active data into variables for last 7 days  ---------->
     total_count_7 = [data7["count"]["facebook"], data7["count"]["heyCars"], data7["count"]["autoTrader"], data7["count"]["gumtree"], data7["count"]["motors"]]
-
-    # <------  Store active data into variables for last 7 days  ---------->
-    total_active_7 = [data7["count"]["activeFacebook"], data7["count"]["activeHeyCars"], data7["count"]["activeAutoTrader"], data7["count"]["activeGumtree"], data7["count"]["activeMotors"]]
 
     last_7_hours= [total_active_7, total_nonactive_7, total_count_7]
     
     return last_7_hours
 
 def last15days():
+    
+        
+    url = "http://api.aicarz.com/api/v1/dev/data-dashboard?days=15"
+    response = requests.request("GET", url, headers=headers)
+    data15= json.loads(response.text)['data']
+    print("\n\n\nStatus code::::",response.status_code)
+
+    # while response.status_code == 502:
+    #     response = requests.request("GET", url, headers=headers)
+    #     print("\n\n\nStatus code::::",response.status_code)
+    #     data15= json.loads(response.text)
+        
+    print("Data 15 days: ",data15)
+    
     # <------  Store active data into variables for last 15 days  ---------->
-    total_active_facebook_15 = data15["count"]["activeFacebook"]
+    total_active_15 = [data15["count"]["activeFacebook"],data15["count"]["activeHeyCars"],data15["count"]["activeAutoTrader"],data15["count"]["activeGumtree"],data15["count"]["activeMotors"]]
 
-    total_active_heycar_15 = data15["count"]["activeHeyCars"]
+    # <------  Store deactive data count into variables which deactivated in last 24 hours  ---------->
+    total_nonactive_15 = [data15["checkerActivity"]["deactivatedCountFacebook"], data15["checkerActivity"]["deactivatedCountHeyCars"], data15["checkerActivity"]["deactivatedCountAutoTrader"], data15["checkerActivity"]["deactivatedCountGumtree"], data15["checkerActivity"]["deactivatedCountMotors"]]
 
-    total_active_autotrader_15 = data15["count"]["activeAutoTrader"]
+    # <------  Store all count data into variables for 24 hours  ---------->
+    total_count_15 = [data15["count"]["facebook"], data15["count"]["heyCars"], data15["count"]["autoTrader"], data15["count"]["gumtree"], data15["count"]["motors"]]
 
-    total_active_gumtree_15 = data15["count"]["activeGumtree"]
-
-    total_active_motors_15 = data15["count"]["activeMotors"]
-
-
-    # <------  Store deactive data into variables which deactivated in last 15 days  ---------->
-    total_nonactive_facebook_15 = data15["count"]["inActiveFacebook"]
-
-    total_nonactive_heycar_15 = data15["count"]["inActiveHeyCars"]
-
-    total_nonactive_autotrader_15 = data15["count"]["inActiveAutoTrader"]
-
-    total_nonactive_gumtree_15 = data15["count"]["inActiveGumtree"]
-
-    total_nonactive_motors_15 = data15["count"]["inActiveMotors"]
-
-
-    # <------  Store deactive data into variables which deactivated in last 15 days  ---------->
-    total_count_facebook_15 = data15["count"]["facebook"]
-
-    total_count_heycar_15 = data15["count"]["heyCars"]
-
-    total_count_autotrader_15 = data15["count"]["autoTrader"]
-
-    total_count_gumtree_15 = data15["count"]["gumtree"]
-
-    total_count_motors_15 = data15["count"]["motors"]
+    last_15= [total_active_15, total_nonactive_15, total_count_15]
+    
+    return last_15
 
 
 
 def last30days():
 
+    url = "http://api.aicarz.com/api/v1/dev/data-dashboard?days=30"
+    response = requests.request("GET", url, headers=headers)
+    data30= json.loads(response.text)['data']
+    print("\n\n\nStatus code::::",response.status_code)
 
+    # while response.status_code == 502:
+    #     response = requests.request("GET", url, headers=headers)
+    #     print("\n\n\nStatus code::::",response.status_code)
+    #     data15= json.loads(response.text)
+        
+    print("Data 15 days: ",data30)
+    
+    # <------  Store active data into variables for last 15 days  ---------->
+    total_active_30 = [data30["count"]["activeFacebook"],data30["count"]["activeHeyCars"],data30["count"]["activeAutoTrader"],data30["count"]["activeGumtree"],data30["count"]["activeMotors"]]
 
-    # <------  Store deactive data into variables which deactivated in last 30 days  ---------->
-    total_nonactive_facebook_30 = data30["count"]["inActiveFacebook"]
+    # <------  Store deactive data count into variables which deactivated in last 24 hours  ---------->
+    total_nonactive_30 = [data30["checkerActivity"]["deactivatedCountFacebook"], data30["checkerActivity"]["deactivatedCountHeyCars"], data30["checkerActivity"]["deactivatedCountAutoTrader"], data30["checkerActivity"]["deactivatedCountGumtree"], data30["checkerActivity"]["deactivatedCountMotors"]]
 
-    total_nonactive_heycar_30 = data30["count"]["inActiveHeyCars"]
+    # <------  Store all count data into variables for 24 hours  ---------->
+    total_count_30 = [data30["count"]["facebook"], data30["count"]["heyCars"], data30["count"]["autoTrader"], data30["count"]["gumtree"], data30["count"]["motors"]]
 
-    total_nonactive_autotrader_30 = data30["count"]["inActiveAutoTrader"]
-
-    total_nonactive_gumtree_30 = data30["count"]["inActiveGumtree"]
-
-    total_nonactive_motors_30 = data30["count"]["inActiveMotors"]
-
-
-    # <------  Store active data into variables for last 30 days  ---------->
-    total_active_facebook_30 = data30["count"]["activeFacebook"]
-
-    total_active_heycar_30 = data30["count"]["activeHeyCars"]
-
-    total_active_autotrader_30 = data30["count"]["activeAutoTrader"]
-
-    total_active_gumtree_30 = data30["count"]["activeGumtree"]
-
-    total_active_motors_30 = data30["count"]["activeMotors"]
-
-
-    total_count_facebook_30 = data30["count"]["facebook"]
-
-    total_count_heycar_30 = data30["count"]["heyCars"]
-
-    total_count_autotrader_30 = data30["count"]["autoTrader"]
-
-    total_count_gumtree_30 = data30["count"]["gumtree"]
-
-    total_count_motors_30 = data30["count"]["motors"]
-
+    last_30= [total_active_30, total_nonactive_30, total_count_30]
+    
+    return last_30
 
 
 
 def lifetime():
 
-    # <------  Store lifetime active data into variables  ---------->
-    total_active_facebook = data_lifetime["count"]["activeFacebook"]
+    url = "http://api.aicarz.com/api/v1/dev/data-dashboard"
+    response = requests.request("GET", url, headers=headers)
+    data_lifetime= json.loads(response.text)['data']
+    print("\n\n\nStatus code::::",response.status_code)
 
-    total_active_heycar = data_lifetime["count"]["activeHeyCars"]
+    # while response.status_code == 502:
+    #     response = requests.request("GET", url, headers=headers)
+    #     print("\n\n\nStatus code::::",response.status_code)
+    #     data15= json.loads(response.text)
+        
+    print("Data 15 days: ",data_lifetime)
+    
+    # <------  Store active data into variables for last 15 days  ---------->
+    total_active_lifetime = [data_lifetime["count"]["activeFacebook"],data_lifetime["count"]["activeHeyCars"],data_lifetime["count"]["activeAutoTrader"],data_lifetime["count"]["activeGumtree"],data_lifetime["count"]["activeMotors"]]
 
-    total_active_autotrader = data_lifetime["count"]["activeAutoTrader"]
+    # <------  Store deactive data count into variables which deactivated in last 24 hours  ---------->
+    total_nonactive_lifetime = [data_lifetime["checkerActivity"]["deactivatedCountFacebook"], data_lifetime["checkerActivity"]["deactivatedCountHeyCars"], data_lifetime["checkerActivity"]["deactivatedCountAutoTrader"], data_lifetime["checkerActivity"]["deactivatedCountGumtree"], data_lifetime["checkerActivity"]["deactivatedCountMotors"]]
 
-    total_active_gumtree = data_lifetime["count"]["activeGumtree"]
+    # <------  Store all count data into variables for 24 hours  ---------->
+    total_count_lifetime = [data_lifetime["count"]["facebook"], data_lifetime["count"]["heyCars"], data_lifetime["count"]["autoTrader"], data_lifetime["count"]["gumtree"], data_lifetime["count"]["motors"]]
 
-    total_active_motors = data_lifetime["count"]["activeMotors"]
-
-
-    # <------  Store all deactive data into variables ---------->
-    total_nonactive_facebook = data_lifetime["count"]["inActiveFacebook"]
-
-    total_nonactive_heycar = data_lifetime["count"]["inActiveHeyCars"]
-
-    total_nonactive_autotrader = data_lifetime["count"]["inActiveAutoTrader"]
-
-    total_nonactive_gumtree = data_lifetime["count"]["inActiveGumtree"]
-
-    total_nonactive_motors = data_lifetime["count"]["inActiveMotors"]
-
-
-    total_count_facebook = data_lifetime["count"]["facebook"]
-
-    total_count_heycar = data_lifetime["count"]["heyCars"]
-
-    total_count_autotrader = data_lifetime["count"]["autoTrader"]
-
-    total_count_gumtree = data_lifetime["count"]["gumtree"]
-
-    total_count_motors = data_lifetime["count"]["motors"]
+    last_lifetime= [total_active_lifetime, total_nonactive_lifetime, total_count_lifetime]
+    
+    return last_lifetime
 
 
 # <------ Storing All active data in dict ---------->
@@ -277,13 +224,33 @@ dataset_name = st.selectbox('Select a Dataset', ['Last 24 Hours','Lifetime', 'La
 
 if dataset_name == 'Last 24 Hours':
     _24hours= last24hours()
-    _24hourslist= _24hours.copy()
-    data_active = {'Last 24 Hours': _24hourslist[0]}
-    data_nonactive = {'Last 24 Hours': _24hourslist[1]}
-    data_total = {'Last 24 Hours': _24hourslist[2]}
-
-
+    data_active = {'Last 24 Hours': _24hours[0]}
+    data_nonactive = {'Last 24 Hours': _24hours[1]}
+    data_total = {'Last 24 Hours': _24hours[2]}
     
+elif dataset_name == 'Last 7 days':
+    last7= last7days()
+    data_active = {'Last 7 days': last7[0]}
+    data_nonactive = {'Last 7 days': last7[1]}
+    data_total = {'Last 7 days': last7[2]}
+    
+elif dataset_name == 'Last 15 days':
+    last15= last15days()
+    data_active = {'Last 15 days': last15[0]}
+    data_nonactive = {'Last 15 days': last15[1]}
+    data_total = {'Last 15 days': last15[2]}
+
+elif dataset_name == 'Last 30 days':
+    last30= last30days()
+    data_active = {'Last 30 days': last30[0]}
+    data_nonactive = {'Last 30 days': last30[1]}
+    data_total = {'Last 30 days': last30[2]}
+    
+else:
+    lifetime_= lifetime()
+    data_active = {'Lifetime': lifetime_[0]}
+    data_nonactive = {'Lifetime': lifetime_[1]}
+    data_total = {'Lifetime': lifetime_[2]}
     
     
 # <------ divide layout into three columns ---------->
