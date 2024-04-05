@@ -326,12 +326,12 @@ with left:
         pass
     
     # <------  To display actual numbers of records -------->
-    st.markdown(f"Total number of active data for {dataset_name} on *Autotraders* is **{data_active[dataset_name]['Autotraders']}**.")
-    st.markdown(f"Total number of active data for {dataset_name} on *Gumtree* is **{data_active[dataset_name]['Gumtree']}**.")
-    st.markdown(f"Total number of active data for {dataset_name} on *Facebook* is **{data_active[dataset_name]['Facebook']}**.")
-    st.markdown(f"Total number of active data for {dataset_name} on *Moters* is **{data_active[dataset_name]['Moters']}**.")
-    st.markdown(f"Total number of active data for {dataset_name} on *Heycars* is **{data_active[dataset_name]['Heycars']}**.")
-    st.markdown(f"Total number of active data for {dataset_name} on all *Platforms* is **{data_active[dataset_name]['Heycars']+data_active[dataset_name]['Moters']+data_active[dataset_name]['Facebook']+data_active[dataset_name]['Gumtree']+data_active[dataset_name]['Autotraders']}**.")
+    st.markdown(f"Total number of active data for {dataset_name} on *Autotraders* is **{data_active[dataset_name][2]}**.")
+    st.markdown(f"Total number of active data for {dataset_name} on *Gumtree* is **{data_active[dataset_name][3]}**.")
+    st.markdown(f"Total number of active data for {dataset_name} on *Facebook* is **{data_active[dataset_name][0]}**.")
+    st.markdown(f"Total number of active data for {dataset_name} on *Moters* is **{data_active[dataset_name][4]}**.")
+    st.markdown(f"Total number of active data for {dataset_name} on *Heycars* is **{data_active[dataset_name][1]}**.")
+    st.markdown(f"Total number of active data for {dataset_name} on all *Platforms* is **{data_active[dataset_name][1] + data_active[dataset_name][4] + data_active[dataset_name][0]+data_active[dataset_name][3] + data_active[dataset_name][2]}**.")
     # st.markdown("-------------------------------------------------------------------------------")
 
 
