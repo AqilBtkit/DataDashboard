@@ -452,12 +452,12 @@ with right:
         st.pyplot(fig1)
     except:
         pass
-    st.markdown(f"Total number of non-active & active data for {dataset_name} on *Autotraders* is **{data_total[dataset_name]['Autotraders']}**.")
-    st.markdown(f"Total number of non-active & active data for {dataset_name} on *Gumtree* is **{data_total[dataset_name]['Gumtree']}**.")
-    st.markdown(f"Total number of non-active & active data for {dataset_name} on *Facebook* is **{data_total[dataset_name]['Facebook']}**.")
-    st.markdown(f"Total number of non-active & active data for {dataset_name} on *Moters* is **{data_total[dataset_name]['Moters']}**.")
-    st.markdown(f"Total number of non-active & active data for {dataset_name} on *Heycars* is **{data_total[dataset_name]['Heycars']}**.")
-    st.markdown(f"Total number of non-active & active data for {dataset_name} on all *Platforms* is **{data_total[dataset_name]['Heycars']+data_total[dataset_name]['Moters']+data_total[dataset_name]['Facebook']+data_total[dataset_name]['Gumtree']+data_total[dataset_name]['Autotraders']}**.")
+    st.markdown(f"Total number of non-active & active data for {dataset_name} on *Autotraders* is **{data_total[dataset_name][2]}**.")
+    st.markdown(f"Total number of non-active & active data for {dataset_name} on *Gumtree* is **{data_total[dataset_name][3]}**.")
+    st.markdown(f"Total number of non-active & active data for {dataset_name} on *Facebook* is **{data_total[dataset_name][0]}**.")
+    st.markdown(f"Total number of non-active & active data for {dataset_name} on *Moters* is **{data_total[dataset_name][4]}**.")
+    st.markdown(f"Total number of non-active & active data for {dataset_name} on *Heycars* is **{data_total[dataset_name][1]}**.")
+    st.markdown(f"Total number of non-active & active data for {dataset_name} on all *Platforms* is **{data_total[dataset_name][1] + data_total[dataset_name][4] + data_total[dataset_name][0] + data_total[dataset_name][3] + data_total[dataset_name][2]}**.")
 
 
 # data = {
