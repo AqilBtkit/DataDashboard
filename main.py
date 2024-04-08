@@ -18,7 +18,7 @@ headers = {
     
 
 # <------  Here I call dataload function and store all data in variables  ---------->
-@st.cache_resource(ttl=1800)
+@st.cache_resource(ttl=86400)
 def last24hours():
     
         # <------ Call API for last 24 hours data ---------->
@@ -50,7 +50,7 @@ def last24hours():
     return last_24_hours,data1
 
 
-@st.cache_resource(ttl=1800)
+@st.cache_resource(ttl=86400)
 def last7days():
     
     # <------ Call API for last 7 days data ---------->
@@ -81,7 +81,7 @@ def last7days():
     return last_7_hours,data7
 
 
-@st.cache_resource(ttl=1800)
+@st.cache_resource(ttl=86400)
 def last15days():
     
     # <------ Call API for last 15 days data ---------->
@@ -113,7 +113,7 @@ def last15days():
 
 
 
-@st.cache_resource(ttl=1800)
+@st.cache_resource(ttl=86400)
 def last30days():
 
     # <------ Call API for last 30 days data ---------->
@@ -145,7 +145,7 @@ def last30days():
 
 
 
-@st.cache_resource(ttl=1800)
+@st.cache_resource(ttl=86400)
 def lifetime():
 
     # <------ Call API for last lifetime data ---------->
