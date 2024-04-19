@@ -351,7 +351,7 @@ if load==True:
             # ax1.axis('equal')  # Equal aspect ratio ensures pie is drawn as a circle
 
             # Add a legend
-            plt.legend([ "Facebook" "Heycars", ,"Autotraders","Gumtree","Moters"], loc="lower left", bbox_to_anchor=(1, 0, 1, 1))
+            plt.legend([ "Facebook", "Heycars", "Autotraders","Gumtree","Moters"], loc="lower left", bbox_to_anchor=(1, 0, 1, 1))
             # Display the pie chart
             st.pyplot(fig1)
         except:
