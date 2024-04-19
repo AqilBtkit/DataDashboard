@@ -251,7 +251,7 @@ if load==True:
             fig1.gca().add_artist(centre_circle)
 
             # <------  Add a legend (legend means colors with its lables) -------->
-            plt.legend(["Autotraders", "Gumtree","Facebook", "Heycars", "Moters"], loc="lower left", bbox_to_anchor=(1, 0, 1, 1))
+            plt.legend([ "Gumtree","Facebook","Autotraders", "Heycars", "Moters"], loc="lower left", bbox_to_anchor=(1, 0, 1, 1))
 
             # <------  To display donut graph -------->
             st.pyplot(fig1) 
@@ -300,7 +300,7 @@ if load==True:
 
             # <------  Add a legend (legend means colors with its lables) -------->
             
-            plt.legend(["Autotraders", "Gumtree","Facebook", "Heycars", "Moters"], loc="lower left", bbox_to_anchor=(1, 0, 1, 1))
+            plt.legend([ "Gumtree","Facebook", "Autotraders","Heycars", "Moters"], loc="lower left", bbox_to_anchor=(1, 0, 1, 1))
             
             # <------  To display donut graph -------->
             st.pyplot(fig1)
@@ -351,7 +351,7 @@ if load==True:
             # ax1.axis('equal')  # Equal aspect ratio ensures pie is drawn as a circle
 
             # Add a legend
-            plt.legend(["Autotraders", "Gumtree","Facebook", "Heycars", "Moters"], loc="lower left", bbox_to_anchor=(1, 0, 1, 1))
+            plt.legend([ "Gumtree","Facebook","Autotraders", "Heycars", "Moters"], loc="lower left", bbox_to_anchor=(1, 0, 1, 1))
             # Display the pie chart
             st.pyplot(fig1)
         except:
