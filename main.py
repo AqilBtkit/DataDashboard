@@ -7,6 +7,8 @@ import json
 # <------ Set layout of web ---------->
 st.set_page_config(layout="wide")
 
+
+load = st.button("Refresh")
 st.title("Data Dashboard")
 st.header(f"Platforms")
 
@@ -20,7 +22,6 @@ headers = {
 # <------  Here I call dataload function and store all data in variables  ---------->
 # @st.cache_resource(ttl=86400)
 
-load = st.button("Refresh")
 if load==True:
     def last24hours():
         
