@@ -178,305 +178,306 @@ if load==True:
         
         return last_lifetime,data_lifetime
     
-    load=False
 
 
 
 
-# <------ Dropdown to select the data set ---------->
-dataset_name = st.selectbox('Select a Dataset', ['Lifetime', 'Last 30 days','Last 15 days', 'Last 7 days', 'Last 24 Hours'])
+
+    # <------ Dropdown to select the data set ---------->
+    dataset_name = st.selectbox('Select a Dataset', ['Lifetime', 'Last 30 days','Last 15 days', 'Last 7 days', 'Last 24 Hours'])
 
 
-if dataset_name == 'Last 24 Hours':
-    _24hours,data= last24hours()
-    data_active = {'Last 24 Hours': _24hours[0]}
-    data_nonactive = {'Last 24 Hours': _24hours[1]}
-    data_total = {'Last 24 Hours': _24hours[2]}
-    
-elif dataset_name == 'Last 7 days':
-    last7,data= last7days()
-    data_active = {'Last 7 days': last7[0]}
-    data_nonactive = {'Last 7 days': last7[1]}
-    data_total = {'Last 7 days': last7[2]}
-    
-elif dataset_name == 'Last 15 days':
-    last15,data= last15days()
-    data_active = {'Last 15 days': last15[0]}
-    data_nonactive = {'Last 15 days': last15[1]}
-    data_total = {'Last 15 days': last15[2]}
+    if dataset_name == 'Last 24 Hours':
+        _24hours,data= last24hours()
+        data_active = {'Last 24 Hours': _24hours[0]}
+        data_nonactive = {'Last 24 Hours': _24hours[1]}
+        data_total = {'Last 24 Hours': _24hours[2]}
+        
+    elif dataset_name == 'Last 7 days':
+        last7,data= last7days()
+        data_active = {'Last 7 days': last7[0]}
+        data_nonactive = {'Last 7 days': last7[1]}
+        data_total = {'Last 7 days': last7[2]}
+        
+    elif dataset_name == 'Last 15 days':
+        last15,data= last15days()
+        data_active = {'Last 15 days': last15[0]}
+        data_nonactive = {'Last 15 days': last15[1]}
+        data_total = {'Last 15 days': last15[2]}
 
-elif dataset_name == 'Last 30 days':
-    last30,data= last30days()
-    data_active = {'Last 30 days': last30[0]}
-    data_nonactive = {'Last 30 days': last30[1]}
-    data_total = {'Last 30 days': last30[2]}
-    
-else:
-    lifetime_,data= lifetime()
-    data_active = {'Lifetime': lifetime_[0]}
-    data_nonactive = {'Lifetime': lifetime_[1]}
-    data_total = {'Lifetime': lifetime_[2]}
-    
-    
-# <------ divide layout into three columns ---------->
-left, center, right = st.columns(3)   
+    elif dataset_name == 'Last 30 days':
+        last30,data= last30days()
+        data_active = {'Last 30 days': last30[0]}
+        data_nonactive = {'Last 30 days': last30[1]}
+        data_total = {'Last 30 days': last30[2]}
+        
+    else:
+        lifetime_,data= lifetime()
+        data_active = {'Lifetime': lifetime_[0]}
+        data_nonactive = {'Lifetime': lifetime_[1]}
+        data_total = {'Lifetime': lifetime_[2]}
+        
+        
+    # <------ divide layout into three columns ---------->
+    left, center, right = st.columns(3)   
 
-# <------ Active data graph ↓ ---------->
-with left:   
-    st.subheader(f"Active:")
-    
-    # <------ Custom color palette ---------->
-    colors = ['#ff9999','#66b3ff','#99ff99','#ffcc99','#BB33FF']
+    # <------ Active data graph ↓ ---------->
+    with left:   
+        st.subheader(f"Active:")
+        
+        # <------ Custom color palette ---------->
+        colors = ['#ff9999','#66b3ff','#99ff99','#ffcc99','#BB33FF']
 
-    # <------  this function convert % into float % if persentage is less then 1 ---------->
-    def custom_autopct(pct):
-        return ('%1.1f%%' % pct) if pct >= 1 else ''
-    
-    
-    # <------  Use try catch if values of all data is 0 then it display nothing instead of error ---------->
-    try:   
-    # <------  Create a pie chart for the selected data set -------->
-        fig1, ax1 = plt.subplots()
-        ax1.pie(data_active[dataset_name], 
-                colors=colors, 
-                autopct=custom_autopct, 
-                pctdistance=0.85,
-                explode=(0, 0, 0, 0, 0),  # Exploding the first slice
-                counterclock=False
-                )
-
-        # <------  Draw a circle at the center to make it look like a donut -------->
-        centre_circle = plt.Circle((0, 0), 0.70, fc='white')
-        fig1.gca().add_artist(centre_circle)
-
-        # <------  Add a legend (legend means colors with its lables) -------->
-        plt.legend(["Autotraders", "Gumtree","Facebook", "Heycars", "Moters"], loc="lower left", bbox_to_anchor=(1, 0, 1, 1))
-
-        # <------  To display donut graph -------->
-        st.pyplot(fig1) 
-    except:
-        pass
-    
-    # <------  To display actual numbers of records -------->
-    st.markdown(f"Total number of active data for {dataset_name} on *Autotraders* is **{data_active[dataset_name][2]}**.")
-    st.markdown(f"Total number of active data for {dataset_name} on *Gumtree* is **{data_active[dataset_name][3]}**.")
-    st.markdown(f"Total number of active data for {dataset_name} on *Facebook* is **{data_active[dataset_name][0]}**.")
-    st.markdown(f"Total number of active data for {dataset_name} on *Moters* is **{data_active[dataset_name][4]}**.")
-    st.markdown(f"Total number of active data for {dataset_name} on *Heycars* is **{data_active[dataset_name][1]}**.")
-    st.markdown(f"Total number of active data for {dataset_name} on all *Platforms* is **{data_active[dataset_name][1] + data_active[dataset_name][4] + data_active[dataset_name][0]+data_active[dataset_name][3] + data_active[dataset_name][2]}**.")
-    # st.markdown("-------------------------------------------------------------------------------")
-
-
-
-
-# <------ deactive data graph ↓ ---------->
-with center:
-    st.subheader(f"Inactive:")
-    
-    # <------ Custom color palette ---------->
-    colors = ['#ff9999','#66b3ff','#99ff99','#ffcc99','#BB33FF']
-
-    # <------  this function convert % into float % if persentage is less then 1 ---------->
-    def custom_autopct(pct):
-        return ('%1.1f%%' % pct) if pct >= 1 else ''
-    
-     # <------  Use try catch if values of all data is 0 then it display nothing instead of error ---------->
-    try:   
+        # <------  this function convert % into float % if persentage is less then 1 ---------->
+        def custom_autopct(pct):
+            return ('%1.1f%%' % pct) if pct >= 1 else ''
+        
+        
+        # <------  Use try catch if values of all data is 0 then it display nothing instead of error ---------->
+        try:   
         # <------  Create a pie chart for the selected data set -------->
-        fig1, ax1 = plt.subplots()
-        ax1.pie(data_nonactive[dataset_name], 
-                colors=colors, 
-                autopct=custom_autopct, 
-                pctdistance=0.85,
-                explode=(0, 0, 0, 0, 0),  # Exploding the first slice
-                counterclock=False
-                )
+            fig1, ax1 = plt.subplots()
+            ax1.pie(data_active[dataset_name], 
+                    colors=colors, 
+                    autopct=custom_autopct, 
+                    pctdistance=0.85,
+                    explode=(0, 0, 0, 0, 0),  # Exploding the first slice
+                    counterclock=False
+                    )
 
-        # <------  Draw a circle at the center to make it look like a donut -------->
-        centre_circle = plt.Circle((0,0),0.70,fc='white')
-        fig1.gca().add_artist(centre_circle)
+            # <------  Draw a circle at the center to make it look like a donut -------->
+            centre_circle = plt.Circle((0, 0), 0.70, fc='white')
+            fig1.gca().add_artist(centre_circle)
 
+            # <------  Add a legend (legend means colors with its lables) -------->
+            plt.legend(["Autotraders", "Gumtree","Facebook", "Heycars", "Moters"], loc="lower left", bbox_to_anchor=(1, 0, 1, 1))
 
-        # <------  Add a legend (legend means colors with its lables) -------->
+            # <------  To display donut graph -------->
+            st.pyplot(fig1) 
+        except:
+            pass
         
-        plt.legend(["Autotraders", "Gumtree","Facebook", "Heycars", "Moters"], loc="lower left", bbox_to_anchor=(1, 0, 1, 1))
+        # <------  To display actual numbers of records -------->
+        st.markdown(f"Total number of active data for {dataset_name} on *Autotraders* is **{data_active[dataset_name][2]}**.")
+        st.markdown(f"Total number of active data for {dataset_name} on *Gumtree* is **{data_active[dataset_name][3]}**.")
+        st.markdown(f"Total number of active data for {dataset_name} on *Facebook* is **{data_active[dataset_name][0]}**.")
+        st.markdown(f"Total number of active data for {dataset_name} on *Moters* is **{data_active[dataset_name][4]}**.")
+        st.markdown(f"Total number of active data for {dataset_name} on *Heycars* is **{data_active[dataset_name][1]}**.")
+        st.markdown(f"Total number of active data for {dataset_name} on all *Platforms* is **{data_active[dataset_name][1] + data_active[dataset_name][4] + data_active[dataset_name][0]+data_active[dataset_name][3] + data_active[dataset_name][2]}**.")
+        # st.markdown("-------------------------------------------------------------------------------")
+
+
+
+
+    # <------ deactive data graph ↓ ---------->
+    with center:
+        st.subheader(f"Inactive:")
         
-        # <------  To display donut graph -------->
-        st.pyplot(fig1)
-    except:
-        pass
-    
-    # <------  To display actual numbers of records -------->
-    st.markdown(f"Total number of non-active data for {dataset_name} on *Autotraders* is **{data_nonactive[dataset_name][2]}**.")
-    st.markdown(f"Total number of non-active data for {dataset_name} on *Gumtree* is **{data_nonactive[dataset_name][3]}**.")
-    st.markdown(f"Total number of non-active data for {dataset_name} on *Facebook* is **{data_nonactive[dataset_name][0]}**.")
-    st.markdown(f"Total number of non-active data for {dataset_name} on *Moters* is **{data_nonactive[dataset_name][4]}**.")
-    st.markdown(f"Total number of non-active data for {dataset_name} on *Heycars* is **{data_nonactive[dataset_name][1]}**.")
-    st.markdown(f"Total number of non-active data for {dataset_name} on all *Platforms* is **{data_nonactive[dataset_name][1] + data_nonactive[dataset_name][4] + data_nonactive[dataset_name][0] + data_nonactive[dataset_name][3] + data_nonactive[dataset_name][2]}**.")
-    # st.markdown("-------------------------------------------------------------------------------") 
+        # <------ Custom color palette ---------->
+        colors = ['#ff9999','#66b3ff','#99ff99','#ffcc99','#BB33FF']
+
+        # <------  this function convert % into float % if persentage is less then 1 ---------->
+        def custom_autopct(pct):
+            return ('%1.1f%%' % pct) if pct >= 1 else ''
+        
+        # <------  Use try catch if values of all data is 0 then it display nothing instead of error ---------->
+        try:   
+            # <------  Create a pie chart for the selected data set -------->
+            fig1, ax1 = plt.subplots()
+            ax1.pie(data_nonactive[dataset_name], 
+                    colors=colors, 
+                    autopct=custom_autopct, 
+                    pctdistance=0.85,
+                    explode=(0, 0, 0, 0, 0),  # Exploding the first slice
+                    counterclock=False
+                    )
+
+            # <------  Draw a circle at the center to make it look like a donut -------->
+            centre_circle = plt.Circle((0,0),0.70,fc='white')
+            fig1.gca().add_artist(centre_circle)
+
+
+            # <------  Add a legend (legend means colors with its lables) -------->
+            
+            plt.legend(["Autotraders", "Gumtree","Facebook", "Heycars", "Moters"], loc="lower left", bbox_to_anchor=(1, 0, 1, 1))
+            
+            # <------  To display donut graph -------->
+            st.pyplot(fig1)
+        except:
+            pass
+        
+        # <------  To display actual numbers of records -------->
+        st.markdown(f"Total number of non-active data for {dataset_name} on *Autotraders* is **{data_nonactive[dataset_name][2]}**.")
+        st.markdown(f"Total number of non-active data for {dataset_name} on *Gumtree* is **{data_nonactive[dataset_name][3]}**.")
+        st.markdown(f"Total number of non-active data for {dataset_name} on *Facebook* is **{data_nonactive[dataset_name][0]}**.")
+        st.markdown(f"Total number of non-active data for {dataset_name} on *Moters* is **{data_nonactive[dataset_name][4]}**.")
+        st.markdown(f"Total number of non-active data for {dataset_name} on *Heycars* is **{data_nonactive[dataset_name][1]}**.")
+        st.markdown(f"Total number of non-active data for {dataset_name} on all *Platforms* is **{data_nonactive[dataset_name][1] + data_nonactive[dataset_name][4] + data_nonactive[dataset_name][0] + data_nonactive[dataset_name][3] + data_nonactive[dataset_name][2]}**.")
+        # st.markdown("-------------------------------------------------------------------------------") 
 
 
 
 
-# <------ Total data graph ↓ ---------->
-with right:
-    st.subheader(f"Total:")
-    # Custom color palette
-    colors = ['#ff9999','#66b3ff','#99ff99','#ffcc99','#BB33FF']   
+    # <------ Total data graph ↓ ---------->
+    with right:
+        st.subheader(f"Total:")
+        # Custom color palette
+        colors = ['#ff9999','#66b3ff','#99ff99','#ffcc99','#BB33FF']   
 
 
-    def custom_autopct(pct):
-        return ('%1.1f%%' % pct) if pct >= 1 else ''
+        def custom_autopct(pct):
+            return ('%1.1f%%' % pct) if pct >= 1 else ''
 
-    try:
-        # Create a pie chart for the selected data set
-        fig1, ax1 = plt.subplots()
-        ax1.pie(data_total[dataset_name], 
-                colors=colors, 
-                # labels=df.index, 
-                autopct=custom_autopct, 
-                # startangle= 90,
-                pctdistance=0.85,
-                explode=(0, 0, 0, 0, 0),  # Exploding the first slice
-                # shadow=True
-                
-                counterclock=False
-                )
+        try:
+            # Create a pie chart for the selected data set
+            fig1, ax1 = plt.subplots()
+            ax1.pie(data_total[dataset_name], 
+                    colors=colors, 
+                    # labels=df.index, 
+                    autopct=custom_autopct, 
+                    # startangle= 90,
+                    pctdistance=0.85,
+                    explode=(0, 0, 0, 0, 0),  # Exploding the first slice
+                    # shadow=True
+                    
+                    counterclock=False
+                    )
 
-        # Draw a circle at the center to make it look like a donut
-        centre_circle = plt.Circle((0,0),0.70,fc='white')
-        fig1.gca().add_artist(centre_circle)
+            # Draw a circle at the center to make it look like a donut
+            centre_circle = plt.Circle((0,0),0.70,fc='white')
+            fig1.gca().add_artist(centre_circle)
 
-        # ax1.axis('equal')  # Equal aspect ratio ensures pie is drawn as a circle
+            # ax1.axis('equal')  # Equal aspect ratio ensures pie is drawn as a circle
 
-        # Add a legend
-        plt.legend(["Autotraders", "Gumtree","Facebook", "Heycars", "Moters"], loc="lower left", bbox_to_anchor=(1, 0, 1, 1))
-        # Display the pie chart
-        st.pyplot(fig1)
-    except:
-        pass
-    st.markdown(f"Total number of non-active & active data for {dataset_name} on *Autotraders* is **{data_total[dataset_name][2]}**.")
-    st.markdown(f"Total number of non-active & active data for {dataset_name} on *Gumtree* is **{data_total[dataset_name][3]}**.")
-    st.markdown(f"Total number of non-active & active data for {dataset_name} on *Facebook* is **{data_total[dataset_name][0]}**.")
-    st.markdown(f"Total number of non-active & active data for {dataset_name} on *Moters* is **{data_total[dataset_name][4]}**.")
-    st.markdown(f"Total number of non-active & active data for {dataset_name} on *Heycars* is **{data_total[dataset_name][1]}**.")
-    st.markdown(f"Total number of non-active & active data for {dataset_name} on all *Platforms* is **{data_total[dataset_name][1] + data_total[dataset_name][4] + data_total[dataset_name][0] + data_total[dataset_name][3] + data_total[dataset_name][2]}**.")
-
-
-st.header("Data Stats")
-st.markdown("-------------------------------------------------------------------------------")
+            # Add a legend
+            plt.legend(["Autotraders", "Gumtree","Facebook", "Heycars", "Moters"], loc="lower left", bbox_to_anchor=(1, 0, 1, 1))
+            # Display the pie chart
+            st.pyplot(fig1)
+        except:
+            pass
+        st.markdown(f"Total number of non-active & active data for {dataset_name} on *Autotraders* is **{data_total[dataset_name][2]}**.")
+        st.markdown(f"Total number of non-active & active data for {dataset_name} on *Gumtree* is **{data_total[dataset_name][3]}**.")
+        st.markdown(f"Total number of non-active & active data for {dataset_name} on *Facebook* is **{data_total[dataset_name][0]}**.")
+        st.markdown(f"Total number of non-active & active data for {dataset_name} on *Moters* is **{data_total[dataset_name][4]}**.")
+        st.markdown(f"Total number of non-active & active data for {dataset_name} on *Heycars* is **{data_total[dataset_name][1]}**.")
+        st.markdown(f"Total number of non-active & active data for {dataset_name} on all *Platforms* is **{data_total[dataset_name][1] + data_total[dataset_name][4] + data_total[dataset_name][0] + data_total[dataset_name][3] + data_total[dataset_name][2]}**.")
 
 
-left,centerleft,centerright, right = st.columns(4)   
-
-with left:
-    st.markdown(f"Total data onboard: **{format( data['count']['totalCount'], ',')}**")
-    # st.subheader(f"Last day data onboard: {753256}")
-    # st.subheader(f"No. of data failure: {753256}")
-    fuel_dict=data['active']['topLargestInventoryFuelType']
-    def sort_by_value(item):
-        return item[1]
-
-    sorted_fuel_with_count = dict(sorted(fuel_dict.items(), key=sort_by_value, reverse=True))
-
-    sorted_fuel= list(sorted_fuel_with_count.keys())
-    sorted_fuel_count= list(sorted_fuel_with_count.values())
-    
-    # Displaying in Streamlit
-    st.markdown(f"Most frequent active fuel type: **{sorted_fuel[0]}** (Count: **{sorted_fuel_count[0]}**)")
-    st.markdown("-------------------------------------------------------------------------------")
-
-    # Query to find the minimum price value where isActive is true
-    min_value = format(data['active']['priceMin'], ",")
-
-
-    # Query to find the maximum price value where isActive is true
-    max_value = format(data['active']['priceMax'], ",")
-
-    print(f"Minimum value: {min_value}")
-    print(f"Maximum value: {max_value}")
-
-    # Displaying in Streamlit
-    st.markdown(f"Max price in active data: **{max_value}£**")
-    st.markdown(f"Min price in active data: **{min_value}£**")
-    st.markdown("-------------------------------------------------------------------------------")
-
-# Adjusting queries to exclude documents where 'engineSizeInLiter' is None
-# Query to find the minimum engine size in liters where isActive is true and engineSizeInLiter is not None
-min_value = data['active']['engineSizeInLiterMin']
-
-# Query to find the maximum engine size in liters where isActive is true and engineSizeInLiter is not None
-max_value = data['active']['engineSizeInLiterMax']
-
-with centerleft:
-    # Displaying in Streamlit
-    if max_value is not None:
-        st.markdown(f"Max engine size in liter in active data: **{max_value}**")
-
-    if min_value is not None:
-        st.markdown(f"Min engine size in liter in active data: **{min_value}**")
+    st.header("Data Stats")
     st.markdown("-------------------------------------------------------------------------------")
 
 
+    left,centerleft,centerright, right = st.columns(4)   
 
-    # Query to find the minimum makeYear where isActive is true and makeYear is not None
-    min_value = data['active']['yearMin']
+    with left:
+        st.markdown(f"Total data onboard: **{format( data['count']['totalCount'], ',')}**")
+        # st.subheader(f"Last day data onboard: {753256}")
+        # st.subheader(f"No. of data failure: {753256}")
+        fuel_dict=data['active']['topLargestInventoryFuelType']
+        def sort_by_value(item):
+            return item[1]
 
-    # Query to find the maximum makeYear where isActive is true and makeYear is not None
-    max_value = data['active']['yearMax']
+        sorted_fuel_with_count = dict(sorted(fuel_dict.items(), key=sort_by_value, reverse=True))
 
-    # Displaying in Streamlit
+        sorted_fuel= list(sorted_fuel_with_count.keys())
+        sorted_fuel_count= list(sorted_fuel_with_count.values())
+        
+        # Displaying in Streamlit
+        st.markdown(f"Most frequent active fuel type: **{sorted_fuel[0]}** (Count: **{sorted_fuel_count[0]}**)")
+        st.markdown("-------------------------------------------------------------------------------")
 
-    st.markdown(f"Max year in active data: **{max_value}**")
-
-    st.markdown(f"Min year in active data: **{min_value}**")
-    st.markdown("-------------------------------------------------------------------------------")
-
-with centerright:
-
-    # Query to find the minimum mileageInMiles where isActive is true and mileageInMiles is not None
-    min_value = format(data['active']['milageMin'], ',')
-
-    # Query to find the maximum mileageInMiles where isActive is true and mileageInMiles is not None
-    max_value = format(data['active']['milageMax'], ',')
-
-    # Displaying in Streamlit
-    st.markdown(f"Max mileage in active data: **{max_value}** miles")
-    st.markdown(f"Min mileage in active data: **{min_value}** miles")
+        # Query to find the minimum price value where isActive is true
+        min_value = format(data['active']['priceMin'], ",")
 
 
+        # Query to find the maximum price value where isActive is true
+        max_value = format(data['active']['priceMax'], ",")
 
-    st.markdown("-------------------------------------------------------------------------------")
+        print(f"Minimum value: {min_value}")
+        print(f"Maximum value: {max_value}")
 
+        # Displaying in Streamlit
+        st.markdown(f"Max price in active data: **{max_value}£**")
+        st.markdown(f"Min price in active data: **{min_value}£**")
+        st.markdown("-------------------------------------------------------------------------------")
 
-    # Displaying in Streamlit
-    st.markdown(f"Total number of unique active makes: **{data['active']['distinctMakeCount']}**")
-    # st.markdown("-------------------------------------------------------------------------------")
+    # Adjusting queries to exclude documents where 'engineSizeInLiter' is None
+    # Query to find the minimum engine size in liters where isActive is true and engineSizeInLiter is not None
+    min_value = data['active']['engineSizeInLiterMin']
 
+    # Query to find the maximum engine size in liters where isActive is true and engineSizeInLiter is not None
+    max_value = data['active']['engineSizeInLiterMax']
 
-    # Displaying in Streamlit
-    st.markdown(f"Total number of unique active model: **{data['active']['distinctModelCount']}**")
-    st.markdown("-------------------------------------------------------------------------------")
+    with centerleft:
+        # Displaying in Streamlit
+        if max_value is not None:
+            st.markdown(f"Max engine size in liter in active data: **{max_value}**")
 
-with right:
-
-    make_dict=data['active']['topLargestInventoryMake']
-    def sort_by_value(item):
-        return item[1]
-
-    sorted_make_with_count = dict(sorted(make_dict.items(), key=sort_by_value, reverse=True))
-    
-    sorted_make= list(sorted_make_with_count.keys())
-    sorted_make_count = list(sorted_make_with_count.values())
-    
-    # Displaying in Streamlit
-    st.markdown(f"Top 1st largest make on inventory: **{sorted_make[0]}** (Count: **{sorted_make_count[0]}**)")
-    st.markdown(f"Top 2nd largest make on inventory: **{sorted_make[1]}** (Count: **{sorted_make_count[1]}**)")
-    st.markdown(f"Top 3rd largest make on inventory: **{sorted_make[2]}** (Count: **{sorted_make_count[2]}**)")
-    st.markdown(f"Top 4th largest make on inventory: **{sorted_make[3]}** (Count: **{sorted_make_count[3]}**)")
-    st.markdown(f"Top 5th largest make on inventory: **{sorted_make[4]}** (Count: **{sorted_make_count[4]}**)")
-
-    st.markdown("-------------------------------------------------------------------------------")
+        if min_value is not None:
+            st.markdown(f"Min engine size in liter in active data: **{min_value}**")
+        st.markdown("-------------------------------------------------------------------------------")
 
 
-    
+
+        # Query to find the minimum makeYear where isActive is true and makeYear is not None
+        min_value = data['active']['yearMin']
+
+        # Query to find the maximum makeYear where isActive is true and makeYear is not None
+        max_value = data['active']['yearMax']
+
+        # Displaying in Streamlit
+
+        st.markdown(f"Max year in active data: **{max_value}**")
+
+        st.markdown(f"Min year in active data: **{min_value}**")
+        st.markdown("-------------------------------------------------------------------------------")
+
+    with centerright:
+
+        # Query to find the minimum mileageInMiles where isActive is true and mileageInMiles is not None
+        min_value = format(data['active']['milageMin'], ',')
+
+        # Query to find the maximum mileageInMiles where isActive is true and mileageInMiles is not None
+        max_value = format(data['active']['milageMax'], ',')
+
+        # Displaying in Streamlit
+        st.markdown(f"Max mileage in active data: **{max_value}** miles")
+        st.markdown(f"Min mileage in active data: **{min_value}** miles")
+
+
+
+        st.markdown("-------------------------------------------------------------------------------")
+
+
+        # Displaying in Streamlit
+        st.markdown(f"Total number of unique active makes: **{data['active']['distinctMakeCount']}**")
+        # st.markdown("-------------------------------------------------------------------------------")
+
+
+        # Displaying in Streamlit
+        st.markdown(f"Total number of unique active model: **{data['active']['distinctModelCount']}**")
+        st.markdown("-------------------------------------------------------------------------------")
+
+    with right:
+
+        make_dict=data['active']['topLargestInventoryMake']
+        def sort_by_value(item):
+            return item[1]
+
+        sorted_make_with_count = dict(sorted(make_dict.items(), key=sort_by_value, reverse=True))
+        
+        sorted_make= list(sorted_make_with_count.keys())
+        sorted_make_count = list(sorted_make_with_count.values())
+        
+        # Displaying in Streamlit
+        st.markdown(f"Top 1st largest make on inventory: **{sorted_make[0]}** (Count: **{sorted_make_count[0]}**)")
+        st.markdown(f"Top 2nd largest make on inventory: **{sorted_make[1]}** (Count: **{sorted_make_count[1]}**)")
+        st.markdown(f"Top 3rd largest make on inventory: **{sorted_make[2]}** (Count: **{sorted_make_count[2]}**)")
+        st.markdown(f"Top 4th largest make on inventory: **{sorted_make[3]}** (Count: **{sorted_make_count[3]}**)")
+        st.markdown(f"Top 5th largest make on inventory: **{sorted_make[4]}** (Count: **{sorted_make_count[4]}**)")
+
+        st.markdown("-------------------------------------------------------------------------------")
+
+
+        
+    load=False
