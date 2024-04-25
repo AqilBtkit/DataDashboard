@@ -21,7 +21,7 @@ headers = {
 # <------  Here I call dataload function and store all data in variables  ---------->
 # @st.cache_resource(ttl=86400)
 
-# if load==True:
+# if load==True :
 def last24hours():
     
         # <------ Call API for last 24 hours data ---------->
