@@ -1,5 +1,4 @@
 import streamlit as st
-import pandas as pd
 import matplotlib.pyplot as plt
 import requests
 import json
@@ -8,7 +7,7 @@ import json
 st.set_page_config(layout="wide")
 
 
-load = st.button("Refresh")
+# load = st.button("Refresh")
 st.title("Data Dashboard")
 st.header(f"Platforms")
 
@@ -22,206 +21,221 @@ headers = {
 # <------  Here I call dataload function and store all data in variables  ---------->
 # @st.cache_resource(ttl=86400)
 
-if load==True:
-    def last24hours():
-        
-            # <------ Call API for last 24 hours data ---------->
-        url = "http://api.aicarz.com/api/v1/dev/data-dashboard?days=1"
+# if load==True:
+def last24hours():
+    
+        # <------ Call API for last 24 hours data ---------->
+    url = "http://api.aicarz.com/api/v1/dev/data-dashboard?days=1"
+    response = requests.request("GET", url, headers=headers)
+    data1= json.loads(response.text)['data']
+    print("\n\n\nStatus code::::",response.status_code)
+
+    # <------ If API server give 502 error  ---------->
+    while response.status_code == 502:
         response = requests.request("GET", url, headers=headers)
+        print("\n\n\nStatus code::::",response.status_code)
         data1= json.loads(response.text)['data']
-        print("\n\n\nStatus code::::",response.status_code)
-
-        # <------ If API server give 502 error  ---------->
-        while response.status_code == 502:
-            response = requests.request("GET", url, headers=headers)
-            print("\n\n\nStatus code::::",response.status_code)
-            data1= json.loads(response.text)['data']
-            
-        print("Data 1 day: ",data1)
         
-        
-        # <------  Store active data count into variables for last 24 hours  ---------->
-        total_active_24 = [data1["count"]["activeFacebook"], data1["count"]["activeHeyCars"], data1["count"]["activeAutoTrader"], data1["count"]["activeGumtree"],data1["count"]["activeMotors"]]
+    print("Data 1 day: ",data1)
+    
+    
+    # <------  Store active data count into variables for last 24 hours  ---------->
+    total_active_24 = [data1["count"]["activeFacebook"], data1["count"]["activeHeyCars"], data1["count"]["activeAutoTrader"], data1["count"]["activeGumtree"],data1["count"]["activeMotors"]]
 
-        # <------  Store deactive data count into variables which deactivated in last 24 hours  ---------->
-        total_nonactive_24 = [data1["checkerActivity"]["deactivatedCountFacebook"], data1["checkerActivity"]["deactivatedCountHeyCars"], data1["checkerActivity"]["deactivatedCountAutoTrader"], data1["checkerActivity"]["deactivatedCountGumtree"], data1["checkerActivity"]["deactivatedCountMotors"]]
+    # <------  Store deactive data count into variables which deactivated in last 24 hours  ---------->
+    total_nonactive_24 = [data1["checkerActivity"]["deactivatedCountFacebook"], data1["checkerActivity"]["deactivatedCountHeyCars"], data1["checkerActivity"]["deactivatedCountAutoTrader"], data1["checkerActivity"]["deactivatedCountGumtree"], data1["checkerActivity"]["deactivatedCountMotors"]]
 
-        # <------  Store all count data into variables for 24 hours  ---------->
-        total_count_24 = [data1["count"]["facebook"], data1["count"]["heyCars"], data1["count"]["autoTrader"], data1["count"]["gumtree"], data1["count"]["motors"]]
+    # <------  Store all count data into variables for 24 hours  ---------->
+    total_count_24 = [data1["count"]["facebook"], data1["count"]["heyCars"], data1["count"]["autoTrader"], data1["count"]["gumtree"], data1["count"]["motors"]]
 
-        last_24_hours= [total_active_24, total_nonactive_24, total_count_24]
-        
-        return last_24_hours,data1
+    last_24_hours= [total_active_24, total_nonactive_24, total_count_24]
+    
+    return last_24_hours,data1
 
 
-    # @st.cache_resource(ttl=86400)
-    def last7days():
-        
-        # <------ Call API for last 7 days data ---------->
-        url = "http://api.aicarz.com/api/v1/dev/data-dashboard?days=7"
+# @st.cache_resource(ttl=86400)
+def last7days():
+    
+    # <------ Call API for last 7 days data ---------->
+    url = "http://api.aicarz.com/api/v1/dev/data-dashboard?days=7"
+    response = requests.request("GET", url, headers=headers)
+    data7= json.loads(response.text)['data']
+    print("\n\n\nStatus code::::",response.status_code)
+
+    # <------ If API server give 502 error  ---------->
+    while response.status_code == 502:
         response = requests.request("GET", url, headers=headers)
+        print("\n\n\nStatus code::::",response.status_code)
         data7= json.loads(response.text)['data']
-        print("\n\n\nStatus code::::",response.status_code)
-
-        # <------ If API server give 502 error  ---------->
-        while response.status_code == 502:
-            response = requests.request("GET", url, headers=headers)
-            print("\n\n\nStatus code::::",response.status_code)
-            data7= json.loads(response.text)['data']
-            
-        print("Data 7 day: ",data7)
         
-        # <------  Store deactive data into variables which deactivated in last 7 days  ---------->
-        total_active_7 = [data7["count"]["activeFacebook"], data7["count"]["activeHeyCars"], data7["count"]["activeAutoTrader"], data7["count"]["activeGumtree"], data7["count"]["activeMotors"]] 
+    print("Data 7 day: ",data7)
     
-        # <------  Store deactive data count into variables which deactivated in last 24 hours  ---------->
-        total_nonactive_7 = [data7["checkerActivity"]["deactivatedCountFacebook"], data7["checkerActivity"]["deactivatedCountHeyCars"], data7["checkerActivity"]["deactivatedCountAutoTrader"], data7["checkerActivity"]["deactivatedCountGumtree"], data7["checkerActivity"]["deactivatedCountMotors"]]
+    # <------  Store deactive data into variables which deactivated in last 7 days  ---------->
+    total_active_7 = [data7["count"]["activeFacebook"], data7["count"]["activeHeyCars"], data7["count"]["activeAutoTrader"], data7["count"]["activeGumtree"], data7["count"]["activeMotors"]] 
 
-        # <------  Store active data into variables for last 7 days  ---------->
-        total_count_7 = [data7["count"]["facebook"], data7["count"]["heyCars"], data7["count"]["autoTrader"], data7["count"]["gumtree"], data7["count"]["motors"]]
+    # <------  Store deactive data count into variables which deactivated in last 24 hours  ---------->
+    total_nonactive_7 = [data7["checkerActivity"]["deactivatedCountFacebook"], data7["checkerActivity"]["deactivatedCountHeyCars"], data7["checkerActivity"]["deactivatedCountAutoTrader"], data7["checkerActivity"]["deactivatedCountGumtree"], data7["checkerActivity"]["deactivatedCountMotors"]]
 
-        last_7_hours= [total_active_7, total_nonactive_7, total_count_7]
-        
-        return last_7_hours,data7
+    # <------  Store active data into variables for last 7 days  ---------->
+    total_count_7 = [data7["count"]["facebook"], data7["count"]["heyCars"], data7["count"]["autoTrader"], data7["count"]["gumtree"], data7["count"]["motors"]]
+
+    last_7_hours= [total_active_7, total_nonactive_7, total_count_7]
+    
+    return last_7_hours,data7
 
 
-    # @st.cache_resource(ttl=86400)
-    def last15days():
-        
-        # <------ Call API for last 15 days data ---------->
-        url = "http://api.aicarz.com/api/v1/dev/data-dashboard?days=15"
+# @st.cache_resource(ttl=86400)
+def last15days():
+    
+    # <------ Call API for last 15 days data ---------->
+    url = "http://api.aicarz.com/api/v1/dev/data-dashboard?days=15"
+    response = requests.request("GET", url, headers=headers)
+    data15= json.loads(response.text)['data']
+    print("\n\n\nStatus code::::",response.status_code)
+
+    # <------ If API server give 502 error  ---------->
+    while response.status_code == 502:
         response = requests.request("GET", url, headers=headers)
+        print("\n\n\nStatus code::::",response.status_code)
         data15= json.loads(response.text)['data']
-        print("\n\n\nStatus code::::",response.status_code)
-
-        # <------ If API server give 502 error  ---------->
-        while response.status_code == 502:
-            response = requests.request("GET", url, headers=headers)
-            print("\n\n\nStatus code::::",response.status_code)
-            data15= json.loads(response.text)['data']
-            
-        print("Data 15 days: ",data15)
         
-        # <------  Store active data into variables for last 15 days  ---------->
-        total_active_15 = [data15["count"]["activeFacebook"],data15["count"]["activeHeyCars"],data15["count"]["activeAutoTrader"],data15["count"]["activeGumtree"],data15["count"]["activeMotors"]]
-
-        # <------  Store deactive data count into variables which deactivated in last 24 hours  ---------->
-        total_nonactive_15 = [data15["checkerActivity"]["deactivatedCountFacebook"], data15["checkerActivity"]["deactivatedCountHeyCars"], data15["checkerActivity"]["deactivatedCountAutoTrader"], data15["checkerActivity"]["deactivatedCountGumtree"], data15["checkerActivity"]["deactivatedCountMotors"]]
-
-        # <------  Store all count data into variables for 24 hours  ---------->
-        total_count_15 = [data15["count"]["facebook"], data15["count"]["heyCars"], data15["count"]["autoTrader"], data15["count"]["gumtree"], data15["count"]["motors"]]
-
-        last_15= [total_active_15, total_nonactive_15, total_count_15]
-        
-        return last_15,data15
-
-
-
-    # @st.cache_resource(ttl=86400)
-    def last30days():
-
-        # <------ Call API for last 30 days data ---------->
-        url = "http://api.aicarz.com/api/v1/dev/data-dashboard?days=30"
-        response = requests.request("GET", url, headers=headers)
-        data30= json.loads(response.text)['data']
-        print("\n\n\nStatus code::::",response.status_code)
-
-        # <------ If API server give 502 error  ---------->
-        while response.status_code == 502:
-            response = requests.request("GET", url, headers=headers)
-            print("\n\n\nStatus code::::",response.status_code)
-            data30= json.loads(response.text)['data']
-            
-        print("Data 30 days: ",data30)
-        
-        # <------  Store active data into variables for last 15 days  ---------->
-        total_active_30 = [data30["count"]["activeFacebook"],data30["count"]["activeHeyCars"],data30["count"]["activeAutoTrader"],data30["count"]["activeGumtree"],data30["count"]["activeMotors"]]
-
-        # <------  Store deactive data count into variables which deactivated in last 24 hours  ---------->
-        total_nonactive_30 = [data30["checkerActivity"]["deactivatedCountFacebook"], data30["checkerActivity"]["deactivatedCountHeyCars"], data30["checkerActivity"]["deactivatedCountAutoTrader"], data30["checkerActivity"]["deactivatedCountGumtree"], data30["checkerActivity"]["deactivatedCountMotors"]]
-
-        # <------  Store all count data into variables for 24 hours  ---------->
-        total_count_30 = [data30["count"]["facebook"], data30["count"]["heyCars"], data30["count"]["autoTrader"], data30["count"]["gumtree"], data30["count"]["motors"]]
-
-        last_30= [total_active_30, total_nonactive_30, total_count_30]
-        
-        return last_30,data30
-
-
-
-    # @st.cache_resource(ttl=86400)
-    def lifetime():
-
-        # <------ Call API for last lifetime data ---------->
-        url = "http://api.aicarz.com/api/v1/dev/data-dashboard"
-        response = requests.request("GET", url, headers=headers)
-        data_lifetime= json.loads(response.text)['data']
-        print("\n\n\nStatus code::::",response.status_code)
-
-        # <------ If API server give 502 error  ---------->
-        while response.status_code == 502:
-            response = requests.request("GET", url, headers=headers)
-            print("\n\n\nStatus code::::",response.status_code)
-            data_lifetime= json.loads(response.text)['data']
-            
-        print("Data 30 days: ",data_lifetime)
-        
-        # <------  Store active data into variables for last 15 days  ---------->
-        total_active_lifetime = [data_lifetime["count"]["activeFacebook"],data_lifetime["count"]["activeHeyCars"],data_lifetime["count"]["activeAutoTrader"],data_lifetime["count"]["activeGumtree"],data_lifetime["count"]["activeMotors"]]
-
-        # <------  Store deactive data count into variables which deactivated in last 24 hours  ---------->
-        total_nonactive_lifetime = [data_lifetime["checkerActivity"]["deactivatedCountFacebook"], data_lifetime["checkerActivity"]["deactivatedCountHeyCars"], data_lifetime["checkerActivity"]["deactivatedCountAutoTrader"], data_lifetime["checkerActivity"]["deactivatedCountGumtree"], data_lifetime["checkerActivity"]["deactivatedCountMotors"]]
-
-        # <------  Store all count data into variables for 24 hours  ---------->
-        total_count_lifetime = [data_lifetime["count"]["facebook"], data_lifetime["count"]["heyCars"], data_lifetime["count"]["autoTrader"], data_lifetime["count"]["gumtree"], data_lifetime["count"]["motors"]]
-
-        last_lifetime= [total_active_lifetime, total_nonactive_lifetime, total_count_lifetime]
-        
-        return last_lifetime,data_lifetime
+    print("Data 15 days: ",data15)
     
+    # <------  Store active data into variables for last 15 days  ---------->
+    total_active_15 = [data15["count"]["activeFacebook"],data15["count"]["activeHeyCars"],data15["count"]["activeAutoTrader"],data15["count"]["activeGumtree"],data15["count"]["activeMotors"]]
+
+    # <------  Store deactive data count into variables which deactivated in last 24 hours  ---------->
+    total_nonactive_15 = [data15["checkerActivity"]["deactivatedCountFacebook"], data15["checkerActivity"]["deactivatedCountHeyCars"], data15["checkerActivity"]["deactivatedCountAutoTrader"], data15["checkerActivity"]["deactivatedCountGumtree"], data15["checkerActivity"]["deactivatedCountMotors"]]
+
+    # <------  Store all count data into variables for 24 hours  ---------->
+    total_count_15 = [data15["count"]["facebook"], data15["count"]["heyCars"], data15["count"]["autoTrader"], data15["count"]["gumtree"], data15["count"]["motors"]]
+
+    last_15= [total_active_15, total_nonactive_15, total_count_15]
+    
+    return last_15,data15
+
+
+
+# @st.cache_resource(ttl=86400)
+def last30days():
+
+    # <------ Call API for last 30 days data ---------->
+    url = "http://api.aicarz.com/api/v1/dev/data-dashboard?days=30"
+    response = requests.request("GET", url, headers=headers)
+    data30= json.loads(response.text)['data']
+    print("\n\n\nStatus code::::",response.status_code)
+
+    # <------ If API server give 502 error  ---------->
+    while response.status_code == 502:
+        response = requests.request("GET", url, headers=headers)
+        print("\n\n\nStatus code::::",response.status_code)
+        data30= json.loads(response.text)['data']
+        
+    print("Data 30 days: ",data30)
+    
+    # <------  Store active data into variables for last 15 days  ---------->
+    total_active_30 = [data30["count"]["activeFacebook"],data30["count"]["activeHeyCars"],data30["count"]["activeAutoTrader"],data30["count"]["activeGumtree"],data30["count"]["activeMotors"]]
+
+    # <------  Store deactive data count into variables which deactivated in last 24 hours  ---------->
+    total_nonactive_30 = [data30["checkerActivity"]["deactivatedCountFacebook"], data30["checkerActivity"]["deactivatedCountHeyCars"], data30["checkerActivity"]["deactivatedCountAutoTrader"], data30["checkerActivity"]["deactivatedCountGumtree"], data30["checkerActivity"]["deactivatedCountMotors"]]
+
+    # <------  Store all count data into variables for 24 hours  ---------->
+    total_count_30 = [data30["count"]["facebook"], data30["count"]["heyCars"], data30["count"]["autoTrader"], data30["count"]["gumtree"], data30["count"]["motors"]]
+
+    last_30= [total_active_30, total_nonactive_30, total_count_30]
+    
+    return last_30,data30
+
+
+
+# @st.cache_resource(ttl=86400)
+def lifetime():
+
+    # <------ Call API for last lifetime data ---------->
+    url = "http://api.aicarz.com/api/v1/dev/data-dashboard"
+    response = requests.request("GET", url, headers=headers)
+    data_lifetime= json.loads(response.text)['data']
+    print("\n\n\nStatus code::::",response.status_code)
+
+    # <------ If API server give 502 error  ---------->
+    while response.status_code == 502:
+        response = requests.request("GET", url, headers=headers)
+        print("\n\n\nStatus code::::",response.status_code)
+        data_lifetime= json.loads(response.text)['data']
+        
+    print("Data 30 days: ",data_lifetime)
+    
+    # <------  Store active data into variables for last 15 days  ---------->
+    total_active_lifetime = [data_lifetime["count"]["activeFacebook"],data_lifetime["count"]["activeHeyCars"],data_lifetime["count"]["activeAutoTrader"],data_lifetime["count"]["activeGumtree"],data_lifetime["count"]["activeMotors"]]
+
+    # <------  Store deactive data count into variables which deactivated in last 24 hours  ---------->
+    total_nonactive_lifetime = [data_lifetime["checkerActivity"]["deactivatedCountFacebook"], data_lifetime["checkerActivity"]["deactivatedCountHeyCars"], data_lifetime["checkerActivity"]["deactivatedCountAutoTrader"], data_lifetime["checkerActivity"]["deactivatedCountGumtree"], data_lifetime["checkerActivity"]["deactivatedCountMotors"]]
+
+    # <------  Store all count data into variables for 24 hours  ---------->
+    total_count_lifetime = [data_lifetime["count"]["facebook"], data_lifetime["count"]["heyCars"], data_lifetime["count"]["autoTrader"], data_lifetime["count"]["gumtree"], data_lifetime["count"]["motors"]]
+
+    last_lifetime= [total_active_lifetime, total_nonactive_lifetime, total_count_lifetime]
+    
+    return last_lifetime,data_lifetime
 
 
 
 
 
-    # <------ Dropdown to select the data set ---------->
-    dataset_name = st.selectbox('Select a Dataset', ['Lifetime', 'Last 30 days','Last 15 days', 'Last 7 days', 'Last 24 Hours'])
 
+# <------ Dropdown to select the data set ---------->
+dataset_name = st.selectbox('Select a Dataset', ['Lifetime', 'Last 30 days','Last 15 days', 'Last 7 days', 'Last 24 Hours'])
 
-    if dataset_name == 'Last 24 Hours':
+display= False
+if dataset_name == 'Last 24 Hours':
+    load1=st.button('Display')
+    if load1:
+        display= True
         _24hours,data= last24hours()
         data_active = {'Last 24 Hours': _24hours[0]}
         data_nonactive = {'Last 24 Hours': _24hours[1]}
         data_total = {'Last 24 Hours': _24hours[2]}
-        
-    elif dataset_name == 'Last 7 days':
+    
+elif dataset_name == 'Last 7 days':
+    load2= st.button('Display')
+    if load2:
+        display= True
         last7,data= last7days()
         data_active = {'Last 7 days': last7[0]}
         data_nonactive = {'Last 7 days': last7[1]}
         data_total = {'Last 7 days': last7[2]}
-        
-    elif dataset_name == 'Last 15 days':
+    
+elif dataset_name == 'Last 15 days':
+    load3= st.button('Display')
+    if load3:
+        display= True
         last15,data= last15days()
         data_active = {'Last 15 days': last15[0]}
         data_nonactive = {'Last 15 days': last15[1]}
         data_total = {'Last 15 days': last15[2]}
 
-    elif dataset_name == 'Last 30 days':
+elif dataset_name == 'Last 30 days':
+    load4= st.button('Display')
+    if load4:
+        display= True
         last30,data= last30days()
         data_active = {'Last 30 days': last30[0]}
         data_nonactive = {'Last 30 days': last30[1]}
         data_total = {'Last 30 days': last30[2]}
-        
-    else:
+    
+else:
+    load5= st.button('Display')
+    if load5:
+        display= True
         lifetime_,data= lifetime()
         data_active = {'Lifetime': lifetime_[0]}
         data_nonactive = {'Lifetime': lifetime_[1]}
         data_total = {'Lifetime': lifetime_[2]}
-        
-        
+    
+if display == True:    
     # <------ divide layout into three columns ---------->
     left, center, right = st.columns(3)   
-
+    st.balloons()
     # <------ Active data graph ↓ ---------->
     with left:   
         st.subheader(f"Active:")
