@@ -402,12 +402,16 @@ if display == True:
         st.markdown("-------------------------------------------------------------------------------")
 
         # Query to find the minimum price value where isActive is true
-        min_value = format(data['active']['priceMin'], ",")
-
-
+        try:
+            min_value = format(data['active']['priceMin'], ",")
+        except:
+            min_value = data['active']['priceMin']
         # Query to find the maximum price value where isActive is true
-        max_value = format(data['active']['priceMax'], ",")
-
+        
+        try:
+            max_value = format(data['active']['priceMax'], ",")
+        except:
+            max_value = data['active']['priceMax']
         print(f"Minimum value: {min_value}")
         print(f"Maximum value: {max_value}")
 
