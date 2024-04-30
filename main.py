@@ -378,7 +378,7 @@ if display == True:
         st.markdown(f"Total number of non-active & active data for {dataset_name} on all *Platforms* is **{data_total[dataset_name][1] + data_total[dataset_name][4] + data_total[dataset_name][0] + data_total[dataset_name][3] + data_total[dataset_name][2]}**.")
 
 
-    st.header("Data Stats")
+    st.header("Data Stats (Active)")
     st.markdown("-------------------------------------------------------------------------------")
 
 
