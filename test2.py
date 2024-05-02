@@ -21,6 +21,7 @@ def dataload():
     url = "http://api.aicarz.com/api/v1/dev/data-dashboard?days=1"
     headers = {'Authorization': 'Bearer ya29.a0AfB_byASQo7lfEHHE4H6vXGd9MefYU0puZYAk3fkDyFcoJzE7Ra8Nzssy0TLcVuPyFRHvO_g_2h07UkZKtApTu51oJZb35PfvPN8UpPrvx4sU2yFzYclzdmmxBfRpymGYbziyD2JVLM9X2zEFSJabc2x157KKPGAQwaCgYKAbYSARISFQHGX2Mig9VTJWbXohan6iB9BtfcIg0169'}
     response = requests.request("GET", url, headers=headers)
+    print(response.text)
     data1= json.loads(response.text)
     print("\n\n\nStatus code::::",response.status_code)
 

@@ -27,15 +27,15 @@ def last24hours():
         # <------ Call API for last 24 hours data ---------->
     url = "http://api.aicarz.com/api/v1/dev/data-dashboard?days=1"
     response = requests.request("GET", url, headers=headers)
-    data1= json.loads(response.text)['data']
     print("\n\n\nStatus code::::",response.status_code)
 
     # <------ If API server give 502 error  ---------->
     while response.status_code == 502:
         response = requests.request("GET", url, headers=headers)
         print("\n\n\nStatus code::::",response.status_code)
-        data1= json.loads(response.text)['data']
+        # data1= json.loads(response.text)['data']
         
+    data1= json.loads(response.text)['data']
     print("Data 1 day: ",data1)
     
     
@@ -59,15 +59,15 @@ def last7days():
     # <------ Call API for last 7 days data ---------->
     url = "http://api.aicarz.com/api/v1/dev/data-dashboard?days=7"
     response = requests.request("GET", url, headers=headers)
-    data7= json.loads(response.text)['data']
     print("\n\n\nStatus code::::",response.status_code)
 
     # <------ If API server give 502 error  ---------->
     while response.status_code == 502:
         response = requests.request("GET", url, headers=headers)
         print("\n\n\nStatus code::::",response.status_code)
-        data7= json.loads(response.text)['data']
+        # data7= json.loads(response.text)['data']
         
+    data7= json.loads(response.text)['data']
     print("Data 7 day: ",data7)
     
     # <------  Store deactive data into variables which deactivated in last 7 days  ---------->
@@ -90,15 +90,15 @@ def last15days():
     # <------ Call API for last 15 days data ---------->
     url = "http://api.aicarz.com/api/v1/dev/data-dashboard?days=15"
     response = requests.request("GET", url, headers=headers)
-    data15= json.loads(response.text)['data']
     print("\n\n\nStatus code::::",response.status_code)
 
     # <------ If API server give 502 error  ---------->
     while response.status_code == 502:
         response = requests.request("GET", url, headers=headers)
         print("\n\n\nStatus code::::",response.status_code)
-        data15= json.loads(response.text)['data']
+        # data15= json.loads(response.text)['data']
         
+    data15= json.loads(response.text)['data']
     print("Data 15 days: ",data15)
     
     # <------  Store active data into variables for last 15 days  ---------->
@@ -122,15 +122,15 @@ def last30days():
     # <------ Call API for last 30 days data ---------->
     url = "http://api.aicarz.com/api/v1/dev/data-dashboard?days=30"
     response = requests.request("GET", url, headers=headers)
-    data30= json.loads(response.text)['data']
     print("\n\n\nStatus code::::",response.status_code)
 
     # <------ If API server give 502 error  ---------->
     while response.status_code == 502:
         response = requests.request("GET", url, headers=headers)
         print("\n\n\nStatus code::::",response.status_code)
-        data30= json.loads(response.text)['data']
+        # data30= json.loads(response.text)['data']
         
+    data30= json.loads(response.text)['data']
     print("Data 30 days: ",data30)
     
     # <------  Store active data into variables for last 15 days  ---------->
@@ -154,15 +154,15 @@ def lifetime():
     # <------ Call API for last lifetime data ---------->
     url = "http://api.aicarz.com/api/v1/dev/data-dashboard"
     response = requests.request("GET", url, headers=headers)
-    data_lifetime= json.loads(response.text)['data']
     print("\n\n\nStatus code::::",response.status_code)
 
     # <------ If API server give 502 error  ---------->
     while response.status_code == 502:
         response = requests.request("GET", url, headers=headers)
         print("\n\n\nStatus code::::",response.status_code)
-        data_lifetime= json.loads(response.text)['data']
+        # data_lifetime= json.loads(response.text)['data']
         
+    data_lifetime= json.loads(response.text)['data']
     print("Data 30 days: ",data_lifetime)
     
     # <------  Store active data into variables for last 15 days  ---------->
