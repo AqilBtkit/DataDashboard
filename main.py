@@ -31,6 +31,7 @@ def last24hours():
 
     # <------ If API server give 502 error  ---------->
     while response.status_code == 502:
+        print('Again hitting API because API response is "502"')
         response = requests.request("GET", url, headers=headers)
         print("\n\n\nStatus code::::",response.status_code)
         # data1= json.loads(response.text)['data']
@@ -63,6 +64,7 @@ def last7days():
 
     # <------ If API server give 502 error  ---------->
     while response.status_code == 502:
+        print('Again hitting API because API response is "502"')
         response = requests.request("GET", url, headers=headers)
         print("\n\n\nStatus code::::",response.status_code)
         # data7= json.loads(response.text)['data']
@@ -94,6 +96,7 @@ def last15days():
 
     # <------ If API server give 502 error  ---------->
     while response.status_code == 502:
+        print('Again hitting API because API response is "502"')
         response = requests.request("GET", url, headers=headers)
         print("\n\n\nStatus code::::",response.status_code)
         # data15= json.loads(response.text)['data']
@@ -126,6 +129,7 @@ def last30days():
 
     # <------ If API server give 502 error  ---------->
     while response.status_code == 502:
+        print('Again hitting API because API response is "502"')
         response = requests.request("GET", url, headers=headers)
         print("\n\n\nStatus code::::",response.status_code)
         # data30= json.loads(response.text)['data']
@@ -158,6 +162,7 @@ def lifetime():
 
     # <------ If API server give 502 error  ---------->
     while response.status_code == 502:
+        print('Again hitting API because API response is "502"')
         response = requests.request("GET", url, headers=headers)
         print("\n\n\nStatus code::::",response.status_code)
         # data_lifetime= json.loads(response.text)['data']
