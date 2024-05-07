@@ -474,12 +474,18 @@ if display == True:
 
 
         # Displaying in Streamlit
-        st.markdown(f"Total number of unique active makes: **{data['active']['distinctMakeCount']}**")
+        try:
+            st.markdown(f"Total number of unique active makes: **{data['active']['distinctMakeCount']}**")
+        except:
+            pass
         # st.markdown("-------------------------------------------------------------------------------")
 
 
         # Displaying in Streamlit
-        st.markdown(f"Total number of unique active model: **{data['active']['distinctModelCount']}**")
+        try:
+            st.markdown(f"Total number of unique active model: **{data['active']['distinctModelCount']}**")
+        except:
+            pass
         st.markdown("-------------------------------------------------------------------------------")
 
     with right:
@@ -494,12 +500,26 @@ if display == True:
         sorted_make_count = list(sorted_make_with_count.values())
         
         # Displaying in Streamlit
-        st.markdown(f"Top 1st largest make on inventory: **{sorted_make[0]}** (Count: **{sorted_make_count[0]}**)")
-        st.markdown(f"Top 2nd largest make on inventory: **{sorted_make[1]}** (Count: **{sorted_make_count[1]}**)")
-        st.markdown(f"Top 3rd largest make on inventory: **{sorted_make[2]}** (Count: **{sorted_make_count[2]}**)")
-        st.markdown(f"Top 4th largest make on inventory: **{sorted_make[3]}** (Count: **{sorted_make_count[3]}**)")
-        st.markdown(f"Top 5th largest make on inventory: **{sorted_make[4]}** (Count: **{sorted_make_count[4]}**)")
-
+        try:
+            st.markdown(f"Top 1st largest make on inventory: **{sorted_make[0]}** (Count: **{sorted_make_count[0]}**)")
+        except:
+            pass
+        try:
+            st.markdown(f"Top 2nd largest make on inventory: **{sorted_make[1]}** (Count: **{sorted_make_count[1]}**)")
+        except:
+            pass
+        try:
+            st.markdown(f"Top 3rd largest make on inventory: **{sorted_make[2]}** (Count: **{sorted_make_count[2]}**)")
+        except:
+            pass
+        try:
+            st.markdown(f"Top 4th largest make on inventory: **{sorted_make[3]}** (Count: **{sorted_make_count[3]}**)")
+        except:
+            pass
+        try:
+            st.markdown(f"Top 5th largest make on inventory: **{sorted_make[4]}** (Count: **{sorted_make_count[4]}**)")
+        except:
+            pass
         st.markdown("-------------------------------------------------------------------------------")
 
 
