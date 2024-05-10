@@ -88,7 +88,7 @@ def dataload():
     
     return data1['data'], data7['data'], data15['data'], data30['data'], data_lifetime['data']
 
-data1, data7, data15, data30, data_lifetime= dataload()
+# data1, data7, data15, data30, data_lifetime= dataload()
 
 
 # total_active_facebook_24 =   data1["count"]["activeFacebook"]
@@ -159,9 +159,12 @@ data1, data7, data15, data30, data_lifetime= dataload()
 #     'Lifetime': [total_active_autotrader, total_active_gumtree, total_active_facebook, total_active_heycar, total_active_motors]
 # }
 # df = pd.DataFrame(data, index=["Autotraders", "Gumtree","Facebook", "Heycars", "Moters"])
-print(data_lifetime)
+# print(data_lifetime)
 
 
 
-var={"name":{"n2":2}}
-print(var['name'])
+# var={"name":{"n2":2}}
+# print(var['name'])
+
+va="aADx-dcdcSS"
+print(va.lower())
