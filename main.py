@@ -241,7 +241,7 @@ try:
     if display == True:    
         # <------ divide layout into three columns ---------->
         left, center, right = st.columns(3)   
-        st.balloons()
+        # st.balloons()
         # <------ Active data graph ↓ ---------->
         with left:   
             st.subheader(f"Active:")
