@@ -42,7 +42,7 @@ try:
         
         
         # <------  Store active data count into variables for last 24 hours  ---------->
-        total_active_24 = [data1["count"]["activeFacebook"], data1["count"]["activeHeyCars"], data1["count"]["activeAutoTrader"], data1["count"]["activeGumtree"],data1["count"]["activeMotors"]]
+        total_active_24 = [data1["count"]["activeFacebook"], data1["count"]["activeHeyCars"], data1["count"]["activeAutoTrader"], data1["count"]["activeGumtree"],data1["count"]["activemotors"]]
 
         # <------  Store deactive data count into variables which deactivated in last 24 hours  ---------->
         total_nonactive_24 = [data1["checkerActivity"]["deactivatedCountFacebook"], data1["checkerActivity"]["deactivatedCountHeyCars"], data1["checkerActivity"]["deactivatedCountAutoTrader"], data1["checkerActivity"]["deactivatedCountGumtree"], data1["checkerActivity"]["deactivatedCountMotors"]]
@@ -526,5 +526,6 @@ try:
 
             
         load=False
-except:
+except Exception as e:
+    print("************************************",e)
     st.title("Something Went Wront. Please **refresh** this page or revisit later")
