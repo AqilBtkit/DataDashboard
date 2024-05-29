@@ -271,7 +271,7 @@ try:
                 fig1.gca().add_artist(centre_circle)
 
                 # <------  Add a legend (legend means colors with its lables) -------->
-                plt.legend([ "Facebook", "Heycars","Autotraders","Gumtree", "Moters"], loc="lower left", bbox_to_anchor=(1, 0, 1, 1))
+                plt.legend([ "Facebook", "Heycars","Autotraders","Gumtree", "motors"], loc="lower left", bbox_to_anchor=(1, 0, 1, 1))
 
                 # <------  To display donut graph -------->
                 st.pyplot(fig1) 
@@ -282,7 +282,7 @@ try:
             st.markdown(f"Total number of active data for {dataset_name} on *Autotraders* is **{data_active[dataset_name][2]}**.")
             st.markdown(f"Total number of active data for {dataset_name} on *Gumtree* is **{data_active[dataset_name][3]}**.")
             st.markdown(f"Total number of active data for {dataset_name} on *Facebook* is **{data_active[dataset_name][0]}**.")
-            st.markdown(f"Total number of active data for {dataset_name} on *Moters* is **{data_active[dataset_name][4]}**.")
+            st.markdown(f"Total number of active data for {dataset_name} on *motors* is **{data_active[dataset_name][4]}**.")
             st.markdown(f"Total number of active data for {dataset_name} on *Heycars* is **{data_active[dataset_name][1]}**.")
             st.markdown(f"Total number of active data for {dataset_name} on all *Platforms* is **{data_active[dataset_name][1] + data_active[dataset_name][4] + data_active[dataset_name][0]+data_active[dataset_name][3] + data_active[dataset_name][2]}**.")
             # st.markdown("-------------------------------------------------------------------------------")
@@ -320,7 +320,7 @@ try:
 
                 # <------  Add a legend (legend means colors with its lables) -------->
                 
-                plt.legend([ "Facebook", "Heycars","Autotraders", "Gumtree","Moters"], loc="lower left", bbox_to_anchor=(1, 0, 1, 1))
+                plt.legend([ "Facebook", "Heycars","Autotraders", "Gumtree","motors"], loc="lower left", bbox_to_anchor=(1, 0, 1, 1))
                 
                 # <------  To display donut graph -------->
                 st.pyplot(fig1)
@@ -331,7 +331,7 @@ try:
             st.markdown(f"Total number of non-active data for {dataset_name} on *Autotraders* is **{data_nonactive[dataset_name][2]}**.")
             st.markdown(f"Total number of non-active data for {dataset_name} on *Gumtree* is **{data_nonactive[dataset_name][3]}**.")
             st.markdown(f"Total number of non-active data for {dataset_name} on *Facebook* is **{data_nonactive[dataset_name][0]}**.")
-            st.markdown(f"Total number of non-active data for {dataset_name} on *Moters* is **{data_nonactive[dataset_name][4]}**.")
+            st.markdown(f"Total number of non-active data for {dataset_name} on *motors* is **{data_nonactive[dataset_name][4]}**.")
             st.markdown(f"Total number of non-active data for {dataset_name} on *Heycars* is **{data_nonactive[dataset_name][1]}**.")
             st.markdown(f"Total number of non-active data for {dataset_name} on all *Platforms* is **{data_nonactive[dataset_name][1] + data_nonactive[dataset_name][4] + data_nonactive[dataset_name][0] + data_nonactive[dataset_name][3] + data_nonactive[dataset_name][2]}**.")
             # st.markdown("-------------------------------------------------------------------------------") 
@@ -371,7 +371,7 @@ try:
                 # ax1.axis('equal')  # Equal aspect ratio ensures pie is drawn as a circle
 
                 # Add a legend
-                plt.legend([ "Facebook", "Heycars", "Autotraders","Gumtree","Moters"], loc="lower left", bbox_to_anchor=(1, 0, 1, 1))
+                plt.legend([ "Facebook", "Heycars", "Autotraders","Gumtree","motors"], loc="lower left", bbox_to_anchor=(1, 0, 1, 1))
                 # Display the pie chart
                 st.pyplot(fig1)
             except:
@@ -379,7 +379,7 @@ try:
             st.markdown(f"Total number of non-active & active data for {dataset_name} on *Autotraders* is **{data_total[dataset_name][2]}**.")
             st.markdown(f"Total number of non-active & active data for {dataset_name} on *Gumtree* is **{data_total[dataset_name][3]}**.")
             st.markdown(f"Total number of non-active & active data for {dataset_name} on *Facebook* is **{data_total[dataset_name][0]}**.")
-            st.markdown(f"Total number of non-active & active data for {dataset_name} on *Moters* is **{data_total[dataset_name][4]}**.")
+            st.markdown(f"Total number of non-active & active data for {dataset_name} on *motors* is **{data_total[dataset_name][4]}**.")
             st.markdown(f"Total number of non-active & active data for {dataset_name} on *Heycars* is **{data_total[dataset_name][1]}**.")
             st.markdown(f"Total number of non-active & active data for {dataset_name} on all *Platforms* is **{data_total[dataset_name][1] + data_total[dataset_name][4] + data_total[dataset_name][0] + data_total[dataset_name][3] + data_total[dataset_name][2]}**.")
 
