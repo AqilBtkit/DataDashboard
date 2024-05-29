@@ -42,13 +42,13 @@ try:
         
         
         # <------  Store active data count into variables for last 24 hours  ---------->
-        total_active_24 = [data1["count"]["activeFacebook"], data1["count"]["activeHeyCars"], data1["count"]["activeAutoTrader"], data1["count"]["activeGumtree"],data1["count"]["activemotors"]]
+        total_active_24 = [data1["count"]["activeFacebook"], data1["count"]["activeHeyCars"], data1["count"]["activeAutoTrader"], data1["count"]["activeGumtree"],data1["count"]["activeMotors"]]
 
         # <------  Store deactive data count into variables which deactivated in last 24 hours  ---------->
         total_nonactive_24 = [data1["checkerActivity"]["deactivatedCountFacebook"], data1["checkerActivity"]["deactivatedCountHeyCars"], data1["checkerActivity"]["deactivatedCountAutoTrader"], data1["checkerActivity"]["deactivatedCountGumtree"], data1["checkerActivity"]["deactivatedCountMotors"]]
 
         # <------  Store all count data into variables for 24 hours  ---------->
-        total_count_24 = [data1["count"]["facebook"], data1["count"]["heyCars"], data1["count"]["autoTrader"], data1["count"]["gumtree"], data1["count"]["Motors"]]
+        total_count_24 = [data1["count"]["facebook"], data1["count"]["heyCars"], data1["count"]["autoTrader"], data1["count"]["gumtree"], data1["count"]["motors"]]
 
         last_24_hours= [total_active_24, total_nonactive_24, total_count_24]
         
@@ -80,7 +80,7 @@ try:
         total_nonactive_7 = [data7["checkerActivity"]["deactivatedCountFacebook"], data7["checkerActivity"]["deactivatedCountHeyCars"], data7["checkerActivity"]["deactivatedCountAutoTrader"], data7["checkerActivity"]["deactivatedCountGumtree"], data7["checkerActivity"]["deactivatedCountMotors"]]
 
         # <------  Store active data into variables for last 7 days  ---------->
-        total_count_7 = [data7["count"]["facebook"], data7["count"]["heyCars"], data7["count"]["autoTrader"], data7["count"]["gumtree"], data7["count"]["Motors"]]
+        total_count_7 = [data7["count"]["facebook"], data7["count"]["heyCars"], data7["count"]["autoTrader"], data7["count"]["gumtree"], data7["count"]["motors"]]
 
         last_7_hours= [total_active_7, total_nonactive_7, total_count_7]
         
@@ -112,7 +112,7 @@ try:
         total_nonactive_15 = [data15["checkerActivity"]["deactivatedCountFacebook"], data15["checkerActivity"]["deactivatedCountHeyCars"], data15["checkerActivity"]["deactivatedCountAutoTrader"], data15["checkerActivity"]["deactivatedCountGumtree"], data15["checkerActivity"]["deactivatedCountMotors"]]
 
         # <------  Store all count data into variables for 24 hours  ---------->
-        total_count_15 = [data15["count"]["facebook"], data15["count"]["heyCars"], data15["count"]["autoTrader"], data15["count"]["gumtree"], data15["count"]["Motors"]]
+        total_count_15 = [data15["count"]["facebook"], data15["count"]["heyCars"], data15["count"]["autoTrader"], data15["count"]["gumtree"], data15["count"]["motors"]]
 
         last_15= [total_active_15, total_nonactive_15, total_count_15]
         
@@ -145,7 +145,7 @@ try:
         total_nonactive_30 = [data30["checkerActivity"]["deactivatedCountFacebook"], data30["checkerActivity"]["deactivatedCountHeyCars"], data30["checkerActivity"]["deactivatedCountAutoTrader"], data30["checkerActivity"]["deactivatedCountGumtree"], data30["checkerActivity"]["deactivatedCountMotors"]]
 
         # <------  Store all count data into variables for 24 hours  ---------->
-        total_count_30 = [data30["count"]["facebook"], data30["count"]["heyCars"], data30["count"]["autoTrader"], data30["count"]["gumtree"], data30["count"]["Motors"]]
+        total_count_30 = [data30["count"]["facebook"], data30["count"]["heyCars"], data30["count"]["autoTrader"], data30["count"]["gumtree"], data30["count"]["motors"]]
 
         last_30= [total_active_30, total_nonactive_30, total_count_30]
         
@@ -178,7 +178,7 @@ try:
         total_nonactive_lifetime = [data_lifetime["checkerActivity"]["deactivatedCountFacebook"], data_lifetime["checkerActivity"]["deactivatedCountHeyCars"], data_lifetime["checkerActivity"]["deactivatedCountAutoTrader"], data_lifetime["checkerActivity"]["deactivatedCountGumtree"], data_lifetime["checkerActivity"]["deactivatedCountMotors"]]
 
         # <------  Store all count data into variables for 24 hours  ---------->
-        total_count_lifetime = [data_lifetime["count"]["facebook"], data_lifetime["count"]["heyCars"], data_lifetime["count"]["autoTrader"], data_lifetime["count"]["gumtree"], data_lifetime["count"]["Motors"]]
+        total_count_lifetime = [data_lifetime["count"]["facebook"], data_lifetime["count"]["heyCars"], data_lifetime["count"]["autoTrader"], data_lifetime["count"]["gumtree"], data_lifetime["count"]["motors"]]
 
         last_lifetime= [total_active_lifetime, total_nonactive_lifetime, total_count_lifetime]
         
@@ -526,6 +526,5 @@ try:
 
             
         load=False
-except Exception as e:
-    print("************************************",e)
+except:
     st.title("Something Went Wront. Please **refresh** this page or revisit later")
