@@ -527,4 +527,4 @@ try:
             
         load=False
 except:
-    st.title("Something Went Wront. Please **refresh** this page or revisit later")
+    st.title("Something Went Wrong. Please **refresh** this page or revisit later")
