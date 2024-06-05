@@ -391,7 +391,7 @@ try:
         left,centerleft,centerright, right = st.columns(4)   
 
         with left:
-            st.markdown(f"Total data onboard: **{format( data['count']['totalCount'], ',')}**")
+            st.markdown(f"Total data onboard (Active Non-Active Both): **{format( data['count']['totalCount'], ',')}**")
             # st.subheader(f"Last day data onboard: {753256}")
             # st.subheader(f"No. of data failure: {753256}")
             fuel_dict=data['active']['topLargestInventoryFuelType']
