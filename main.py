@@ -394,19 +394,23 @@ try:
             st.markdown(f"Total data onboard (Active Non-Active Both): **{format( data['count']['totalCount'], ',')}**")
             # st.subheader(f"Last day data onboard: {753256}")
             # st.subheader(f"No. of data failure: {753256}")
-            fuel_dict=data['active']['topLargestInventoryFuelType']
-            def sort_by_value(item):
-                return item[1]
+            try:
+                    
+                fuel_dict=data['active']['topLargestInventoryFuelType']
+                def sort_by_value(item):
+                    return item[1]
 
-            sorted_fuel_with_count = dict(sorted(fuel_dict.items(), key=sort_by_value, reverse=True))
+                sorted_fuel_with_count = dict(sorted(fuel_dict.items(), key=sort_by_value, reverse=True))
 
-            sorted_fuel= list(sorted_fuel_with_count.keys())
-            sorted_fuel_count= list(sorted_fuel_with_count.values())
-            
+                sorted_fuel= list(sorted_fuel_with_count.keys())
+                sorted_fuel_count= list(sorted_fuel_with_count.values())
             # Displaying in Streamlit
-            st.markdown(f"Most frequent active fuel type: **{sorted_fuel[0]}** (Count: **{sorted_fuel_count[0]}**)")
-            st.markdown("-------------------------------------------------------------------------------")
-
+                st.markdown(f"Most frequent active fuel type: **{sorted_fuel[0]}** (Count: **{sorted_fuel_count[0]}**)")
+                st.markdown("-------------------------------------------------------------------------------")
+            except:
+                
+                st.markdown(f"There is no most frequent active fuel type (Count: **0**)")
+                st.markdown("-------------------------------------------------------------------------------")
             # Query to find the minimum price value where isActive is true
             try:
                 min_value = format(data['active']['priceMin'], ",")
