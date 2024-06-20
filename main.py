@@ -412,6 +412,7 @@ try:
                 st.markdown(f"There is no most frequent active fuel type (Count: **0**)")
                 st.markdown("-------------------------------------------------------------------------------")
             # Query to find the minimum price value where isActive is true
+        
             try:
                 min_value = format(data['active']['priceMin'], ",")
             except:
